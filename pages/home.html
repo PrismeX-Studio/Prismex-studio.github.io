@@ -6,10 +6,10 @@
     <style>
         :root {
             --pagename: Home;
-            --block-blur: blur(12px) saturate(1.8);
+            --blur: blur(12px) saturate(0);
             --selection-color: #ffdad588;
             --container-border-radius: 16px;
-            --border-color:rgba(127, 127, 127, 0.1);
+            --border-color: rgba(127, 127, 127, 0.1);
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
             /*1st*/
             --primary-color: #9f3f35;
@@ -77,6 +77,12 @@
             overflow: auto;
             color: var(--primary-color);
             text-decoration: none;
+            cursor:pointer;
+        }
+        a:hover{
+            transition: all 0.20s ease 0s;
+            color:color-mix(in srgb,var(--primary-color)75%,transparent);
+            font-weight: bold;
         }
 
         h1 {
@@ -103,8 +109,8 @@
             color: var(--primary-font-color);
         }
 
-        .blank{
-            border:0px;
+        .blank {
+            border: 0px;
         }
 
         .content {
@@ -148,8 +154,7 @@
         .container-error {
             margin: 0px 0px 30px 0px;
             background-color: var(--error-color);
-            border: var(--error-color) solid 4px;
-            padding: 24px;
+            padding: 28px;
             border-radius: var(--container-border-radius);
 
         }
@@ -166,9 +171,9 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            background-color: var(--surface0-color);
+            background-color: color-mix(in srgb, var(--surface0-color) 87%, transparent);
             border-bottom: rgba(127, 127, 127, 0.1) solid 1.5px;
-            backdrop-filter: blur(12px) saturate(1.8);
+            backdrop-filter: blur(11px) saturate(1.8);
             -webkit-backdrop-filter: blur(12px) saturate(1.8);
             background-position-x: 0px;
             position: fixed;
@@ -179,10 +184,18 @@
 
         .navbar>* {
             margin: 0px 40px 0px 0px;
+            min-width: fit-content;
         }
 
         .navbar>a {
             font-weight: normal;
+        }
+
+        .navbar>img {
+            height:40px;
+            width:auto;
+            border:var(--primary-color) solid 2px;
+            border-radius: 8px;
         }
 
         .t-tag {
@@ -205,7 +218,7 @@
         .t-navbar {
             font-size: 21px;
             font-weight: bold;
-            margin-left: 20px;
+            margin-left: -24px;
             color: var(--on-primary-container-color);
         }
 
@@ -215,6 +228,18 @@
             padding-right: 8px;
             width: 84px;
             color: var(--primary-color)
+        }
+
+        .footer {
+            display: flex;
+            min-height: 300px;
+            padding: 50px 70px 50px 70px;
+            background-color: var(--surface0-color);
+            border-top: var(--border-color) solid 1.5px;
+        }
+
+        .f-container0 {
+            background: transparent;
         }
     </style>
     <script>
@@ -231,24 +256,35 @@
 
 <body>
     <div class="navbar">
-        <a class="t-navbar" href="..\index.html">
+        <img src="..\images\nicon.png">
+        <p class="t-navbar">
             PrismeX Studio
-        </a>
+        </p>
         <a herf="..\index.html">
             主页
         </a>
+        <a herf="..\index.html">
+            所有页面
+        </a>
+        <a herf="..\index.html">
+            回到旧版
+        </a>
+        <a herf="..\index.html" style="width:100%;text-align: right;padding-right: 20px;">
+            网站仓库
+        </a>
     </div>
+    <!--main-->
     <div class="content">
         <div class="container0">
             <hr class="blank">
             <div style="display:flex;flex-direction: row; justify-content: flex-start;align-items: bottom;">
-                <img class="icon-title" src="..\icons\FluentWarningFilled.svg" alt="SVG Image" style="">
+                <img class="icon-title" src="..\icons\FluentWarningFilled.svg" alt="SVG Image">
                 <div style="width:100%">
                     <h1>
                         Under Construction!
                     </h1>
                     <h1>
-                        此页面正在施工中，请稍候再来！
+                        此页面正在施工中，敬请期待！
                     </h1>
                 </div>
             </div>
@@ -298,24 +334,26 @@
             <img src="..\images\C-7\1.png">
             <p>
                 The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
-                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
-                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
             </p>
             <p>
                 The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
-                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
-                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
             </p>
             <hr>
             <p>
                 The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
-                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
-                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
             </p>
         </div>
 
     </div>
+    <div class="footer">
 
+    </div>
 </body>
 
 </html>

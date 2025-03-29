@@ -55,7 +55,7 @@
     font-size: 26px;
     font-weight: bold;
 }
-
+/*No longer used*/
 .t-notice-warn {
     color: var(--notice-color-font-warn);
 }
