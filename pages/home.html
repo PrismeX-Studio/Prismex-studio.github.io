@@ -8,15 +8,30 @@
             --pagename: Home;
             --block-blur: blur(12px) saturate(1.8);
             --selection-color: #ffdad588;
+            --container-border-radius:16px;
             font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            /**/
+            /*1st*/
             --primary-color: #9f3f35;
             --on-primary-color: #ffffff;
             --primary-container-color: #ffdad5;
             --on-primary-container-color: #410001;
             --primary-font-color: #201a19;
-
-
+            /*2nd*/
+            --secondary-color: #775652;
+            --on-secondary-color: #ffffff;
+            --secondary-container-color: #ffdad5;
+            --on-secondary-container-color: #2c1512;
+            /*3rd*/
+            --tertiary-color: #715b2e;
+            --on-tertiary-color: #ffffff;
+            --tertiary-container-color: #fddfa6;
+            --on-tertiary-container-color: #261a00;
+            /*ERROR*/
+            --error-color: #ba1a1a;
+            --on-error-color: #ffffff;
+            --error-container-color: #ffd6d6;
+            --on-error-container-color: #410002;
+            /*others*/
             --surface0-color: #fffbff;
             --surface1-color: #faf2f6;
             --t-tag-container-color: #faf2f6;
@@ -43,7 +58,7 @@
             margin-bottom: 6px;
             width: 700px;
             max-width: 100%;
-            border-radius: 8px;
+            border-radius: 12px;
         }
 
         p {
@@ -94,52 +109,51 @@
             padding-top: 70px;
         }
 
-        .b-container0 {
+        .container0 {
             margin: 0px;
             margin-bottom: 20px;
             margin-left: 7%;
             margin-right: 7%;
             background-color: transparent;
             padding: 30px;
-            border-radius: 8px;
+            border-radius: var(--container-border-radius);
         }
 
-        .b-container1 {
-            margin: 0px;
-            background-color: var(--surface1);
-            padding: 15px;
-            border-radius: 8px;
-
-        }
-
-        .b-warn-container {
-            margin: 0px;
-            background-color: var(--notice-color-background-warn);
-            border: 1px solid var(--notice-color-border-warn);
-            padding-block: 0px 15px;
-            padding-inline: 15px;
-            border-radius: 8px;
+        .container1 {
+            margin: 0px 0px 30px 0px;
+            background-color: var(--primary-container-color);
+            padding: 28px;
+            border-radius: var(--container-border-radius);
 
         }
 
-        .b-info-container {
-            margin: 0px;
-            background-color: var(--notice-color-background-info);
-            border: 1px solid var(--notice-color-border-info);
-            padding-block: 0px 15px;
-            padding-inline: 15px;
-            border-radius: 8px;
+        .container1>* {
+            color: var(--on-primary-container-color)
+        }
+
+        .container2 {
+            margin: 0px 0px 30px 0px;
+            background-color: var(--tertiary-container-color);
+            padding: 28px;
+            border-radius: var(--container-border-radius);
 
         }
 
-        .b-error-container {
-            margin: 0px;
-            background-color: var(--notice-color-background-error);
-            border: 1px solid var(--notice-color-border-error);
-            padding-block: 0px 15px;
-            padding-inline: 15px;
-            border-radius: 8px;
+        .container-2>* {
+            color: var(--on-tertiary-container-color)
+        }
 
+        .container-error {
+            margin: 0px;
+            background-color: var(--error-color);
+            border: var(--error-color) solid 4px;
+            padding:24px;
+            border-radius: var(--container-border-radius);
+
+        }
+
+        .container-error>* {
+            color: var(--on-error-color)
         }
 
 
@@ -181,16 +195,16 @@
             font-size: 14px;
         }
 
-        .t-tag-container {
+        .t-tags-container {
             width: 100%;
             display: flex;
         }
 
-        .t-navbar{
-            font-size:21px;
+        .t-navbar {
+            font-size: 21px;
             font-weight: bold;
             margin-left: 20px;
-            color:var(--on-primary-container-color);
+            color: var(--on-primary-container-color);
         }
     </style>
     <script>
@@ -215,14 +229,21 @@
         </a>
     </div>
     <div class="content">
-        <div class="b-container0">
-            <h1>
-                Under Construction!
-            </h1>
-            <h1>
-                此页面正在施工中，请稍候再来！
-            </h1>
-            <div class="t-tag-container">
+        <div class="container0">
+            <div style="display:flex;flex-direction: row; justify-content: flex-start;align-items: bottom;">
+                <img src="..\icons\FluentWarningFilled.svg" alt="SVG Image"
+                    style="filter: drop-shadow(23662px 0 0 var(--primary-color)); transform: translate(-23662px);padding-right:8px; width:84px; color:var(--primary-color)">
+                <div style="width:100%">
+                    <h1>
+                        Under Construction!
+                    </h1>
+                    <h1>
+                        此页面正在施工中，请稍候再来！
+                    </h1>
+                </div>
+            </div>
+
+            <div class="t-tags-container">
                 <p class="t-tag">
                     Under Construction
                 </p>
@@ -233,8 +254,39 @@
                     Test Page
                 </p>
             </div>
-
+            <hr>
+            <div class="container1">
+                <h2>
+                    Container
+                </h2>
+                <p>
+                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                </p>
+            </div>
+            <div class="container2">
+                <h2>
+                    Container
+                </h2>
+                <p>
+                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                </p>
+            </div>
+            <div class="container-error">
+                <h2>
+                    Container
+                </h2>
+                <p>
+                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                    The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
+                </p>
+            </div>
         </div>
+
     </div>
 
 </body>
