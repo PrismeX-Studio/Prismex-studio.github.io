@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <style>
+        :root {
+            --pagename: Home;
+            --block-blur: blur(12px) saturate(1.8);
+            --selection-color: #ffdad588;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            /**/
+            --primary-color: #9f3f35;
+            --on-primary-color: #ffffff;
+            --primary-container-color: #ffdad5;
+            --on-primary-container-color: #410001;
+            --primary-font-color: #201a19;
+
+
+            --surface0-color: #fffbff;
+            --surface1-color: #faf2f6;
+            --t-tag-container-color: #faf2f6;
+            --t-tag-primary-color: var(--primary-color);
+        }
+
+        body {
+            margin: 0px;
+            background: var(--on-primary-color);
+            min-width: 300px;
+
+        }
+
+        hr {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            border-width: 0px;
+            background-color: var(--primary-color);
+        }
+
+        img {
+            margin: 0px;
+            margin-top: 6px;
+            margin-bottom: 6px;
+            width: 700px;
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        p {
+            font-size: 19px;
+            margin: 0px;
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow: auto;
+            color: var(--primary-font-color);
+        }
+
+        a {
+            font-size: 19px;
+            margin: 0px;
+            font-weight: bold;
+            word-wrap: break-word;
+            word-break: break-all;
+            overflow: auto;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        h1 {
+            margin: 0px;
+            font-size: 36px;
+            font-weight: bold;
+            color: var(--primary-font-color);
+        }
+
+        h2 {
+            margin: 0px;
+            margin-bottom: 5px;
+            font-size: 26px;
+            font-weight: bold;
+            color: var(--primary-font-color);
+        }
+
+        h3 {
+            margin: 0px;
+            margin-bottom: 15px;
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--primary-font-color);
+        }
+
+        .content {
+            padding-top: 70px;
+        }
+
+        .b-container0 {
+            margin: 0px;
+            margin-bottom: 20px;
+            margin-left: 7%;
+            margin-right: 7%;
+            background-color: transparent;
+            padding: 30px;
+            border-radius: 8px;
+        }
+
+        .b-container1 {
+            margin: 0px;
+            background-color: var(--surface1);
+            padding: 15px;
+            border-radius: 8px;
+
+        }
+
+        .b-warn-container {
+            margin: 0px;
+            background-color: var(--notice-color-background-warn);
+            border: 1px solid var(--notice-color-border-warn);
+            padding-block: 0px 15px;
+            padding-inline: 15px;
+            border-radius: 8px;
+
+        }
+
+        .b-info-container {
+            margin: 0px;
+            background-color: var(--notice-color-background-info);
+            border: 1px solid var(--notice-color-border-info);
+            padding-block: 0px 15px;
+            padding-inline: 15px;
+            border-radius: 8px;
+
+        }
+
+        .b-error-container {
+            margin: 0px;
+            background-color: var(--notice-color-background-error);
+            border: 1px solid var(--notice-color-border-error);
+            padding-block: 0px 15px;
+            padding-inline: 15px;
+            border-radius: 8px;
+
+        }
+
+
+        .navbar {
+            height: 50px;
+            width: 100%;
+            padding: 8px 40px 8px 16px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: var(--surface0-color);
+            border-bottom: rgba(127, 127, 127, 0.1) solid 1.5px;
+            backdrop-filter: blur(12px) saturate(1.8);
+            -webkit-backdrop-filter: blur(12px) saturate(1.8);
+            background-position-x: 0px;
+            position: fixed;
+            top: 0px;
+            z-index: 1;
+
+        }
+
+        .navbar>* {
+            margin: 0px 40px 0px 0px;
+        }
+
+        .navbar>a {
+            font-weight: normal;
+        }
+
+        .t-tag {
+            border-radius: 6px;
+            background-color: var(--t-tag-container-color);
+            color: var(--t-tag-primary-color);
+            padding: 6px 16px 6px 16px;
+            width: fit-content;
+            min-width: fit-content;
+            white-space: nowrap;
+            margin: 6px 6px 6px 0px;
+            font-size: 14px;
+        }
+
+        .t-tag-container {
+            width: 100%;
+            display: flex;
+        }
+
+        .t-navbar{
+            font-size:21px;
+            font-weight: bold;
+            margin-left: 20px;
+            color:var(--on-primary-container-color);
+        }
+    </style>
+    <script>
+        var pgnme = getComputedStyle(document.documentElement).getPropertyValue('--pagename');
+        var wbnmestr = "PrismeX Studio";
+        var pgtitle = pgnme.concat(" - ", wbnmestr);
+        document.title = pgtitle;
+        document.write("        <link rel=\"shortcut icon\" href=\"..\/images\/wicon.png\">");
+    </script>
+
+
+
+</head>
+
+<body>
+    <div class="navbar">
+        <p class="t-navbar">
+            PrismeX Studio
+        </p>
+        <a>
+            主页
+        </a>
+    </div>
+    <div class="content">
+        <div class="b-container0">
+            <h1>
+                Under Construction!
+            </h1>
+            <h1>
+                此页面正在施工中，请稍候再来！
+            </h1>
+            <div class="t-tag-container">
+                <p class="t-tag">
+                    Under Construction
+                </p>
+                <p class="t-tag">
+                    Style v2
+                </p>
+                <p class="t-tag">
+                    Test Page
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

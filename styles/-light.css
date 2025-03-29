@@ -14,7 +14,7 @@
     --font-gray-color: #BBBBBB;
     --navbar-link-color: rgba(0, 0, 0, 0.5);
     --navbar-link-hover-color: #000000;
-    --background-url: url(../images/background1.png);
+    --background-url: rgba(250,250,250,255);
     --notice-color-font-info: hsl(196, 100%, 46%);
     --notice-color-border-info: hsl(196, 100%, 46%);
     --notice-color-background-info: hsl(194, 88%, 93%);
