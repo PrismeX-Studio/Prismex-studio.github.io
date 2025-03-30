@@ -19,6 +19,7 @@
             --primary-container-color: #ffdad5;
             --on-primary-container-color: #410001;
             --primary-font-color: #201a19;
+            --secondary-font-color:#5a4a48;
             /*2nd*/
             --secondary-color: #775652;
             --on-secondary-color: #ffffff;
@@ -62,7 +63,8 @@
 
         p {
             font-size: 19px;
-            margin: 0px 0px 12px 0px;
+            line-height: 28px;
+            margin: 0px 0px 20px 0px;
             word-wrap: break-word;
             word-break: break-all;
             overflow: auto;
@@ -97,7 +99,7 @@
 
         h2 {
             margin: 0px;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
             font-size: 26px;
             font-weight: bold;
             color: var(--primary-font-color);
@@ -167,6 +169,8 @@
         }
 
 
+
+
         .navbar {
             height: 50px;
             width: 100%;
@@ -194,9 +198,17 @@
             font-weight: normal;
             background: transparent;
             border-radius: 6px;
-            padding:6px 12px 6px 12px;
-            margin:auto 8px auto 8px;
+            padding: 6px 12px 6px 12px;
+            margin: auto 8px auto 8px;
             transition: all 0.2s ease 0s;
+        }
+
+        .navbar>a:hover {
+            transition: all 0.20s ease 0s;
+            color: color-mix(in srgb, var(--primary-color)95%, var(--surface0-color));
+            background: var(--border-color);
+            border-radius: 6px;
+            padding: 6px 12px 6px 12px;
         }
 
         .navbar>img {
@@ -207,12 +219,14 @@
             border-radius: 8px;
         }
 
-        .navbar>a:hover {
-            transition: all 0.20s ease 0s;
-            color: color-mix(in srgb, var(--primary-color)95%, var(--surface0-color));
-            background: var(--border-color);
-            border-radius: 6px;
-            padding:6px 12px 6px 12px;
+        .navbar>p {
+            font-size: 22px;
+            font-weight: bold;
+            margin-left: -24px;
+            margin-right: 10px;
+            padding-right: 30px;
+            color: var(--on-primary-container-color);
+            border-right: var(--border-color) solid 2px;
         }
 
         .t-tags-container {
@@ -224,7 +238,7 @@
             border-radius: 6px;
             background-color: var(--t-tag-container-color);
             color: var(--t-tag-primary-color);
-            padding: 6px 16px 6px 16px;
+            padding: 1px 16px 1px 16px;
             width: fit-content;
             min-width: fit-content;
             white-space: nowrap;
@@ -232,12 +246,6 @@
             font-size: 14px;
         }
 
-        .t-navbar {
-            font-size: 21px;
-            font-weight: bold;
-            margin-left: -24px;
-            color: var(--on-primary-container-color);
-        }
 
         .icon-title {
             filter: drop-shadow(23662px 0 0 var(--primary-color));
@@ -250,13 +258,89 @@
         .footer {
             display: flex;
             min-height: 300px;
-            padding: 50px 70px 50px 70px;
+            padding: 50px calc( 7% + 30px ) 50px calc( 7% + 30px );
             background-color: var(--surface0-color);
             border-top: var(--border-color) solid 1.5px;
+            user-select: none;
         }
 
         .f-container0 {
             background: transparent;
+            display:flex;
+            flex-direction:column;
+            margin: 0px 120px 0px 0px;
+        }
+        .f-container0>p{
+            color:var(--on-primary-container-color);
+            font-weight: bold;
+            height:46px;
+            align-content: end;
+            font-size: 16px;
+        }
+
+        .f-container0>a{
+            font-weight: normal;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .f-logo-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+
+        .f-logo-container>img {
+            width: 48px;
+            border-radius: 12px;
+            border: var(--primary-color) solid 2.5px;
+            margin: 0px;
+        }
+
+        .f-logo-container>h1 {
+            font-size: 36px;
+            font-weight: bold;
+            width: fit-content;
+            margin: 0px 0px 0px 16px;
+            text-align: start;
+            color: var(--on-primary-container-color);
+        }
+
+        .f-logo-links-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .f-logo-links-container>a {    
+            width: 32px;
+            height:32px;
+            margin: 8px 10px 8px 4px;
+            overflow: hidden;
+        }
+
+        .f-logo-links-container>a>img {
+            
+            filter: drop-shadow(23662px 0 0 var(--secondary-color));
+            transform: translate(-23662px);
+        }
+
+        .f-logo-links-container>a:hover{
+            background: var(--border-color);
+            border-radius: 6px;
+
+        }
+
+        .f-info-container{
+            align-content: end;
+            height:100%;
+        }
+
+        .f-info-container>p{
+            margin-bottom: 2px;
+            font-size: 16px;
+            color: var(--secondary-font-color);
         }
     </style>
     <script>
@@ -274,20 +358,20 @@
 <body>
     <div class="navbar">
         <img src="..\images\nicon.png">
-        <p class="t-navbar">
+        <p>
             PrismeX Studio
         </p>
-        <a herf="..\index.html">
+        <a href="..\index.html">
             主页
         </a>
-        <a herf="..\index.html">
+        <a href="..\index.html">
             所有页面
         </a>
-        <a herf="..\index.html">
+        <a href="A-1.html">
             回到旧版
         </a>
         <hr class="blank" style="width:100%">
-        <a herf="https://github.com/PrismeX-Studio/Prismex-studio.github.io"
+        <a href="https://github.com/PrismeX-Studio/Prismex-studio.github.io"
             style="text-align: right;margin-right: 40px;">
             网站仓库
         </a>
@@ -367,12 +451,87 @@
                 The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
                 The quick brown fox jumps over the lazy dog.小王三天半用DickSuck赚了23662.22RMB。
             </p>
+            <hr>
+            <h1>
+                New Block
+            </h1>
+            <p>
+                忙碌一天刚进家门就踩到了儿子肛塞
+                摔了个四仰八叉，洗个澡又发现儿子
+                在外面偷窥，刚躺床上就听到儿子在
+                找网友语音聊天，时不时传来招娣
+                妈、顺直爸的聊天内容
+            </p>
+            <p>
+                睡梦中惊醒，睁开眼就是儿子的男
+                凝，一起床隔壁儿子房间就传来臭
+                味，不用想儿子又拉上床上了，穿鞋
+                去上班发现袜子上都是儿子打的胶。
+                中午被物业打电话，你的儿子在猥亵
+                公园玩耍的小男孩，你赶回去赔礼道
+                歉祈求不要把你儿子送进去，你忍无
+                可忍把儿子带回家用七匹狼狠狠的
+                抽，你儿子一个劲的喊好爽爸爸抽
+                我，你抽累了但你儿子还没过瘾，跪
+                着舔你的鞋子
+            </p>
+            <p>
+                你再也忍不了了，走到阳台抽根烟，
+                捡起地上的火机一看沾满了屎，火机
+                被儿子当肛塞用了，你去楼下的超市
+                买火机，没走电梯也没走楼梯。
+            </p>
         </div>
 
     </div>
     <div class="footer">
-
-    </div>
+        <div class="f-container0">
+            <div class="f-logo-container">
+                <img src="..\images\nicon.png">
+                <h1>
+                    PrismeX Studio
+                </h1>
+            </div>
+            <div class="f-logo-links-container">
+                <a href="https://bilibili.com">
+                    <img src="..\icons\mingcuteBilibiliFill.svg">
+                </a>
+                <a href="https://qq.com">
+                    <img src="..\icons\mingcuteQqFill.svg">
+                </a>
+                <a href="https://github.com">
+                    <img src="..\icons\mingcuteGithubFill.svg">
+                </a>
+            </div>
+            <div class="f-info-container">
+                <p>
+                    Former name: SNRstudio.
+                </p>
+                <p>
+                    This website is open-source.
+                </p>
+                <p>
+                    Copyright © PrismeX Studio 2022-2025
+                </p>
+            </div>
+        </div>
+        <div class="f-container0">
+            <p>
+                友情链接
+            </p>
+            <a href="https://developer.mozilla.org/zh-CN/">
+                MDN
+            </a>
+            <a href="https://wikipedia.org">
+                Wikipedia
+            </a>
+            <a href="https://yesicon.app/">
+                Yesicon
+            </a>
+            <a href="https://backrooms-wiki-cn.wikidot.com/">
+                Backrooms wikidot-zh
+            </a>
+        </div>
 </body>
 
 </html>
