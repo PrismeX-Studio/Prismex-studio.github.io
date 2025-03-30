@@ -3,6 +3,8 @@
 
 <head>
     <meta charset="utf-8">
+    <script type="text/javascript" src="jquery-3.7.1.slim.js"></script>
+
     <style>
         :root {
             --pagename: Home;
@@ -43,7 +45,6 @@
             margin: 0px;
             background: var(--on-primary-color);
             min-width: 300px;
-
         }
 
         hr {
@@ -77,11 +78,13 @@
             overflow: auto;
             color: var(--primary-color);
             text-decoration: none;
-            cursor:pointer;
-        }
-        a:hover{
+            cursor: pointer;
             transition: all 0.20s ease 0s;
-            color:color-mix(in srgb,var(--primary-color)75%,transparent);
+        }
+
+        a:hover {
+            transition: all 0.20s ease 0s;
+            color: color-mix(in srgb, var(--primary-color)85%, white);
             font-weight: bold;
         }
 
@@ -189,16 +192,35 @@
 
         .navbar>a {
             font-weight: normal;
+            background: transparent;
+            border-radius: 6px;
+            padding:6px 12px 6px 12px;
+            margin:auto 8px auto 8px;
+            transition: all 0.2s ease 0s;
         }
 
         .navbar>img {
-            height:40px;
-            width:auto;
-            border:var(--primary-color) solid 2px;
+            height: 40px;
+            width: auto;
+            transform: scale(1);
+            border: var(--primary-color) solid 2px;
             border-radius: 8px;
         }
 
-        .t-tag {
+        .navbar>a:hover {
+            transition: all 0.20s ease 0s;
+            color: color-mix(in srgb, var(--primary-color)95%, var(--surface0-color));
+            background: var(--border-color);
+            border-radius: 6px;
+            padding:6px 12px 6px 12px;
+        }
+
+        .t-tags-container {
+            width: 100%;
+            display: flex;
+        }
+
+        .t-tags-container>p {
             border-radius: 6px;
             background-color: var(--t-tag-container-color);
             color: var(--t-tag-primary-color);
@@ -208,11 +230,6 @@
             white-space: nowrap;
             margin: 6px 6px 6px 0px;
             font-size: 14px;
-        }
-
-        .t-tags-container {
-            width: 100%;
-            display: flex;
         }
 
         .t-navbar {
@@ -269,7 +286,9 @@
         <a herf="..\index.html">
             回到旧版
         </a>
-        <a herf="https://github.com/PrismeX-Studio/Prismex-studio.github.io" style="width:100%;text-align: right;padding-right: 20px;">
+        <hr class="blank" style="width:100%">
+        <a herf="https://github.com/PrismeX-Studio/Prismex-studio.github.io"
+            style="text-align: right;margin-right: 40px;">
             网站仓库
         </a>
     </div>
@@ -290,13 +309,13 @@
             </div>
 
             <div class="t-tags-container">
-                <p class="t-tag">
+                <p>
                     Under Construction
                 </p>
-                <p class="t-tag">
+                <p>
                     Style v2
                 </p>
-                <p class="t-tag">
+                <p>
                     Test Page
                 </p>
             </div>
