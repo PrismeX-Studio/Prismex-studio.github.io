@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--import jQuery-min-->
-    <script type="text/javascript" src="jquery-3.7.1.slim.js"></script>
+    <script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
     <style>
         :root {
             --pagename: Home;
@@ -21,7 +21,7 @@
             --primary-container-color: #ffdad5;
             --on-primary-container-color: #410001;
             --primary-font-color: #201a19;
-            --secondary-font-color:#5a4a48;
+            --secondary-font-color: #5a4a48;
             /*2nd*/
             --secondary-color: #775652;
             --on-secondary-color: #ffffff;
@@ -170,67 +170,6 @@
             color: var(--on-error-color)
         }
 
-
-
-
-        .navbar {
-            height: 50px;
-            width: 100%;
-            padding: 8px 40px 8px 16px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            background-color: color-mix(in srgb, var(--surface0-color) 87%, transparent);
-            border-bottom: rgba(127, 127, 127, 0.1) solid 1.5px;
-            backdrop-filter: blur(11px) saturate(1.8);
-            -webkit-backdrop-filter: blur(12px) saturate(1.8);
-            background-position-x: 0px;
-            position: fixed;
-            top: 0px;
-            z-index: 1;
-
-        }
-
-        .navbar>* {
-            margin: 0px 40px 0px 0px;
-            min-width: fit-content;
-        }
-
-        .navbar>a {
-            font-weight: normal;
-            background: transparent;
-            border-radius: 6px;
-            padding: 6px 12px 6px 12px;
-            margin: auto 8px auto 8px;
-            transition: all 0.2s ease 0s;
-        }
-
-        .navbar>a:hover {
-            transition: all 0.20s ease 0s;
-            color: color-mix(in srgb, var(--primary-color)95%, var(--surface0-color));
-            background: var(--border-color);
-            border-radius: 6px;
-            padding: 6px 12px 6px 12px;
-        }
-
-        .navbar>img {
-            height: 40px;
-            width: auto;
-            transform: scale(1);
-            border: var(--primary-color) solid 2px;
-            border-radius: 8px;
-        }
-
-        .navbar>p {
-            font-size: 22px;
-            font-weight: bold;
-            margin-left: -24px;
-            margin-right: 10px;
-            padding-right: 30px;
-            color: var(--on-primary-container-color);
-            border-right: var(--border-color) solid 2px;
-        }
-
         .t-tags-container {
             width: 100%;
             display: flex;
@@ -260,34 +199,34 @@
         .footer {
             display: flex;
             min-height: 300px;
-            padding: 50px calc( 7% + 30px ) 50px calc( 7% + 30px );
+            padding: 50px calc(7% + 30px) 50px calc(7% + 30px);
             background-color: var(--surface0-color);
             border-top: var(--border-color) solid 1.5px;
             user-select: none;
             flex-wrap: wrap;
-            gap:120px;
+            gap: 120px;
         }
 
         .f-container0 {
             background: transparent;
-            display:flex;
-            flex-direction:column;
+            display: flex;
+            flex-direction: column;
             margin: 0px;
-            width:max-content;
+            width: max-content;
             min-width: max-content;
-            height:300px
-
+            height: 300px
         }
-        .f-container0>p{
-            color:var(--on-primary-container-color);
+
+        .f-container0>p {
+            color: var(--on-primary-container-color);
             font-weight: bold;
-            height:46px;
+            height: 46px;
             align-content: end;
             font-size: 16px;
         }
 
-        .f-container0>a{
-            width:fit-content;
+        .f-container0>a {
+            width: fit-content;
             background: transparent;
             font-weight: normal;
             font-size: 16px;
@@ -296,7 +235,7 @@
             margin: 0px 0px 14px -12px;
         }
 
-        .f-container0>a:hover{
+        .f-container0>a:hover {
             background: var(--border-color);
             border-radius: 6px;
         }
@@ -310,7 +249,7 @@
 
         .f-logo-container>img {
             width: 48px;
-            height:48px;
+            height: 48px;
             border-radius: 12px;
             border: var(--primary-color) solid 2.5px;
             margin: 0px;
@@ -331,36 +270,36 @@
             align-items: center;
         }
 
-        .f-logo-links-container>a {    
+        .f-logo-links-container>a {
             width: 32px;
-            height:32px;
+            height: 32px;
             margin: 8px 10px 8px 4px;
             overflow: hidden;
         }
 
         .f-logo-links-container>a>img {
-            
+
             filter: drop-shadow(23662px 0 0 var(--secondary-color));
             transform: translate(-23662px);
         }
 
-        .f-logo-links-container>a:hover{
+        .f-logo-links-container>a:hover {
             background: var(--border-color);
             border-radius: 6px;
 
         }
 
-        .f-info-container{
+        .f-info-container {
             align-content: end;
-            height:100%;
+            height: 100%;
         }
 
-        .f-info-container>a:hover{
+        .f-info-container>a:hover {
             background: var(--border-color);
             border-radius: 6px;
         }
 
-        .f-info-container>p{
+        .f-info-container>p {
             margin-bottom: 2px;
             font-size: 16px;
             color: var(--secondary-font-color);
@@ -372,6 +311,14 @@
         var pgtitle = pgnme.concat(" - ", wbnmestr);
         document.title = pgtitle;
         document.write("        <link rel=\"shortcut icon\" href=\"..\/images\/wicon.png\">");
+        $(function () {
+            $(".include[file]").each(function () {
+                var $element = $(this);
+                $element.load($element.attr("file"), function () {
+                    $element.replaceWith($element.children());
+                });
+            });
+        });
     </script>
 
 
@@ -379,28 +326,7 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <img src="..\images\nicon.png">
-        <p>
-            PrismeX Studio
-        </p>
-        <a href="..\index.html">
-            主页
-        </a>
-        <a href="navbar.html">
-            所有页面
-        </a>
-        <a href="A-1.html">
-            回到旧版
-        </a>
-        <a href="test.html">
-            测试网页
-        </a>
-        <hr class="blank" style="width:100%">
-        <a href="https://github.com/PrismeX-Studio/Prismex-studio.github.io"
-            style="text-align: right;margin-right: 40px;">
-            网站仓库
-        </a>
+    <div class="include" file="navbar.html">
     </div>
     <!--main-->
     <div class="content">
@@ -432,7 +358,7 @@
             <hr class="blank">
             <div class="container2">
                 <h2>
-                WARNING
+                    WARNING
                 </h2>
                 <p>
                     本网站仅支持具有2023Baseline及以后的Chromium内核的浏览器查看。
