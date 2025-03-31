@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar</title>
+    <style>
+        .navbar {
+            height: 50px;
+            width: 100%;
+            padding: 8px 40px 8px 16px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background-color: color-mix(in srgb, var(--surface0-color) 87%, transparent);
+            border-bottom: rgba(127, 127, 127, 0.1) solid 1.5px;
+            backdrop-filter: blur(11px) saturate(1.8);
+            -webkit-backdrop-filter: blur(12px) saturate(1.8);
+            background-position-x: 0px;
+            position: fixed;
+            top: 0px;
+            z-index: 1;
+
+        }
+
+        .navbar>* {
+            margin: 0px 40px 0px 0px;
+            min-width: fit-content;
+        }
+
+        .navbar>a {
+            font-weight: normal;
+            background: transparent;
+            border-radius: 6px;
+            padding: 6px 12px 6px 12px;
+            margin: auto 8px auto 8px;
+            transition: all 0.2s ease 0s;
+        }
+
+        .navbar>a:hover {
+            transition: all 0.20s ease 0s;
+            color: color-mix(in srgb, var(--primary-color)95%, var(--surface0-color));
+            background: var(--border-color);
+            border-radius: 6px;
+            padding: 6px 12px 6px 12px;
+        }
+
+        .navbar>img {
+            height: 40px;
+            width: auto;
+            transform: scale(1);
+            border: var(--primary-color) solid 2px;
+            border-radius: 8px;
+        }
+
+        .navbar>p {
+            font-size: 22px;
+            font-weight: bold;
+            margin-left: -24px;
+            margin-right: 10px;
+            padding-right: 30px;
+            color: var(--on-primary-container-color);
+            border-right: var(--border-color) solid 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <img src="..\images\nicon.png">
+        <p>
+            PrismeX Studio
+        </p>
+        <a href="..\index.html">
+            主页
+        </a>
+        <a href="..\index.html">
+            所有页面
+        </a>
+        <a href="A-1.html">
+            回到旧版
+        </a>
+        <a href="test.html">
+            测试网页
+        </a>
+        <hr class="blank" style="width:100%">
+        <a href="https://github.com/PrismeX-Studio/Prismex-studio.github.io"
+            style="text-align: right;margin-right: 40px;">
+            网站仓库
+        </a>
+    </div>
+</body>
