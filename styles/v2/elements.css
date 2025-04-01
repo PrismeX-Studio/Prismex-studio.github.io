@@ -2,6 +2,7 @@ body {
     margin: 0px;
     background: var(--on-primary-color);
     min-width: 300px;
+    overflow-x: hidden;
 }
 
 hr {
