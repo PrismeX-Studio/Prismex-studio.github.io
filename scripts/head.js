@@ -37,7 +37,7 @@ $(function () {
         var tags = JSON.parse($element.attr("tags").replace(/'/g, '"'));
         var icon = $element.attr("icon") || "../icons/FluentWarningFilled.svg";
 
-        $element.load("title.html", function (response, status, xhr) {
+        $element.load("_title.html", function (response, status, xhr) {
             if (status === "error") {
                 console.error("加载失败:", xhr.statusText);
                 return;
