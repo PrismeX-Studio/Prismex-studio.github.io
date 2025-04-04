@@ -1,6 +1,6 @@
 body {
     margin: 0px;
-    background: var(--on-primary-color);
+    background: var(--background-color);
     min-width: 300px;
     overflow-x: hidden;
 }
