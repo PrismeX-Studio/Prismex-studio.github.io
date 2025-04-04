@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Footer</title>
+    <style>
+        .footer {
+            display: flex;
+            min-height: 300px;
+            padding: 50px calc(7% + 30px) 50px calc(7% + 30px);
+            background-color: var(--surface0-color);
+            border-top: var(--border-color) solid 1.5px;
+            user-select: none;
+            flex-wrap: wrap;
+            gap: 120px;
+            overflow: scroll;
+        }
+
+        .f-container0 {
+            background: transparent;
+            display: flex;
+            flex-direction: column;
+            margin: 0px;
+            width: max-content;
+            min-width: max-content;
+            height: 300px
+        }
+
+        .f-container0>p {
+            color: var(--on-primary-container-color);
+            font-weight: bold;
+            height: 46px;
+            align-content: end;
+            font-size: 16px;
+        }
+
+        .f-container0>a {
+            width: fit-content;
+            background: transparent;
+            font-weight: normal;
+            font-size: 16px;
+            transition: all 0.20s ease 0s;
+            padding: 6px 12px 6px 12px;
+            margin: 0px 0px 14px -12px;
+        }
+
+        .f-container0>a:hover {
+            background: var(--border-color);
+            border-radius: 6px;
+        }
+
+        .f-logo-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+
+        .f-logo-container>img {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            border: var(--primary-color) solid 2.5px;
+            margin: 0px;
+        }
+
+        .f-logo-container>h1 {
+            font-size: 36px;
+            font-weight: bold;
+            width: fit-content;
+            margin: 0px 0px 0px 16px;
+            text-align: start;
+            color: var(--on-primary-container-color);
+        }
+
+        .f-logo-links-container {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .f-logo-links-container>a {
+            width: 32px;
+            height: 32px;
+            margin: 8px 10px 8px 4px;
+            overflow: hidden;
+        }
+
+        .f-logo-links-container>a>img {
+
+            filter: drop-shadow(23662px 0 0 var(--secondary-color));
+            transform: translate(-23662px);
+        }
+
+        .f-logo-links-container>a:hover {
+            background: var(--border-color);
+            border-radius: 6px;
+
+        }
+
+        .f-info-container {
+            align-content: end;
+            height: 100%;
+        }
+
+        .f-info-container>a:hover {
+            background: var(--border-color);
+            border-radius: 6px;
+        }
+
+        .f-info-container>p {
+            margin-bottom: 2px;
+            font-size: 16px;
+            color: var(--secondary-font-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="footer">
+        <div class="f-container0">
+            <div class="f-logo-container">
+                <img src="..\images\nicon.png">
+                <h1>
+                    PrismeX Studio
+                </h1>
+            </div>
+            <div class="f-logo-links-container">
+                <a href="https://bilibili.com">
+                    <img src="..\icons\MingcuteBilibiliFill.svg">
+                </a>
+                <a href="https://qq.com">
+                    <img src="..\icons\MingcuteQqFill.svg">
+                </a>
+                <a href="https://github.com">
+                    <img src="..\icons\MingcuteGithubFill.svg">
+                </a>
+            </div>
+            <div class="f-info-container">
+                <p>
+                    Former name: PrismeXstudio.
+                </p>
+                <p>
+                    This website is open-source.
+                </p>
+                <p>
+                    Copyright © PrismeX Studio 2022-2025
+                </p>
+            </div>
+        </div>
+        <div class="f-container0">
+            <p>
+                友情链接
+            </p>
+            <a href="https://developer.mozilla.org/zh-CN/">
+                MDN
+            </a>
+            <a href="https://wikipedia.org">
+                Wikipedia
+            </a>
+            <a href="https://yesicon.app/">
+                Yesicon
+            </a>
+            <a href="https://backrooms-wiki-cn.wikidot.com/">
+                Backrooms wikidot-zh
+            </a>
+        </div>
+        <div class="f-container0">
+            <p>
+                联系我们
+            </p>
+            <a href="https://space.bilibili.com/1986062921">
+                Starlight7Xe:B站
+            </a>
+            <a href="https://github.com/Return761">
+                Starlight7Xe:Github
+            </a>
+            <a href="..\404.html">
+                A_xie_A:B站
+            </a>
+            <a href="https://github.com/uXZ0o">
+                A_xie_A:Github
+            </a>
+        </div>
+</body>
