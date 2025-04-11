@@ -15,7 +15,10 @@ for (let i = 0; i < styleFiles.length; i++) {
 //icon
 document.write("        <link rel=\"shortcut icon\" href=\"..\/images\/wicon.png\">");
 //pagename
-var pgnme = getComputedStyle(document.documentElement).getPropertyValue('--pagename');
+
+//!!!重要更改：全局css变量pagename已经弃用!!!
+
+var pgnme = document.title;
 var wbnmestr = "PrismeX Studio";
 var pgtitle = pgnme.concat(" - ", wbnmestr);
 document.title = pgtitle;
@@ -30,10 +33,10 @@ $(function () {
 });
 //title module support
 $(function () {
-    $(".title[text][author][tags]").each(function () {
+    $(".title[text][sub-title][tags]").each(function () {
         var $element = $(this);
         var text = $element.attr("text");
-        var author = $element.attr("author");
+        var subtitle = $element.attr("sub-title");
         var tags = JSON.parse($element.attr("tags").replace(/'/g, '"'));
         var icon = $element.attr("icon") || "../icons/FluentWarningFilled.svg";
 
@@ -60,7 +63,7 @@ $(function () {
 
             // 设置其他元素
             $element.find("h1").text(text);
-            $element.find("h2").text(author);
+            $element.find("h2").text(subtitle);
             $element.find(".icon-title").attr("src", icon);
         });
     });
