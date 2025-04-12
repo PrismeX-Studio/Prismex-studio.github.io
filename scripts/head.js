@@ -13,7 +13,7 @@ for (let i = 0; i < styleFiles.length; i++) {
     loadStyle("../styles/" + styleFiles[i] + ".css");
 }
 //icon
-document.write("        <link rel=\"shortcut icon\" href=\"..\/images\/wicon.png\">");
+document.write("        <link rel=\"shortcut icon\" href=\"..\/images\/PrismeX-Studio-Icon-Small.png\">");
 //pagename
 
 //!!!重要更改：全局css变量pagename已经弃用!!!
