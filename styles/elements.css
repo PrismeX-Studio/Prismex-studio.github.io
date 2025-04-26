@@ -101,6 +101,10 @@ h3 {
     color: var(--on-primary-container-color)
 }
 
+.container1>p{
+    margin-bottom: 0px;
+}
+
 .container2 {
     margin: 0px 0px 30px 0px;
     background-color: var(--tertiary-container-color);
@@ -113,6 +117,10 @@ h3 {
     color: var(--on-tertiary-container-color)
 }
 
+.container2>p{
+    margin-bottom: 0px;
+}
+
 .container-error {
     margin: 0px 0px 30px 0px;
     background-color: var(--error-color);
@@ -123,4 +131,8 @@ h3 {
 
 .container-error>* {
     color: var(--on-error-color)
+}
+
+.container-error>p{
+    margin-bottom: 0px;
 }

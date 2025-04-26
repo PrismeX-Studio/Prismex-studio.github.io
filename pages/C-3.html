@@ -1,32 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+
 <head>
-	<title>辨别系统位数 - PrismeX团队官方网站</title>
-<script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
-	<style>
-		:root {
-			--pagename:辨别系统位数;
-		}
-	</style>
-	<script type="text/javascript" src="../scripts/head.js"></script>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>辨别系统位数</title>
+	<script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
+	<script type="text/javascript" src="..\scripts\head.js"></script>
 </head>
-	<body>
-		<div class="include" file="_navbar.html"></div>
-                <hr />
-		<div class="b-block">
-			<h1>辨别系统位数[内容部分过时]</h1>
-			<p class="t-info">作者：PrismeX团队</p>
+
+<body>
+	<div class="include" file="_navbar.html"></div>
+	<div class="content">
+		<div class="container0">
+			<div class="title" text="辨别系统位数" sub-title="Identify the number of bits of the OS" icon="../icons/FluentDocumentFilled.svg"
+				tags='["操作系统","教程","PrismeX-Studio","SNR旧文档"]'></div>
+			<h2>位数的作用</h2>
+			<p>一般来讲，操作系统位数与CPU位数相同。</p>
+			<p>CPU位数（如32位、64位）指处理器一次能处理的二进制数据宽度（寄存器位数），直接影响计算能力强弱与寻址空间大小。</p>
+			<p>32位：最大寻址空间为2^32字节（约4GB），限制内存及外设的可用地址范围。64位：理论寻址空间为2^64字节（远超实际需求），支持TB级内存，满足现代计算需求。现在市场上一般使用64位操作系统。</p>
+			<p>在下载软件时，有的软件会要求您选择合适的安装包，一般来讲，标注“amd64”等类似文本的为64位程序。64位操作系统可以运行32位软件（通过兼容模式），但是32位下不能运行64位程序。</p>
+			<hr>
+			<h2>如何辨别系统的位数</h2>
+			<p>Windows10操作系统中可以通过右键“此电脑/计算机/我的电脑”，点击“属性”，在系统类型中查看。</p>
+			<img src="../images/C-3/1.png" alt="system-32or64-1">
+			<hr>
+			<p>Windows11操作系统则需通过在“设置”应用中的“系统-系统信息”面板内，“设备规格”一项中查看。</p>
+			<img src="../images/C-3/2.png" alt="system-32or64-2">
 		</div>
-        <div class="b-block">
-            <h2>位数有什么用</h2>
-            <p>操作系统的位数也指CPU的位数，即CPU一次能处理的最大位数。</p>
-            <p>32位CPU只能支持4GB的RAM，而64位的CPU最多可以支持128GB的RAM。现在市场上一般使用64位操作系统。</p>
-            <p>在下载软件时，有的软件会要求您选择合适的安装包，在安装包中写着“x64”的即64位操作系统版，写着“x32”的即32位操作系统版。64位操作系统可以运行32位操作系统版软件，但是32位不能运行64位。</p>
-            <hr />
-            <h2>如何辨别系统的位数</h2>
-            <p>Windows操作系统都可以通过右键“此电脑/计算机/我的电脑”，点击“属性”，在系统类型即可查看。</p>
-            <img src="../images/C-3/1.png" alt="system-32or64-1" style="width: 800px;">
-        </div>
-		<div class="include" file="_footer.html"></div>
-	</body>
+	</div>
+	<div class="include" file="_footer.html"></div>
+</body>
+
 </html>

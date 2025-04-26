@@ -68,3 +68,31 @@ $(function () {
         });
     });
 });
+
+//停止支持信息模板
+$(document).ready(function() {
+    // 遍历所有具有stop-supporting-info类的元素
+    $('.stop-supporting-info').each(function() {
+        var lastUpdateDate = $(this).attr('last-update');
+        
+        // 计算天数差
+        var today = new Date();
+        var lastUpdate = new Date(lastUpdateDate);
+        var timeDiff = today.getTime() - lastUpdate.getTime();
+        var daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
+        
+        // 加载HTML内容
+        var element = $(this);
+        $.get('element.stop-supporting-info.html', function(data) {
+            // 替换占位符
+            var updatedContent = data
+                .replace('%last-update-date', lastUpdateDate)
+                .replace('%days', daysDiff);
+            
+            // 将处理后的内容插入到元素中
+            element.html(updatedContent);
+        }).fail(function() {
+            console.error('无法加载停止支持信息模板');
+        });
+    });
+});
