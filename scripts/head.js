@@ -38,7 +38,7 @@ $(function () {
         var text = $element.attr("text");
         var subtitle = $element.attr("sub-title");
         var tags = JSON.parse($element.attr("tags").replace(/'/g, '"'));
-        var icon = $element.attr("icon") || "../icons/FluentWarningFilled.svg";
+        var icon = $element.attr("icon") || "../icons/AlertRhombus.svg";
 
         $element.load("_title.html", function (response, status, xhr) {
             if (status === "error") {
