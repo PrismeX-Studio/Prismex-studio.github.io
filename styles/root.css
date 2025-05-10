@@ -8,7 +8,3 @@
     --blur: blur(12px) saturate(0);
     font-family: ui-font-v2;
 }
-
-*{
-    transition: color,border-color 0.7s ease 0s;
-}

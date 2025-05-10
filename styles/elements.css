@@ -30,21 +30,23 @@ p {
 
 a {
     font-size: 19px;
+    padding: 2px 4px 2px 4px;
     margin: 0px;
-    font-weight: bold;
     word-wrap: break-word;
     word-break: break-all;
     overflow: auto;
     color: var(--primary-color);
     text-decoration: none;
     cursor: pointer;
-    transition: all 0.20s ease 0s;
+    transition: all 0.10s ease 0s;
+    border-radius: 6px;
+    border:transparent solid 2px;
 }
 
 a:hover {
-    transition: all 0.20s ease 0s;
-    color: color-mix(in srgb, var(--primary-color)70%, var(--background-color));
-    font-weight: bold;
+    transition: all 0.10s ease 0s;
+    background: var(--border-color);
+    border:color-mix(in srgb,var(--border-color)99%,var(--primary-font-color)) solid 2px;
 }
 
 h1 {
@@ -101,7 +103,7 @@ h3 {
     color: var(--on-primary-container-color)
 }
 
-.container1>p{
+.container1>p {
     margin-bottom: 0px;
 }
 
@@ -117,7 +119,7 @@ h3 {
     color: var(--on-tertiary-container-color)
 }
 
-.container2>p{
+.container2>p {
     margin-bottom: 0px;
 }
 
@@ -133,6 +135,6 @@ h3 {
     color: var(--on-error-color)
 }
 
-.container-error>p{
+.container-error>p {
     margin-bottom: 0px;
 }
