@@ -11,65 +11,49 @@
         ERROR!
     </title>
     <script type="text/javascript" src="..\scripts\head.js"></script>
+    <style>
+        body {
+            background-size: 30px 30px;
+            background-position: center center;
+            background-image:
+                linear-gradient(to right, #6666660e 2px, transparent 2px),
+                linear-gradient(to bottom, #6666660e 2px, transparent 2px);
+        }
+    </style>
 </head>
 
 <body>
-
     <div class="include" file="_navbar.html">
     </div>
     <!--main-->
     <div class="content">
         <div class="container0">
-            <hr class="blank">
-            <div class="large-icon-container"
-                style="width:100%;display:flex; align-items:center; text-align:center; flex-direction: column;margin-top: 0px;">
-                <img class="icon-title" style="width:26%" src="..\images\error.webp" alt="ERROR Icon">
-                <h1>
-                    ERROR!
-                </h1>
-            </div>
-
-            <div style="display:flex;flex-direction: row; justify-content: flex-start;align-items: bottom;">
-                <img class="icon-title" src="..\icons\AlertRhombus.svg" alt="SVG Image">
-                <div style="width:100%">
-
-                    <h2>
-                        作者
-                    </h2>
-                </div>
-            </div>
-            <div class="t-tags-container">
-                <p>
-                    ERROR!!!
-                </p>
-            </div>
-            <hr class="blank">
-            <div class="title" text="发生错误：418" sub-title="Something went wrong?" icon="../icons/AlertRhombus.svg"
-                tags='["HTTP ERROR 404: Page Not Find","Style v2","Wonderful tags system!"]'>
-            </div>
-            <p>
-                服务器是一个茶壶，您不能使用它煮咖啡。[HTCPCP错误]
-            </p>
-            <p>
-                您访问的页面不存在或已被删除......请务必确认您输入了正确的链接。
-            </p>
-
-            <hr>
-            <p style="text-decoration: line-through;">
-                等下，HTCPCP是啥？
-            </p>
+            <hr class="blank" style="height:192px">
             <style>
-                .container0-v2 {
+                .container {
+                    width: 100%;
+                    border: 2px solid rgba(100, 100, 100, 0.7);
+                    background: rgba(35, 35, 35, 1);
+                    padding: 8px;
+                    margin: 16px 0px 16px 0px;
+                    box-shadow: 0px 0px 16px color-mix(in srgb, var(--background-color)70%, black);
+                }
+
+                .container>* {
+                    font-family: "Rajdhani";
+                }
+
+                .container-stressed {
                     width: 100%;
                     border: 1.5px solid rgba(100, 100, 100, 0.7);
                     border-bottom: 3px solid color-mix(in srgb, var(--error-color) 80%, white);
                     background: linear-gradient(rgba(35, 35, 35, 1), 63%, color-mix(in srgb, var(--error-color), black)) rgba(35, 35, 35, 1);
                     padding: 8px;
-                    margin: 0px;
-                    box-shadow: 0px 0px 16px black;
+                    margin: 16px 0px 16px 0px;
+                    box-shadow: 0px 0px 16px color-mix(in srgb, var(--background-color)70%, black);
                 }
 
-                .container0-inner-v2 {
+                .container-inner {
                     --border: 5px solid var(--error-color);
                     border-left: var(--border);
                     border-right: var(--border);
@@ -80,35 +64,88 @@
                     align-items: center;
                 }
 
-                .container0-inner-v2>* {
+                .container-inner>* {
                     text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3);
                     text-align: center;
                     color: white;
-                    font-family: "Rajdhani Medium";
+                    font-family: "Rajdhani";
+                    font-weight: 600;
+                    word-wrap: break-word;
+                    word-break: break-all;
                 }
 
-                .container0-inner-v2>img {
+                .container-inner>img {
                     width: 96px;
-                    
+
                     filter: drop-shadow(23662px 0 0 var(--primary-color));
                     transform: translate(-23662px);
                     padding-right: 8px;
                     color: var(--primary-color)
                 }
+
+                .container-inner>h1 {
+                    font-size: 56px;
+                    font-weight: 900;
+                }
+
+                .container-inner>p {
+                    font-size: 22px;
+
+                }
             </style>
-            <div class="container0-v2">
-                <div class="container0-inner-v2">
+            <div class="container-stressed">
+                <div class="container-inner">
                     <img src="..\images\error.webp">
                     <h1>ERROR!!!</h1>
                     <p></p>
-                    <p>content content content content content content content content content
-                        content content content content content </p>
+                    <p>
+                        您访问的页面不存在或已被删除......请务必确认您输入了正确的链接。<br />
+                        The page you accessed does not exist or has been deleted. Please make sure you inputed the right
+                        link.
+                    </p>
+
                 </div>
-
             </div>
+            <div class="container" style="display: flex;flex-direction: row;align-items: start;">
+                <div
+                    style="display: flex;flex-direction: column;align-items: start;border-right: 2px solid rgba(100, 100, 100, 0.7);padding-right: 16px; margin:0px 16px 0px 8px ;">
+                    <p style="margin: 0;">
+                        ERROR CODE
+                    </p>
+                    <h1>
+                        404_NOT_FOUND
+                    </h1>
+                </div>
+                <div style="display: flex;flex-direction: column;align-items: start;">
+                    <p style="margin: 0;">
+                        INFORMATION
+                    </p>
+                    <script>
+                        // 获取URL
+                        const url = window.location.pathname;
+
+                        // 获取info元素
+                        const infoElement = document.getElementById('info');
+
+                        // 如果有url参数，则显示用户试图访问的链接，否则保持原样
+                        if (attemptedUrl) {
+                            infoElement.textContent = `"${url}" DOES NOT EXIST`;
+                        }
+                    </script>
+                    <h1 id="info">
+                        "114514_000000.HTML" DOES NOT EXIST
+                    </h1>
+                </div>
+                <hr class="blank">
+                <div
+                    style="background-color: var(--primary-container-color);height:75px;width:75px;display: flex;align-items: center;">
+                    <h1 style="text-align: center;width:100%">
+                        ERC
+                    </h1>
+                </div>
+            </div>
+            <hr class="blank" style="height:192px">
         </div>
-
-
     </div>
     <div class="include" file="_footer.html"></div>
 </body>

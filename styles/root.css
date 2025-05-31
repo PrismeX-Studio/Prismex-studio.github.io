@@ -1,10 +1,14 @@
-@font-face {
-    font-family: ui-font-v2;
-    src: url(https://www.coloros.com/font/OPlusSans3-Medium.woff2);
-}
+@import url('https://fonts.font.im/css?family=Montserrat:300,400,500,600,700,800,900|Rajdhani:300,400,500,600,700');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@100..900&display=swap');
 
-:root{
+:root {
     --container-border-radius: 16px;
     --blur: blur(12px) saturate(0);
-    font-family: ui-font-v2;
+    font-family: "Montserrat", "Noto Sans SC";
+    font-weight: 500;
+}
+
+.title-font{
+    font-family: "Rajdhani";
+    font-weight: 600;
 }
