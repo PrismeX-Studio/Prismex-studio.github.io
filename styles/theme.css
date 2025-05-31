@@ -32,7 +32,7 @@
     --t-tag-primary-color: var(--primary-color);
 }
 
-@media (prefers-color-scheme: dark){
+@media (prefers-color-scheme: light){
     :root {
         transition: all 0.4s ease 0s;
         --selection-color: #ffdad588;
