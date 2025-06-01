@@ -1,7 +1,7 @@
 :root {
     transition: all 0.4s ease 0s;
     --selection-color: #ffdad588;
-    --border-color: rgba(127, 127, 127, 0.1);
+    --border-color: rgba(100, 100, 100, 0.7);
     /*1st*/
     --primary-color: #9f3f35;
     --on-primary-color: #ffffff;
@@ -36,7 +36,7 @@
     :root {
         transition: all 0.4s ease 0s;
         --selection-color: #ffdad588;
-        --border-color: rgba(127, 127, 127, 0.1);
+        --border-color: rgba(100, 100, 100, 0.7);
         /*1st*/
         --primary-color: #ffb4a9;
         --on-primary-color: #61120c;

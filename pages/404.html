@@ -20,6 +20,38 @@
                 linear-gradient(to bottom, #6666660e 2px, transparent 2px);
         }
     </style>
+    <style>
+        root{
+            --border-color:rgba(100, 100, 100, 0.7) !important;
+            --background-color:rgba(51, 51, 51, 1) !important;
+            --background-error-color:rgba(35, 35, 35, 1);
+            --background-error:linear-gradient(var(--background-error-color), 63%, color-mix(in srgb, var(--error-color), black));
+        }
+        .container {
+            width: 100%;
+            border: 2px solid var(--border-color);
+            background: rgba(51, 51, 51, 1);
+            padding: 8px;
+            margin: 16px 0px 16px 0px;
+            box-shadow: 0px 0px 16px color-mix(in srgb, var(--background-color)70%, black);
+        }
+
+        .container>* {
+            font-family: "Rajdhani";
+        }
+
+        .reload-block {
+            background-color: var(--primary-container-color);
+            min-height: 75px;
+            min-width: 75px;
+            display: flex;
+            align-items: center;
+        }
+
+        .reload-block:hover{
+            border: 2px solid var(--border-color);
+        }
+    </style>
 </head>
 
 <body>
@@ -29,72 +61,8 @@
     <div class="content">
         <div class="container0">
             <hr class="blank" style="height:192px">
-            <style>
-                .container {
-                    width: 100%;
-                    border: 2px solid rgba(100, 100, 100, 0.7);
-                    background: rgba(35, 35, 35, 1);
-                    padding: 8px;
-                    margin: 16px 0px 16px 0px;
-                    box-shadow: 0px 0px 16px color-mix(in srgb, var(--background-color)70%, black);
-                }
-
-                .container>* {
-                    font-family: "Rajdhani";
-                }
-
-                .container-stressed {
-                    width: 100%;
-                    border: 1.5px solid rgba(100, 100, 100, 0.7);
-                    border-bottom: 3px solid color-mix(in srgb, var(--error-color) 80%, white);
-                    background: linear-gradient(rgba(35, 35, 35, 1), 63%, color-mix(in srgb, var(--error-color), black)) rgba(35, 35, 35, 1);
-                    padding: 8px;
-                    margin: 16px 0px 16px 0px;
-                    box-shadow: 0px 0px 16px color-mix(in srgb, var(--background-color)70%, black);
-                }
-
-                .container-inner {
-                    --border: 5px solid var(--error-color);
-                    border-left: var(--border);
-                    border-right: var(--border);
-                    padding: 8px 32px 8px 32px;
-                    margin: 0px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                }
-
-                .container-inner>* {
-                    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3);
-                    text-align: center;
-                    color: white;
-                    font-family: "Rajdhani";
-                    font-weight: 600;
-                    word-wrap: break-word;
-                    word-break: break-all;
-                }
-
-                .container-inner>img {
-                    width: 96px;
-
-                    filter: drop-shadow(23662px 0 0 var(--primary-color));
-                    transform: translate(-23662px);
-                    padding-right: 8px;
-                    color: var(--primary-color)
-                }
-
-                .container-inner>h1 {
-                    font-size: 56px;
-                    font-weight: 900;
-                }
-
-                .container-inner>p {
-                    font-size: 22px;
-
-                }
-            </style>
-            <div class="container-stressed">
-                <div class="container-inner">
+            <div class="container-error">
+                <div class="container-error-inner">
                     <img src="..\images\error.webp">
                     <h1>ERROR!!!</h1>
                     <p></p>
@@ -106,7 +74,7 @@
 
                 </div>
             </div>
-            <div class="container" style="display: flex;flex-direction: row;align-items: start;">
+            <div class="container" style="display: flex;flex-direction: row;align-items: start;flex-wrap: nowrap;">
                 <div
                     style="display: flex;flex-direction: column;align-items: start;border-right: 2px solid rgba(100, 100, 100, 0.7);padding-right: 16px; margin:0px 16px 0px 8px ;">
                     <p style="margin: 0;">
@@ -116,31 +84,18 @@
                         404_NOT_FOUND
                     </h1>
                 </div>
-                <div style="display: flex;flex-direction: column;align-items: start;">
+                <div style="display: flex;flex-direction: column;align-items: start;min-width: 128px;">
                     <p style="margin: 0;">
                         INFORMATION
                     </p>
-                    <script>
-                        // 获取URL
-                        const url = window.location.pathname;
-
-                        // 获取info元素
-                        const infoElement = document.getElementById('info');
-
-                        // 如果有url参数，则显示用户试图访问的链接，否则保持原样
-                        if (attemptedUrl) {
-                            infoElement.textContent = `"${url}" DOES NOT EXIST`;
-                        }
-                    </script>
-                    <h1 id="info">
-                        "114514_000000.HTML" DOES NOT EXIST
+                    <h1 style=" white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100%;">
+                        THE REQUESTED FILE CAN'T BE FOUND ON THE SERVER.
                     </h1>
                 </div>
                 <hr class="blank">
-                <div
-                    style="background-color: var(--primary-container-color);height:75px;width:75px;display: flex;align-items: center;">
-                    <h1 style="text-align: center;width:100%">
-                        ERC
+                <div class="reload-block" onclick="alert('???!')">
+                    <h1 style="text-align: center;width:100%;flex-shrink: 0;min-height: 100%;">
+                        ERN
                     </h1>
                 </div>
             </div>
