@@ -1,0 +1,4 @@
+# Allow all spiders
+
+User-agent: *
+Disallow:

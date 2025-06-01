@@ -1,5 +1,4 @@
 :root {
-    transition: all 0.4s ease 0s;
     --selection-color: #ffdad588;
     --border-color: rgba(100, 100, 100, 0.7);
     /*1st*/
@@ -30,6 +29,12 @@
     --surface1-color: #faf2f6;
     --t-tag-container-color: #faf2f6;
     --t-tag-primary-color: var(--primary-color);
+}
+
+:root{
+            --container-background-color:rgba(51, 51, 51, 1);
+            --container-error-background-color:rgba(35, 35, 35, 1);
+            --container-error-background:linear-gradient(var(--container-error-background-color), 63%, color-mix(in srgb, var(--error-color), black));
 }
 
 @media (prefers-color-scheme: light){
