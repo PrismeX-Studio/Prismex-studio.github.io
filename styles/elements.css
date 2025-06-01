@@ -41,12 +41,14 @@ a {
     transition: all 0.10s ease 0s;
     border-radius: 6px;
     border: transparent solid 2px;
+    background: transparent;
 }
 
 a:hover {
     transition: all 0.10s ease 0s;
-    background: var(--border-color);
-    border: color-mix(in srgb, var(--border-color)99%, var(--primary-font-color)) solid 2px;
+    background: transparent;
+    background-color: var(--hover-color);
+    border: transparent solid 2px;
 }
 
 h1 {
@@ -123,20 +125,27 @@ h3 {
     margin-bottom: 0px;
 }
 
-.container-error {
+.container {
     width: 100%;
-    border: 1.5px solid rgba(100, 100, 100, 0.7);
-    border-bottom: 3px solid color-mix(in srgb, var(--error-color) 80%, white);
+    border: 2px solid rgba(100, 100, 100, 0.7);
+    border-bottom: 3px solid color-mix(in srgb, var(--theme-color) 80%, white);
     border-radius: 0;
-    background: linear-gradient(rgba(35, 35, 35, 1), 63%, color-mix(in srgb, var(--error-color), black));
+    background: linear-gradient(rgba(35, 35, 35, 1), 63%, color-mix(in srgb, var(--theme-color), black));
     padding: 8px;
     margin: 16px 0px 16px 0px;
     box-shadow: 0px 0px 16px color-mix(in srgb, var(--background-color)70%, black);
 }
 
-.container-error-inner {
-    content: "???";
-    --border: 5px solid var(--error-color);
+.container.error{
+    --theme-color: var(--error-color);
+}
+
+.container-error>.container-inner{
+    --theme-color: var(--error-color);
+}
+
+.container-inner {
+    --border: 5px solid var(--theme-color);
     border-left: var(--border);
     border-right: var(--border);
     padding: 8px 32px 8px 32px;
@@ -146,8 +155,8 @@ h3 {
     align-items: center;
 }
 
-.container-error-inner>* {
-    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.3);
+.container-inner>* {
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.407);
     text-align: center;
     color: white;
     font-family: "Rajdhani";
@@ -156,20 +165,20 @@ h3 {
     word-break: break-all;
 }
 
-.container-error-inner>img {
+.container-inner>img {
     width: 96px;
 
-    filter: drop-shadow(23662px 0 0 var(--primary-color));
+    filter: drop-shadow(23662px 0 0 var(--theme-color));
     transform: translate(-23662px);
     padding-right: 8px;
-    color: var(--primary-color)
+    color: var(--theme-color)
 }
 
-.container-error-inner>h1 {
+.container-inner>h1 {
     font-size: 56px;
     font-weight: 900;
 }
 
-.container-error-inner>p {
+.container-inner>p {
     font-size: 22px;
 }

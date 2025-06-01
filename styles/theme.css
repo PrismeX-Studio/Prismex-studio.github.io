@@ -33,8 +33,10 @@
 
 :root{
             --container-background-color:rgba(51, 51, 51, 1);
-            --container-error-background-color:rgba(35, 35, 35, 1);
-            --container-error-background:linear-gradient(var(--container-error-background-color), 63%, color-mix(in srgb, var(--error-color), black));
+            --container-glowing-background-color:rgba(35, 35, 35, 1);
+            --container-glowing-primary-color:color-mix(in srgb, var(--primary-color), black);
+            --container-glowing-secondary-color:color-mix(in srgb, var(--secondary-color), black);
+            --container-glowing-primary-background:linear-gradient(var(--container-glowing-background-color), 63%, color-mix(in srgb, var(--primary-color), black));
 }
 
 @media (prefers-color-scheme: light){
@@ -42,6 +44,7 @@
         transition: all 0.4s ease 0s;
         --selection-color: #ffdad588;
         --border-color: rgba(100, 100, 100, 0.7);
+        --hover-color: color-mix(in srgb,var(--primary-color)20%,transparent);
         /*1st*/
         --primary-color: #ffb4a9;
         --on-primary-color: #61120c;
@@ -60,7 +63,7 @@
         --tertiary-container-color: #574419;
         --on-tertiary-container-color: #fcdfa6;
         /*ERROR*/
-        --error-color: #ffb4ab;
+        --error-color: #ff6958;
         --on-error-color: #690005;
         --error-container-color: #93000a;
         --on-error-container-color: #ffb4ab;

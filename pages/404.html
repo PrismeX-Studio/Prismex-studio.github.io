@@ -43,10 +43,11 @@
             align-items: center;
             border: 2px solid transparent;
             transition: 0.12s ease;
+            cursor: pointer;
         }
 
         .reload-block:hover{
-            border: 2px solid var(--primary-color);
+            border: 2px solid var(--error-color);
         }
     </style>
 </head>
@@ -58,8 +59,8 @@
     <div class="content">
         <div class="container0">
             <hr class="blank" style="height:192px">
-            <div class="container-error">
-                <div class="container-error-inner">
+            <div class="container error">
+                <div class="container-inner">
                     <img src="..\images\error.webp">
                     <h1>ERROR!!!</h1>
                     <p></p>
@@ -88,7 +89,7 @@
                         THE REQUESTED FILE CAN'T BE FOUND ON THE SERVER.
                     </h1>
                 </div>
-                <hr class="blank">
+                <hr class="blank" style="min-width: 16px;">
                 <div class="reload-block" onclick="window.location.replace('home.html')">
                     <h2 style="text-align: center;width:100%;flex-shrink: 0;min-height: 100%;margin: 0;">
                         BACK
