@@ -31,6 +31,10 @@ $(function () {
         });
     });
 });
+
+//set language
+document.querySelector("html").lang="zh-CN";
+
 //title module support
 $(function () {
     $(".title[text][sub-title][tags]").each(function () {
