@@ -21,6 +21,26 @@
 
         }
 
+        .announcement {
+            height: 50px;
+            margin-top: 66px;
+            width: 100%;
+            padding: 8px 40px 8px 16px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            background: linear-gradient(color-mix(in srgb, var(--surface0-color) 87%, transparent),78%,color-mix(in srgb, var(--warn-color) 30%, black));
+            border-bottom: var(--warn-color) solid 3px;
+            border-top: var(--warn-color) solid 3px;
+            backdrop-filter: blur(11px) saturate(1.8);
+            -webkit-backdrop-filter: blur(12px) saturate(1.8);
+            background-position-x: 0px;
+            position: fixed;
+            top: 0px;
+            z-index: 0;
+
+        }
+
         .navbar>* {
             margin: 0px 40px 0px 0px;
             min-width: fit-content;
@@ -84,22 +104,30 @@
     <div class="navbar">
         <img src="..\images\PrismeX-Studio-Icon-Original.png">
         <p>
-            PrismeX Studio
+            PrismeX Std.
         </p>
         <a href="..\index.html">
             主页
         </a>
         <a href="B-1.html">
-            旧文档列表
+            旧文档
         </a>
         
         <a href="test.html" style="animation: LSD 2s linear infinite">
             我靠好他妈炫酷的页面
         </a>
+
+        
         <hr class="blank" style="width:100%">
+        <a href="u-have-no-penis.html" style="color: var(--warn-color);text-shadow: 0px 0px 3px var(--warn-color);border: 2px dashed var(--warn-color);">
+            公告：Apple Li 是个大啥比
+        </a>
         <a href="https://github.com/PrismeX-Studio/Prismex-studio.github.io"
             style="text-align: right;margin-right: 40px;">
             网站仓库
         </a>
     </div>
+
+        
+
 </body>

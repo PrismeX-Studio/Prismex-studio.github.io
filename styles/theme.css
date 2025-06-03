@@ -64,6 +64,11 @@
     --on-error-color: #690005;
     --error-container-color: #93000a;
     --on-error-container-color: #ffb4ab;
+    /*WARN*/
+    --warn-color: #ff9858;
+    --on-warn-color: #692800;
+    --warn-container-color: #932700;
+    --on-warn-container-color: #ffd2ab;
     /*others*/
     --background-color: #262323;
     --surface0-color: #2a2120;

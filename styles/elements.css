@@ -156,6 +156,10 @@ h3 {
     
 }
 
+.glowing-container.warn{
+    --theme-color: var(--warn-color)
+}
+
 .glowing-container-inner {
     --border: 5px solid var(--theme-color);
     border-left: var(--border);
