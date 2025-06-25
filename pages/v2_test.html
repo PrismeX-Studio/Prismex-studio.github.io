@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="..\scripts\head.js"></script>
+    <style>
+        .top {
+            width: 100%;
+            padding: 5rem 6rem 5rem 6rem;
+            border-bottom: 0.2rem solid rgba(175, 40, 40, 1);
+            background-color: rgba(100, 100, 100, 0.06);
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top>img {
+            width: 24rem;
+            margin: -4rem 0 -10.7rem -4rem;
+            filter:drop-shadow(-2rem 0 0 rgba(200,200,200,0.05));
+        }
+
+        .title-container {
+            border-left: 0.6rem solid rgba(200, 200, 200, 0.9);
+            padding-left: 2rem;
+            height: min-content
+        }
+
+        .title-container>* {
+            font-family: "Rajdhani";
+        }
+
+        .title-container>.title {
+            font-size: 4.7rem;
+        }
+
+
+        .main{
+            width:100%;
+            display:flex;
+            flex-direction: row;
+            padding: 2rem 6rem 0 6rem;
+            gap:2rem;
+        }
+        
+        .left{
+            
+        }
+
+        .middle{
+            
+        }
+
+        .right{
+            
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="include" file="111_navbar.html"></div>
+    <div class="top">
+        <div class="title-container">
+            <h1 class="title">
+                ETERNAL DOCUMENTION
+            </h1>
+            <h2 class="sub-title">
+                THE DATABASE OF THE LUMINEX STUDIO
+            </h2>
+        </div>
+        <hr class="blank">
+        <img src="../images/PrismeX-Studio-Icon.svg">
+    </div>
+    <div class="main">
+        <div class="left">
+            <div class="container">
+                <h1>
+                    Navbar Area!
+                </h1>
+            </div>
+            <div class="container">
+                <h1>
+                    Author Info and more?
+                </h1>
+            </div>
+        </div>
+        <div class="middle">
+            <div class="container">
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+            </div>
+        </div>
+        <div class="right">
+            <div class="container tree">
+                <div class="tree-structure">
+                    <div class="tree-content">
+
+                    </div>
+                </div>
+                <div class="tree-info">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="include" file="111_footer.html"></div>
+</body>
+
+</html>

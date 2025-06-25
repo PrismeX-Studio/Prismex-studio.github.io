@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--import jQuery-min-->
+    <script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
+    <title>
+        ERROR
+    </title>
+    <script type="text/javascript" src="..\scripts\head.js"></script>
+    <style>
+        .reload-block {
+            background-color: var(--primary-container-color);
+            min-height: 73px;
+            min-width: 73px;
+            display: flex;
+            align-items: center;
+            border: 2px solid transparent;
+            transition: 0.12s ease;
+            cursor: pointer;
+        }
+
+        .reload-block:hover {
+            border: 2px solid var(--error-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="include" file="_navbar.html">
+    </div>
+    <!--main-->
+    <div class="content">
+        <hr class="blank" style="height:1192px">
+        <div class="container0" id="container0">
+            <div class="glowing-container error">
+                <div class="glowing-container-inner">
+                    <img src="..\icons/FluentWarningFilled.svg">
+                    <h1>ERROR!!!</h1>
+                    <p></p>
+                    <p>
+                        无法开启摄像机：系统指定的设备拒绝访问。<br />
+                        Unable to enable the canera. The device specified by the system is denied access.
+                    </p>
+                </div>
+            </div>
+            <div class="container"
+                style="display: flex;flex-direction: row;align-items: start;flex-wrap: nowrap;">
+                <div
+                    style="display: flex;flex-direction: column;align-items: start;border-right: 2px solid rgba(100, 100, 100, 0.7);padding-right: 16px; margin:0px 16px 0px 8px ;">
+                    <p style="margin: 0;">
+                        ERROR CODE
+                    </p>
+                    <h1>
+                        ACCESS_DENIED
+                    </h1>
+                </div>
+                <div style="display: flex;flex-direction: column;align-items: start;min-width: 128px;">
+                    <p style="margin: 0;">
+                        INFORMATION
+                    </p>
+                    <h1 style=" white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100%;">
+                        DEVICE 'CAM1' DOESN'T EXIST.
+                    </h1>
+                </div>
+                <hr class="blank" style="min-width: 16px;">
+                <div class="reload-block" onclick="history.back()">
+                    <h2 style="text-align: center;width:100%;flex-shrink: 0;min-height: 100%;margin: 0;">
+                        ERR7
+                    </h2>
+                </div>
+            </div>
+            <hr class="blank" style="height:128px">
+        </div>
+        <hr class="blank" style="height:256px">
+    </div>
+    <div class="include" file="_footer.html"></div>
+    <script>
+        document.getElementById('container0').scrollIntoView({
+            behavior: 'smooth',  // 平滑滚动
+            block: 'center'      // 垂直居中
+        });
+    </script>
+</body>
+
+</html>

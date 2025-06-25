@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="_图层_1" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+  <defs>
+    <style>
+      .cls-1, .cls-2 {
+        opacity: .76;
+      }
+
+      .cls-3, .cls-2 {
+        fill: #4d4d4d;
+      }
+
+      .cls-4 {
+        fill: none;
+      }
+    </style>
+  </defs>
+  <rect class="cls-4" width="1000" height="1000"/>
+  <g class="cls-1">
+    <rect class="cls-3" x="337.22" y="337.22" width="325.56" height="325.56" transform="translate(-207.11 500) rotate(-45)"/>
+  </g>
+  <polygon class="cls-2" points="500 178.41 635.96 314.37 695.9 254.43 500 58.54 304.1 254.43 364.04 314.37 500 178.41"/>
+  <polygon class="cls-2" points="821.59 500 685.63 635.96 745.57 695.9 941.46 500 745.57 304.1 685.63 364.04 821.59 500"/>
+  <polygon class="cls-2" points="500 821.59 364.04 685.63 304.1 745.57 500 941.46 695.9 745.57 635.96 685.63 500 821.59"/>
+  <polygon class="cls-2" points="178.41 500 314.37 364.04 254.43 304.1 58.54 500 254.43 695.9 314.37 635.96 178.41 500"/>
+</svg>
