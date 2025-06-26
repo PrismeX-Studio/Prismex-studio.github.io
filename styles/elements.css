@@ -4,8 +4,8 @@ body {
     background-size: 30px 30px;
     background-position: center center;
     background-image:
-        linear-gradient(to right, #6666660e 2px, transparent 2px),
-        linear-gradient(to bottom, #6666660e 2px, transparent 2px);
+        linear-gradient(to right, #66666620 0.1rem, transparent 0.1rem),
+        linear-gradient(to bottom, #66666620 0.1rem, transparent 0.1rem);
     
     min-width: 300px;
     overflow-x: hidden;
@@ -147,7 +147,7 @@ h3 {
 }
 
 .glowing-container {
-    border-bottom: 3px solid color-mix(in srgb, var(--theme-color) 80%, white);
+    border-bottom: 0.2rem solid color-mix(in srgb, var(--theme-color) 80%, white);
     background: linear-gradient(rgba(35, 35, 35, 1), 63%, color-mix(in srgb, var(--theme-color), black));
 }
 

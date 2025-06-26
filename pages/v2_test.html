@@ -5,15 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>样式测试页</title>
     <script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="..\scripts\head.js"></script>
     <style>
         .top {
             width: 100%;
             padding: 5rem 6rem 5rem 6rem;
-            border-bottom: 0.2rem solid rgba(175, 40, 40, 1);
-            background-color: rgba(100, 100, 100, 0.06);
+            --theme-color: rgba(175, 40, 40, 1);
+            border-bottom: 0.2rem solid var(--theme-color);
+            background: linear-gradient(rgba(35, 35, 35, 0.3), 63%, color-mix(in srgb, 40% var(--theme-color), rgba(38, 35, 34,0.5)));
             display: flex;
             flex-direction: row;
             position: relative;
@@ -22,8 +23,9 @@
 
         .top>img {
             width: 24rem;
+            z-index: -1;
             margin: -4rem 0 -10.7rem -4rem;
-            filter:drop-shadow(-2rem 0 0 rgba(200,200,200,0.05));
+            filter: drop-shadow(-2rem 0 0 rgba(200, 200, 200, 0.07)) drop-shadow(-4rem 0 0 rgba(200, 200, 200, 0.04)) drop-shadow(-6rem 0 0 rgba(200, 200, 200, 0.01));
         }
 
         .title-container {
@@ -41,27 +43,38 @@
         }
 
 
-        .main{
-            width:100%;
-            display:flex;
+        .main {
+            width: 100%;
+            display: flex;
             flex-direction: row;
-            padding: 2rem 6rem 0 6rem;
-            gap:2rem;
-        }
-        
-        .left{
-            
+            padding: 3rem 6rem 3rem 6rem;
+            column-gap: 2rem;
+            box-sizing: border-box;
         }
 
-        .middle{
-            
+        .left,
+        .right {
+            position: sticky;
+            box-sizing: border-box;
+            top: 2rem;
+            flex: 0 0 auto;
+            width: 10rem;
+            height: fit-content;
+            max-height: calc(100vh - 10rem);
+            overflow-y: auto;
         }
 
-        .right{
-            
+        .middle {
+            flex: 1;
+            min-width: 0;
+            box-sizing: border-box;
+            /* 重要：防止内容溢出破坏布局 */
         }
 
-        
+        .right {
+            right: 0;
+            /* 确保右栏靠右 */
+        }
     </style>
 </head>
 
@@ -82,14 +95,25 @@
     <div class="main">
         <div class="left">
             <div class="container">
-                <h1>
-                    Navbar Area!
-                </h1>
-            </div>
-            <div class="container">
-                <h1>
-                    Author Info and more?
-                </h1>
+                <h2>
+                    NAVIGATION
+                </h2>
+                <hr>
+                <a href="home.html">
+                    HOME
+                </a>
+                <br>
+                <a href="B-1.html">
+                    OLD PAGES
+                </a>
+                <br>
+                <a href="test.html">
+                    RAINBOW!
+                </a>
+                <hr>
+                <a href="https://github.com/PrismeX-Studio/Prismex-studio.github.io">
+                    GITHUB REPO
+                </a>
             </div>
         </div>
         <div class="middle">
@@ -97,13 +121,61 @@
                 <p>
                     111111111111111111111111111111111111111111111111111111
                 </p>
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+                <hr>
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+                <p>
+                    111111111111111111111111111111111111111111111111111111
+                </p>
+                <h2>
+                    111111111111111111111111111111111111111111111111111111
+                </h2>
             </div>
         </div>
         <div class="right">
             <div class="container tree">
                 <div class="tree-structure">
                     <div class="tree-content">
-
+                        <p>
+                            START
+                        </p>
+                        <p>
+                            NODE 1#
+                        </p>
+                        <p>
+                            END
+                        </p>
                     </div>
                 </div>
                 <div class="tree-info">

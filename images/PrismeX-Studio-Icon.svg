@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg id="_图层_1" data-name="图层 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000">
+<svg id="_图层_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1000 1000">
+  <!-- Generator: Adobe Illustrator 29.2.1, SVG Export Plug-In . SVG Version: 2.1.0 Build 116)  -->
   <defs>
     <style>
-      .cls-1, .cls-2 {
-        opacity: .76;
-      }
-
-      .cls-3, .cls-2 {
+      .st0, .st1 {
         fill: #4d4d4d;
       }
 
-      .cls-4 {
+      .st2 {
         fill: none;
+      }
+
+      .st1 {
+        isolation: isolate;
+      }
+
+      .st1, .st3 {
+        opacity: .9;
       }
     </style>
   </defs>
-  <rect class="cls-4" width="1000" height="1000"/>
-  <g class="cls-1">
-    <rect class="cls-3" x="337.22" y="337.22" width="325.56" height="325.56" transform="translate(-207.11 500) rotate(-45)"/>
+  <rect class="st2" width="1000" height="1000"/>
+  <g class="st3">
+    <rect class="st0" x="337.2" y="337.2" width="325.6" height="325.6" transform="translate(-207.1 500) rotate(-45)"/>
   </g>
-  <polygon class="cls-2" points="500 178.41 635.96 314.37 695.9 254.43 500 58.54 304.1 254.43 364.04 314.37 500 178.41"/>
-  <polygon class="cls-2" points="821.59 500 685.63 635.96 745.57 695.9 941.46 500 745.57 304.1 685.63 364.04 821.59 500"/>
-  <polygon class="cls-2" points="500 821.59 364.04 685.63 304.1 745.57 500 941.46 695.9 745.57 635.96 685.63 500 821.59"/>
-  <polygon class="cls-2" points="178.41 500 314.37 364.04 254.43 304.1 58.54 500 254.43 695.9 314.37 635.96 178.41 500"/>
+  <polygon class="st1" points="500 178.4 636 314.4 695.9 254.4 500 58.5 304.1 254.4 364 314.4 500 178.4"/>
+  <polygon class="st1" points="821.6 500 685.6 636 745.6 695.9 941.5 500 745.6 304.1 685.6 364 821.6 500"/>
+  <polygon class="st1" points="500 821.6 364 685.6 304.1 745.6 500 941.5 695.9 745.6 636 685.6 500 821.6"/>
+  <polygon class="st1" points="178.4 500 314.4 364 254.4 304.1 58.5 500 254.4 695.9 314.4 636 178.4 500"/>
 </svg>
