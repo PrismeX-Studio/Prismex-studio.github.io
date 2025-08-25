@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>样式测试页</title>
+    <script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="..\scripts\head.js"></script>
+    <style>
+        body{
+            overflow: hidden;
+        }
+
+        .top {
+            width:100%;
+            padding: 3rem 6rem 3rem 6rem;
+            --theme-color: rgb(170, 40, 40);
+            border-bottom: 0.2rem solid var(--theme-color);
+            background: linear-gradient(rgba(35, 35, 35, 0.3), 60%, color-mix(in srgb, 40% var(--theme-color), rgba(38, 35, 34,0.5)));
+            display: flex;
+            flex-direction: row;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top>img {
+            width: 24rem;
+            z-index: -1;
+            margin: -4rem 0 -10.7rem -4rem;
+            filter: drop-shadow(-2rem 0 0 rgba(200, 200, 200, 0.07)) drop-shadow(-4rem 0 0 rgba(200, 200, 200, 0.04)) drop-shadow(-6rem 0 0 rgba(200, 200, 200, 0.01));
+        }
+
+        .title-container {
+            border-left: 0.6rem solid rgba(200, 200, 200, 0.9);
+            padding-left: 2rem;
+            height: min-content
+        }
+
+        .title-container>* {
+            font-family: "Rajdhani";
+        }
+
+        .title-container>.title {
+            font-size: 4.5rem;
+            font-family: "字魂59号-创粗黑";
+            font-weight: 500;
+        }
+
+        .title-container>.sub-title{
+            padding-left:0.5rem;
+        }
+
+
+        .main {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            padding: 3rem 6rem 3rem 6rem;
+            column-gap: 2rem;
+            box-sizing: border-box;
+        }
+
+        .left,
+        .right {
+            position: sticky;
+            box-sizing: border-box;
+            top: 2rem;
+            flex: 1;
+            height: fit-content;
+            max-height: calc(100vh - 10rem);
+            overflow-y: auto;
+        }
+
+        .middle {
+            flex: 1;
+            min-width: 0;
+            box-sizing: border-box;
+            /* 重要：防止内容溢出破坏布局 */
+        }
+
+        .right {
+            right: 0;
+            /* 确保右栏靠右 */
+        }
+
+        /*temp*/
+
+        .container>hr{
+            margin:1rem 0 1rem 0 !important;
+            height:0.1rem;
+            background-color: var(--border-color);
+            border-width: 0rem !important;
+        }
+
+        .container{
+            height:24rem;
+            border-width: 0.1rem;
+        }
+
+        .container>*{
+            text-align: center;
+        }
+
+        .container>h1{
+            font-family: "字魂59号-创粗黑";
+            font-size: 3.2rem;
+            font-weight: normal;
+            margin-top: 0.5rem;
+            letter-spacing: -0.3rem;
+        }
+
+        .container>p{
+            font-size: 1.3rem;
+            line-height: 2.3rem;
+            font-weight: 400;
+            font-family: "OPPO Sans 4.0";
+        }
+    </style>
+</head>
+
+<body>
+    <div class="include" file="111_navbar.html"></div>
+    <div class="top">
+        <div class="title-container">
+            <h1 class="title">
+                制作人员名单及致谢列表
+            </h1>
+            <h2 class="sub-title">
+                LIST OF PRODUCTION STAFF AND ACKNOWLEDGEMENTS
+            </h2>
+        </div>
+        <hr class="blank" style="height:100%">
+        <img src="../images/PrismeX-Studio-Icon.svg">
+    </div>
+    <div class="main">
+        <div class="left">
+            <div class="container">
+                <h1>
+                    初三二班同学
+                </h1>
+                <hr>
+                <p>
+                    陈默涵 陈鹏宇 高婧仪 高宇轩 郭仕泽 韩与心 吉正函 刘浩森
+                    李思铭 李源怡 马砺予 马逸萱 邵宇涵 孙岳然 苏敬淳 王倍乐 王博约
+                    王鑫冬 杨子悦 余泽姚 张晋 张珺 赵雲衡 甄一 周含章 朱庭萱
+                </p> 
+            </div>
+        </div>
+        <div class="middle">
+            <div class="container">
+                <h1>视频制作</h1>
+                <hr>
+                <p>
+                    【电教委员】甄一
+                    <br>
+                    【班长】胡上元
+                    <br>
+                    【班主任】于靖华老师
+                </p>
+            </div>
+        </div>
+        <div class="right">
+            <div class="container">
+                <h1>
+                    准备与视频采集
+                </h1>
+                <hr>
+                <p>
+                    【班长】胡上元
+                    <br>
+                    【电教委员】甄一
+                    <br>
+                    【学习委员】杨子悦
+                    <br>
+                    【生活委员】张晋
+                    <br>
+                    【纪律委员】陈正
+                    <br>
+                    【班长】赵雲衡
+                    <br>
+                    【宣传委员】马逸萱
+                </p>
+                
+            </div>
+        </div>
+    </div>
+    <div class="include" file="111_footer.html"></div>
+</body>
+
+</html>
