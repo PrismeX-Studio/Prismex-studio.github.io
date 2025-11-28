@@ -2,6 +2,24 @@
 
 <head>
     <style>
+        .navbar-container{
+            position: fixed;
+            top: 0px;
+            z-index: 1;
+            height: 50px;
+            width: 100%;
+            
+        }
+
+        .navbar-bottom-deco{
+            width:100%;
+            height:1.8px;
+            --side-color:rgba(255, 57, 56, 0.2);
+            --center-color:rgba(255,57,56,0.7);
+            box-shadow: 0 0 10px var(--primary-color);
+            background: linear-gradient(to right,var(--side-color) 0%,var(--center-color) 50%,var(--side-color) 100%);
+        }
+
         .navbar {
             height: 50px;
             width: 100%;
@@ -9,35 +27,14 @@
             display: flex;
             flex-direction: row;
             align-items: center;
-            background: linear-gradient(rgba(35, 35, 35, 1), 63%, );
-            background: linear-gradient(color-mix(in srgb, var(--surface0-color) 87%, transparent),78%,color-mix(in srgb, var(--primary-color) 30%, black));
-            border-bottom: var(--primary-color) solid 3px;
+            --surface-color1:color-mix(in srgb, var(--surface0-color) 77%, transparent);
+            --surface-color2:color-mix(in srgb, var(--primary-color) 24%, black);
+            background: linear-gradient(var(--surface-color1),78%,var(--surface-color2));
             backdrop-filter: blur(11px) saturate(1.8);
-            -webkit-backdrop-filter: blur(12px) saturate(1.8);
             background-position-x: 0px;
-            position: fixed;
-            top: 0px;
-            z-index: 1;
-
-        }
-
-        .announcement {
-            height: 50px;
-            margin-top: 66px;
-            width: 100%;
-            padding: 8px 40px 8px 16px;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            background: linear-gradient(color-mix(in srgb, var(--surface0-color) 87%, transparent),78%,color-mix(in srgb, var(--warn-color) 30%, black));
-            border-bottom: var(--warn-color) solid 3px;
-            border-top: var(--warn-color) solid 3px;
-            backdrop-filter: blur(11px) saturate(1.8);
-            -webkit-backdrop-filter: blur(12px) saturate(1.8);
-            background-position-x: 0px;
-            position: fixed;
-            top: 0px;
-            z-index: 0;
+            
+            --tw-shadow: 0 4px 30px rgba(255, 57, 56, 0.1);
+            box-shadow:var(--tw-shadow);
 
         }
 
@@ -48,6 +45,7 @@
 
         .navbar>a {
             font-weight: normal;
+            font-family: "Jetbrains Mono";
             background: transparent;
             border-radius: 6px;
             padding: 6px 12px 6px 12px;
@@ -66,18 +64,53 @@
         .navbar>img {
             height: 40px;
             width: 40px;
+            margin: 0;
+            margin-right:10px;
             transform: scale(1);
             border-radius: 8px;
         }
 
-        .navbar>p {
-            font-size: 22px;
+        .navbar>ttl{
+            display:flex;
+            flex-direction: column;
+            align-items: left;
+        }
+
+        .navbar>ttl>txt {
+            margin:0px;
+            padding:0px;
+            line-height: 24px;
+            font-size: 24px;
             font-weight: bold;
-            margin-left: -30px;
+            margin-left: 0px;
             margin-right: 10px;
             padding-right: 30px;
-            color: var(--on-primary-container-color);
-            border-right: var(--border-color) solid 2px;
+            font-family:"Rajdhani Medium";
+            color: var(--primary-color);
+            border-right: var(--center-color) solid 2px;
+        }
+
+        ttl>p{
+            height:10px;
+            font-family: "Jetbrains Mono";
+            color:rgb(170, 170, 170);
+            margin:0;
+            padding:0;
+            line-height: 9px;
+            font-size: 9px;
+            overflow:unset;
+            text-align: left;
+        }
+
+        .navbar>hr{
+            width:100%;
+            border-color:transparent;
+        }
+
+        .navbar>span{
+            color:rgba(120,120,120,0.7);
+            text-align: center;
+            font-family: "Jetbrains Mono";
         }
 
         @keyframes LSD{
@@ -101,28 +134,40 @@
 </head>
 
 <body>
-    <div class="navbar">
-        <img src="..\images\PrismeX-Studio-Icon-Original.png">
-        <p>
-            PrismeX Std.
-        </p>
-        <a href="..\index.html">
-            主页
-        </a>
-        <a href="B-1.html">
-            旧文档
-        </a>
-        
-        <a href="test.html" style="animation: LSD 2s linear infinite">
-            我靠好他妈炫酷的页面
-        </a>
-        <hr class="blank" style="width:100%">
-        <a href="v2_test.html" style="color: var(--warn-color);text-shadow: 0px 0px 3px var(--warn-color);border: 2px dashed var(--warn-color);">
-            数据测试
-        </a>
-        <a href="https://github.com/PrismeX-Studio/Prismex-studio.github.io"
-            style="text-align: right;margin-right: 40px;">
-            网站仓库
-        </a>
+    <div class="navbar-container">
+        <div class="navbar">
+            <img src="..\images\PrismeX-Studio-Icon-Medium.png">
+            <ttl>
+                <txt>
+                    PRISMEX STUDIO
+                </txt>
+                <p>
+                    THE OFFICIAL WEBSITE
+                </p>
+            </ttl>
+            <a href="..\index.html">
+                ROOT
+            </a>
+            <span>/</span>
+            <a href="B-1.html">
+                旧文档
+            </a>
+            
+            <a href="test.html" style="animation: LSD 2s linear infinite">
+                我靠好™炫酷的页面
+            </a>
+            <hr>
+            <a href="v2_test.html" style="color: var(--warn-color);text-shadow: 0px 0px 3px var(--warn-color);border: 2px dashed var(--warn-color);">
+                数据测试
+            </a>
+            <a href="https://github.com/PrismeX-Studio/Prismex-studio.github.io"
+                style="text-align: right;margin-right: 40px;">
+                网站仓库
+            </a>
+        </div>
+        <div class="navbar-bottom-deco">
+
+        </div>
     </div>
+    
 </body>

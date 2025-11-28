@@ -4,8 +4,8 @@ body {
     background-size: 30px 30px;
     background-position: center center;
     background-image:
-        linear-gradient(to right, #66666620 0.1rem, transparent 0.1rem),
-        linear-gradient(to bottom, #66666620 0.1rem, transparent 0.1rem);
+        linear-gradient(to right, rgba(255, 57, 56, 0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 57, 56, 0.05) 1px, transparent 1px);
     
     min-width: 300px;
     overflow-x: hidden;

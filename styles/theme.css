@@ -43,14 +43,14 @@
     --border-color: rgba(100, 100, 100, 0.7);
     --hover-color: color-mix(in srgb, var(--primary-color)20%, transparent);
     /*1st*/
-    --primary-color: #ffb4a9;
-    --on-primary-color: #61120c;
-    --primary-container-color: #802820;
-    --on-primary-container-color: #ffdad5;
-    --primary-font-color: #ede8e7;
-    --secondary-font-color: #d8ccca;
+    --primary-color: #ff3938;
+    --on-primary-color: #fb00ff;
+    --primary-container-color: #fb00ff;
+    --on-primary-container-color: #fb00ff;
+    --primary-font-color: #fff4f4;
+    --secondary-font-color: #dacaca;
     /*2nd*/
-    --secondary-color: #e7bdb7;
+    --secondary-color: #FF9858;
     --on-secondary-color: #442926;
     --secondary-container-color: #5d3f3b;
     --on-secondary-container-color: #ffdad5;
@@ -70,7 +70,7 @@
     --warn-container-color: #932700;
     --on-warn-container-color: #ffd2ab;
     /*others*/
-    --background-color: #262323;
+    --background-color: rgb(24,20,20);
     --surface0-color: #2a2120;
     --surface1-color: #312624;
     --t-tag-container-color: #382b29;
