@@ -1,0 +1,16 @@
+<template id="placeholder-template">
+    <style>
+        .placeholder {
+            border: 1px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            color: #bababa;
+            margin-bottom: 15px;
+            /* 保证宽度，让占位效果更明显 */
+            min-height: 50px; 
+        }
+    </style>
+    <div class="placeholder">
+        <slot>默认占位内容</slot>
+    </div>
+</template>

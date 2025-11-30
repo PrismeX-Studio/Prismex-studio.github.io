@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我靠，他妈的LSD主题页面</title>
+    <script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="..\scripts\head.js"></script>
+    <style>
+        .bg {
+            margin: 0px;
+            width: 100%;
+            height: 800vh;
+            background: linear-gradient(-45deg, #dae, #3c9, rgb(195, 0, 255), #66f);
+            background-size: 200% 200%;
+            animation: gradient 1s linear infinite;
+            filter: contrast(1.8);
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0 12%;
+            }
+
+            25% {
+                background-position: 100% 100%;
+            }
+
+            100% {
+                background-position: 0 12%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="include" file="_navbar.html"></div>
+    <div class="bg"></div>
+    <div class="include" file="_footer.html"></div>
+</body>
+
+</html>

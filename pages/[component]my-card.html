@@ -1,0 +1,34 @@
+<template id="my-card-template">
+    <style>
+        /* 组件的局部样式，被 Shadow DOM 隔离 */
+        .card-container {
+            border: 2px dashed #dddddd30;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            background-color: transparent;
+        }
+        .card-title {
+            color: var(--grey-4);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 5px;
+        }
+        /* 新增：用于显示计算结果的区域样式 */
+        .calculated-result {
+            margin-top: 10px;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+    </style>
+    
+    <div class="card-container">
+        <h3 class="card-title"></h3> 
+        
+        <div class="card-content">
+            <slot></slot> 
+        </div>
+
+        <p class="calculated-result">计算结果：<span id="result-output">待计算...</span></p>
+
+    </div>
+</template>

@@ -1,27 +1,11 @@
-function loadStyle(url) {
-    var link = document.createElement('link');
-    link.type = 'text/css';
-    link.rel = 'stylesheet';
-    link.href = url;
-    var head = document.getElementsByTagName('head')[0];
-    head.appendChild(link);
-}
-
-// Load CSS
-const styleFiles = ["root", "attribute", "theme", "title", "elements"];
-for (let i = 0; i < styleFiles.length; i++) {
-    loadStyle("../styles/" + styleFiles[i] + ".css");
-}
-//icon
-document.write("        <link rel=\"shortcut icon\" href=\"..\/images\/PrismeX-Studio-Icon-Small.png\">");
-//pagename
-
-//!!!重要更改：全局css变量pagename已经弃用!!!
-
+//set page title
 var pgnme = document.title;
 var wbnmestr = "PrismeX Studio";
 var pgtitle = pgnme.concat(" - ", wbnmestr);
 document.title = pgtitle;
+
+
+
 //include support
 $(function () {
     $(".include[file]").each(function () {
@@ -32,53 +16,249 @@ $(function () {
     });
 });
 
-//set language
-document.querySelector("html").lang="zh-CN";
 
-//title module support
-$(function () {
-    $(".title[text][sub-title][tags]").each(function () {
-        var $element = $(this);
-        var text = $element.attr("text");
-        var subtitle = $element.attr("sub-title");
-        var tags = JSON.parse($element.attr("tags").replace(/'/g, '"'));
-        var icon = $element.attr("icon") || "../icons/AlertRhombus.svg";
 
-        $element.load("_title.html", function (response, status, xhr) {
-            if (status === "error") {
-                console.error("加载失败:", xhr.statusText);
-                return;
-            }
+//Load basic styles
+const styleFiles = ["root", "attribute", "theme", "elements"];
+function loadStyle(url) {
+    var link = document.createElement('link');
+    link.type = 'text/css';
+    link.rel = 'stylesheet';
+    link.href = url;
+    var head = document.getElementsByTagName('head')[0];
+    head.appendChild(link);
+}
+// Load CSS
+for (let i = 0; i < styleFiles.length; i++) {
+    loadStyle("../styles/" + styleFiles[i] + ".css");
+}
+//public css paths for components
+const ALL_COMMON_CSS_PATHS = styleFiles.map(file => `../styles/${file}.css`);
 
-            // ！！关键修正！！ 直接操作已加载的DOM
-            var $container = $element.find(".t-tags-container");
-            
-            if ($container.length === 0) {
-                console.error("错误：未找到 .t-tags-container");
-                console.log("当前HTML结构:", $element.html());
-                return;
-            }
 
-            // 清空并重建标签
-            $container.empty();
-            tags.forEach(function(tag) {
-                $container.append($("<p>").text(tag));
-            });
+//set title
+function addFavicon() {
+  const link = document.createElement('link');
+  link.rel = 'shortcut icon';
+  link.href = '../images/PrismeX-Studio-Icon-Small.png';
+  const head = document.head || document.getElementsByTagName('head')[0];
+  if (head) {
+    head.appendChild(link);
+    console.log("Favicon link added to the head.");
+  } else {
+    console.error("Could not find the <head> element to add the favicon.");
+  }
+}
+// 在 DOM 加载完成后调用此函数
+document.addEventListener('DOMContentLoaded', addFavicon);
 
-            // 设置其他元素
-            $element.find("h1").text(text);
-            $element.find("h2").text(subtitle);
-            $element.find(".icon-title").attr("src", icon);
-        });
-    });
-});
 
-//停止支持信息模板
-$(document).ready(function() {
-    // 遍历所有具有stop-supporting-info类的元素
-    $('.stop-supporting-info').each(function() {
-        var lastUpdateDate = $(this).attr('last-update');
+// =================================================================
+// 1. 公用基类 (BaseComponent)
+// 【核心原理】负责处理所有组件共同的初始化步骤：创建影子 DOM 和加载模板。
+// =================================================================
+
+class BaseComponent extends HTMLElement {
+    constructor() {
+        super(); // 必须调用父类的构造函数
+        this.attachShadow({ mode: 'open' }); // 创建 Shadow DOM
         
+        this._loadCommonCss();
+
+        this._stampTemplate(); // 附加模板内容
+        
+        // 调用子类特有的逻辑（如果子类覆盖了此方法）
+        this.initializeLogic();
+    }
+
+    /**
+     * 【公用代码】将异步加载的模板内容存储到类上。
+     * 当 loadAndRegisterComponent 成功读取模板后，会调用此方法。
+     */
+    static setTemplate(templateElement) {
+        this.template = templateElement;
+    }
+    
+    /**
+     * 【公用代码】将存储的模板内容克隆一份并放入当前组件实例的 Shadow DOM 中。
+     */
+    _stampTemplate() {
+        const componentClass = this.constructor; // 获取当前实例的类
+        
+        if (componentClass.template) {
+            // 克隆模板内容并追加到 Shadow Root
+            const content = componentClass.template.content.cloneNode(true);
+            this.shadowRoot.appendChild(content);
+        }
+        // 注意：<slot> 标签在这个时候已经生效，会开始监听主页面内容。
+    }
+
+    _loadCommonCss() {
+        const tagName = this.tagName.toLowerCase();
+        const definition = COMPONENT_REGISTRY[tagName];
+        // 获取组件配置中指定的路径数组
+        let cssPathsToLoad = definition ? definition.commonCssPaths : undefined;
+        //【默认逻辑】: 如果配置中未指定 commonCssPaths 属性，则使用 ALL_COMMON_CSS_PATHS 作为默认值。
+        //    如果配置中明确指定了空数组 []，则不会进入此 if，也不会加载任何文件。
+        if (cssPathsToLoad === undefined) {
+            cssPathsToLoad = ALL_COMMON_CSS_PATHS;
+        }
+        // 3. 执行加载
+        if (Array.isArray(cssPathsToLoad)) {
+            cssPathsToLoad.forEach(cssPath => {
+                const link = document.createElement('link');
+                link.setAttribute('rel', 'stylesheet');
+                link.setAttribute('href', cssPath);
+                
+                this.shadowRoot.appendChild(link);
+            });
+        }
+    }
+
+    /**
+     * 【核心代码入口】子类必须覆盖此方法，以实现各自特有的逻辑。
+     */
+    initializeLogic() {
+        // 默认实现为空，不报错即可。
+    }
+}
+
+
+// =================================================================
+// 2. 特殊组件类 (MyCardComponent)
+// 【核心原理】继承基类，覆盖 initializeLogic() 来实现自定义的业务逻辑。
+// =================================================================
+
+class MyCardComponent extends BaseComponent {
+    
+    // 构造函数继承自 BaseComponent，它会自动调用 initializeLogic()
+    
+    initializeLogic() {
+        // 这是 MyCardComponent 特有的处理代码
+        const shadow = this.shadowRoot;
+
+        // A. 【读取参数】从 HTML 标签中读取属性值
+        const title = this.getAttribute('title');
+        const initialValueStr = this.getAttribute('data-initial-value') || '0'; 
+        const multiplierStr = this.getAttribute('data-multiplier') || '1';
+        
+        const initialValue = parseFloat(initialValueStr);
+        const multiplier = parseFloat(multiplierStr);
+
+        // B. 【逻辑计算】
+        const calculatedResult = (initialValue * multiplier) + 10;
+
+        // C. 【结果填充】将结果填入 Shadow DOM 内部的元素中
+        
+        // (C.1) 填充标题
+        if (title) {
+            const titleElement = shadow.querySelector('.card-title');
+            if (titleElement) {
+                titleElement.textContent = title;
+            }
+        }
+
+        // (C.2) 填充计算结果
+        const resultOutputSpan = shadow.getElementById('result-output');
+        if (resultOutputSpan) {
+            resultOutputSpan.textContent = calculatedResult.toFixed(2);
+        }
+    }
+}
+
+
+//AppPlaceholderComponent
+class AppPlaceholderComponent extends BaseComponent {
+    
+    initializeLogic() {
+        const shadow = this.shadowRoot;
+        
+        //根据状态属性修改样式
+        const status = this.getAttribute('status') || 'loading';
+
+        if (status === 'error') {
+            const placeholderDiv = shadow.querySelector('.placeholder');
+            if (placeholderDiv) {
+                placeholderDiv.style.borderColor = 'var(--primary-color)';
+            }
+        }
+    }
+}
+
+
+/**
+ * TitleblockComponent 类
+ * 继承 BaseComponent，用于实现标题块组件的逻辑。
+ */
+class TitleblockComponent extends BaseComponent {
+    initializeLogic() {
+        const shadow = this.shadowRoot;
+        
+        // 从 HTML 标签中读取属性值
+        const titleText = this.getAttribute('text');
+        const subtitleText = this.getAttribute('sub-title');
+        // tags 属性需要进行 JSON 解析，且需处理单引号和空值
+        const tagsAttr = this.getAttribute('tags');
+        const iconSrc = this.getAttribute('icon') || "../icons/AlertRhombus.svg"; // 默认图标
+
+        let tags = [];
+        if (tagsAttr) {
+            try {
+                // 1. 将单引号替换为双引号，以符合标准 JSON 格式
+                const cleanJsonString = tagsAttr.replace(/'/g, '"');
+                // 2. 解析 JSON 字符串为数组
+                tags = JSON.parse(cleanJsonString);
+            } catch (e) {
+                console.error(`TitleblockComponent: 标签属性 tags 解析失败`, e);
+            }
+        }
+        
+        //填充主/副标题和图标
+        
+        //填充标题
+        const h1 = shadow.querySelector('h1');
+        if (h1 && titleText) {
+            h1.textContent = titleText;
+        }
+
+        // 填充副标题
+        const h2 = shadow.querySelector('h2');
+        if (h2 && subtitleText) {
+            h2.textContent = subtitleText;
+        }
+        
+        // 填充图标
+        const iconElement = shadow.querySelector('.icon-title');
+        if (iconElement) {
+            iconElement.setAttribute('src', iconSrc);
+        }
+
+        // 动态创建和填充标签
+        const tagsContainer = shadow.querySelector('.t-tags-container');
+        if (tagsContainer) {
+            // 清空模板中可能存在的占位内容
+            tagsContainer.innerHTML = ''; 
+            
+            if (Array.isArray(tags) && tags.length > 0) {
+                tags.forEach(tag => {
+                    const tagElement = document.createElement('p');
+                    tagElement.textContent = tag; 
+                    tagsContainer.appendChild(tagElement);
+                });
+            }
+        }
+    }
+}
+
+
+//StopSupportInfoComponent
+class StopSupportInfoComponent extends BaseComponent {
+    
+    initializeLogic() {
+        const shadow = this.shadowRoot;
+        
+        const lastUpdateDate = this.getAttribute('last-update') || '2020-1-1';
+
         // 计算天数差
         var today = new Date();
         var lastUpdate = new Date(lastUpdateDate);
@@ -86,17 +266,105 @@ $(document).ready(function() {
         var daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
         
         // 加载HTML内容
-        var element = $(this);
-        $.get('element.stop-supporting-info.html', function(data) {
-            // 替换占位符
-            var updatedContent = data
-                .replace('%last-update-date', lastUpdateDate)
-                .replace('%days', daysDiff);
-            
-            // 将处理后的内容插入到元素中
-            element.html(updatedContent);
-        }).fail(function() {
-            console.error('无法加载停止支持信息模板');
-        });
+        const contentP = shadow.querySelector('p');
+        var data = contentP.textContent;
+        var updatedContent = data
+            .replace('%last-update-date', lastUpdateDate)
+            .replace('%days', daysDiff);
+        // 将处理后的内容插入到元素中
+        contentP.textContent = updatedContent;
+    }
+}
+
+
+// =================================================================
+// 组件注册表：定义所有组件的标签名、模板路径和处理它们的类
+// =================================================================
+// 如果没有复杂逻辑，可直接用基类
+// 默认加载全部公共css,即ALL_COMMON_CSS_PATHS
+// 设置为空[]则不加在任何公共css
+const COMPONENT_REGISTRY = {
+    'my-card': { 
+        path: '[component]my-card.html', 
+        componentClass: MyCardComponent ,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },'title-block': { 
+        path: '[component]titleblock.html', 
+        componentClass: TitleblockComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'app-placeholder': {
+        path: '[component]placeholder.html',
+        componentClass: AppPlaceholderComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'deco-seprator': {
+        path: '[component]deco-seprator.html',
+        componentClass: BaseComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'stop-supporting-info': {
+        path: '[component]stop-supporting-info.html',
+        componentClass: StopSupportInfoComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+};
+
+
+
+// =================================================================
+// 4. 异步加载与注册主流程
+// 【核心原理】驱动整个系统运行，确保在组件被使用前，它们已被定义和加载。
+// =================================================================
+
+/**
+ * 【主流程函数】加载模板文件，并将模板内容注册到对应的 Class 上，然后注册 Custom Element。
+ */
+async function loadAndRegisterComponent(tagName, definition) {
+    const { path, componentClass } = definition;
+    
+    try {
+        // --- 异步获取模板文件内容 ---
+        const response = await fetch(path);
+        if (!response.ok) throw new Error(`Failed to fetch template: ${path}`);
+        const templateText = await response.text();
+        
+        // --- 解析 HTML 文本并提取 <template> 元素 ---
+        const tempContainer = document.createElement('div');
+        tempContainer.innerHTML = templateText;
+        const template = tempContainer.querySelector('template');
+        
+        if (!template) {
+            console.error(`Error: <template> tag not found in ${path}`);
+            return;
+        }
+        
+        // --- 注册模板内容到 Class ---
+        // 将模板内容传入静态方法，所有该类的实例都能共享这个模板。
+        componentClass.setTemplate(template);
+
+        // --- 注册 Custom Element ---
+        if (!customElements.get(tagName)) {
+            customElements.define(tagName, componentClass);
+            console.log(`Successfully registered component: <${tagName}>`);
+        }
+        
+    } catch (error) {
+        console.error(`Error processing component <${tagName}>:`, error);
+    }
+}
+
+// 入口函数
+async function loadAllComponents() {
+    console.log("Starting component batch registration...");
+    // 遍历注册表为每个组件启动异步加载流程
+    const registrationPromises = Object.entries(COMPONENT_REGISTRY).map(([tagName, definition]) => {
+        return loadAndRegisterComponent(tagName, definition);
     });
-});
+    // 等待所有组件注册完成
+    await Promise.all(registrationPromises);
+    
+    console.log("All components registered.");
+}
+// 页面DOM加载完成后开始执行组件的加载和注册
+document.addEventListener('DOMContentLoaded', loadAllComponents);

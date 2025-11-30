@@ -30,7 +30,7 @@ p {
     margin: 0px 0px 20px 0px;
     word-wrap: break-word;
     word-break: break-all;
-    overflow: auto;
+    overflow: unset;
     color: var(--primary-font-color);
 }
 

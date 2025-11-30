@@ -1,0 +1,46 @@
+<template id="titleblock-template">
+    <style>
+        .t-tags-container {
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: bottom;
+        }
+
+        .t-tags-container>p {
+            border-radius: 4px;
+            background-color: var(--grey-0-07);
+            border:var(--primary-color) solid 1px;
+            box-shadow: 0 1px 4px rgba(255, 57, 56, 0.4);
+            color: var(--t-tag-primary-color);
+            padding: 1px 16px 1px 16px;
+            width: fit-content;
+            min-width: fit-content;
+            white-space: nowrap;
+            margin: 6px 6px 6px 0px;
+            font-size: 14px;
+        }
+
+        .icon-title {
+            /* 用于 SVG 颜色修改（不是标准Web Component做法） */
+            filter: drop-shadow(23662px 0 0 var(--primary-color)); 
+            transform: translate(-23662px);
+            padding-right: 8px;
+            width: 84px;
+            color: var(--primary-color);
+        }
+    </style>
+    <hr class="blank"> 
+    <div style="display:flex;flex-direction: row; justify-content: flex-start;align-items: bottom;">
+        <img class="icon-title" src="../icons/AlertRhombus.svg" alt="SVG Image"> 
+        <div style="width:100%">
+            <h1 style="font-family: 'Rajdhani Medium';">标题</h1> 
+            <h2 style="font-family: 'Jetbrains Mono';">作者</h2> 
+        </div>
+    </div>
+    <div class="t-tags-container">
+        </div>
+    <hr class="blank">
+    <slot></slot>
+</template>

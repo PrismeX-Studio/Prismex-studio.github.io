@@ -1,0 +1,41 @@
+<template id="deco-seprator-template">
+    <style>
+        .deco-seprator-container{
+            display:flex;
+            width:100%;
+            flex-direction: row;
+            align-items: center;
+            margin:4px 0 4px 0;
+        }
+
+        .deco-seprator-line{
+            height:2px;
+            width:100%;
+            filter:contrast(0.8)
+        }
+
+        .deco-seprator-line.left{
+            background:linear-gradient(to right,transparent 0%,var(--primary-color) 72%, transparent 100%);
+        }
+
+        .deco-seprator-line.right{
+            background:linear-gradient(to right,transparent 0%,var(--primary-color) 28%, transparent 100%);
+        }
+
+        .deco-seprator-container>p{
+            color:var(--secondary-color);
+            white-space: nowrap;
+            width:max-content;
+            flex-shrink: 0;
+            margin-bottom: 0;
+            font-family: "Jetbrains Mono";
+        }
+    </style>
+    <div class="deco-seprator-container">
+        <div class="deco-seprator-line left"></div>
+        <p>
+            [  <slot></slot>  ] 
+        </p>
+        <div class="deco-seprator-line right"></div>
+    </div>
+</template>

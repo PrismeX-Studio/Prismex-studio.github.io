@@ -162,6 +162,28 @@
                 <h2>
                     111111111111111111111111111111111111111111111111111111
                 </h2>
+
+
+                <hr>
+                <h1>带计算逻辑的组件</h1>
+
+                <my-card 
+                    title="计算卡片一" 
+                    data-initial-value="50" 
+                    data-multiplier="1.5">
+                </my-card>
+                
+                <p>组件将使用参数 (50 * 1.5) + 10 进行计算。</p>
+
+                <h2>空组件占位符示例</h2>
+                <hr>
+                <app-placeholder>
+                    <p>这里的内容未来会被替换成一个复杂的图表。</p>
+                </app-placeholder>
+
+                <app-placeholder status="error">
+                    <p>这个区域的内容加载失败了。</p>
+                </app-placeholder>
             </div>
         </div>
         <div class="right">
@@ -185,7 +207,7 @@
             </div>
         </div>
     </div>
-    <div class="include" file="111_footer.html"></div>
+    <div class="include" file="_footer.html"></div>
 </body>
 
 </html>
