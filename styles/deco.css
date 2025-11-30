@@ -1,0 +1,36 @@
+.deco-corner {
+    --corner-theme-color: var(--primary-color);
+    position: absolute;
+    height: 8px;
+    width: 8px;
+    background-color: transparent;
+    border: var(--corner-theme-color) solid 1.5px;
+}
+
+.tr {
+    border-left: transparent solid 0px;
+    border-bottom: none;
+    top: 0px;
+    right: 0px;
+}
+
+.bl {
+    border-top: transparent solid 0px;
+    border-right: none;
+    bottom: 0px;
+    left: 0px;
+}
+
+.tl {
+    border-bottom: transparent solid 0px;
+    border-right: none;
+    top: 0px;
+    left: 0px;
+}
+
+.br {
+    border-top: transparent solid 0px;
+    border-left: none;
+    bottom: 0px;
+    right: 0px;
+}

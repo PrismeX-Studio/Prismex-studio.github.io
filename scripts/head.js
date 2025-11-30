@@ -19,7 +19,7 @@ $(function () {
 
 
 //Load basic styles
-const styleFiles = ["root", "attribute", "theme", "elements"];
+const styleFiles = ["root", "attribute", "theme", "elements","deco"];
 function loadStyle(url) {
     var link = document.createElement('link');
     link.type = 'text/css';
