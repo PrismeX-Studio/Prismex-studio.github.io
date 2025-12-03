@@ -70,7 +70,8 @@
                 font-family: 'Jetbrains Mono';
                 box-shadow: 0 0 15px rgba(255,57,56,0.1);
                 position: relative;
-                color:var(--primary-font-color)
+                color:var(--primary-font-color);
+                backdrop-filter: blur(4px);
                 ">
                 <div class="deco-corner tl"></div>
                 <div class="deco-corner br"></div>
@@ -87,8 +88,8 @@
                 因此，你可以在这里找到各种你想得到或根本想不到的文章和小玩意！
             </p>
             <deco-seprator style="width:100%">UNDER CONSTRUCTION</deco-seprator>
-            <grid-panel content="[['Title1','sub-content1','src-image1'],['Title2','sub-content2','src-image2']]"
-            >
+            <grid-panel>
+                <content-panel icon="../icons/AlertRhombus.svg" title="1145HOMO" sub-title="1919810HOMO"></content-panel>
             </grid-panel>
             <hr class="blank">
             <a href="testPage.html">

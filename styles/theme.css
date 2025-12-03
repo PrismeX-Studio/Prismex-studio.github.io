@@ -32,15 +32,15 @@
 }
 
 :root {
-    --container-background-color: rgba(51, 51, 51, 1);
-    --glowing-container-background-color: rgba(35, 35, 35, 1);
+    --container-background-color: rgb(28, 27, 27);
+    --glowing-container-background-color: rgb(27, 26, 26);
 }
 
 
 :root {
     transition: all 0.4s ease 0s;
     --selection-color: #ffdad588;
-    --border-color: rgba(100, 100, 100, 0.7);
+    --border-color: rgba(100, 100, 100, 0.3);
     --hover-color: color-mix(in srgb, var(--primary-color)20%, transparent);
 
 
@@ -58,9 +58,9 @@
     
 
     --primary-color: #ff3938;
-    --on-primary-color: #fb00ff;
-    --primary-container-color: #fb00ff;
-    --on-primary-container-color: #fb00ff;
+    --on-primary-color: #fff4f4;
+    --primary-container-color: #87000025;
+    --on-primary-container-color: var(--on-primary-color);
     --primary-font-color: #fff4f4;
 
     --secondary-font-color: #dacaca;

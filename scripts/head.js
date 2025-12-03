@@ -276,6 +276,27 @@ class StopSupportInfoComponent extends BaseComponent {
     }
 }
 
+class GridPanelBaseComponent extends BaseComponent {
+    initializeLogic() {
+    }
+}
+class decoSepratorBaseComponent extends BaseComponent {
+    initializeLogic() {
+    }
+}
+
+
+class GridPanelContentPanelComponent extends BaseComponent {
+    
+    initializeLogic() {
+        const shadow = this.shadowRoot;
+
+        const iconSrc = this.getAttribute('icon') || "../icons/AlertRhombus.svg";
+        const title = this.getAttribute('title') || "TITLE";
+        const subTitle = this.getAttribute('sub-title') || "../icons/AlertRhombus.svg";
+    }
+}
+
 
 // =================================================================
 // 组件注册表：定义所有组件的标签名、模板路径和处理它们的类
@@ -300,12 +321,22 @@ const COMPONENT_REGISTRY = {
     },
     'deco-seprator': {
         path: '[component]deco-seprator.html',
-        componentClass: BaseComponent,
+        componentClass: decoSepratorBaseComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     },
     'stop-supporting-info': {
         path: '[component]stop-supporting-info.html',
         componentClass: StopSupportInfoComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'grid-panel': {
+        path: '[component]grid-panel.html',
+        componentClass: GridPanelBaseComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'content-panel': {
+        path: '[component]g-p-content-panel.html',
+        componentClass: GridPanelContentPanelComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     },
 };
