@@ -1,13 +1,118 @@
-<template id="titleblock-template">
+<template id="gird-panel-panel-template">
     <style>
-        .panel{
-            display:grid;
-            gap:12px;
-            background: var(--grey-0);
+        :host {
+            display: block;
+            --active-red: var(--primary-color);
+            --text-gold: var(--secondary-color);
+            --border-dark: var(--border-color);
+        }
+
+        .card-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1 / 0.85;
+            background-color: var(--background-color);
+            border: 1px solid var(--border-dark);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-sizing: border-box;
+            padding: 20px;
+            cursor: pointer;
+            /* 过渡效果，让发光和颜色变化更平滑 */
+            transition: 
+                border-color 0.2s ease, 
+                box-shadow 0.2s ease, 
+                background-color 0.2s ease;
+            overflow: hidden;
+        }
+
+        .card-container:hover {
+            border-color: var(--active-red);
+            /* 外发光与内发光结合 */
+            box-shadow: 0 0 20px rgba(232, 62, 53, 0.2), inset 0 0 15px rgba(232, 62, 53, 0.1);
+        }
+
+        .card-container::before, 
+        .card-container::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            pointer-events: none;
+            opacity: 0; /* 默认隐藏 */
+            transition: opacity 0.2s ease;
+        }
+
+        /* 左上 */
+        .card-container::before {
+            top: 0; left: 0;
+            border-top: 2px solid var(--active-red);
+            border-left: 2px solid var(--active-red);
+        }
+        /* 右下 */
+        .card-container::after {
+            bottom: 0; right: 0;
+            border-bottom: 2px solid var(--active-red);
+            border-right: 2px solid var(--active-red);
+        }
+
+        .card-container:hover::before,
+        .card-container:hover::after {
+            opacity: 1; /* 悬停时显示 */
+        }
+
+        /* --- 图标、标题、副标题样式 --- */
+        .icon-box {
+            width: 42px;
+            height: 42px;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #888; /* 默认灰色图标 */
+            transition: all 0.2s ease;
+        }
+
+        .card-container:hover .icon-box {
+            color: var(--active-red);
+            filter: drop-shadow(0 0 6px var(--active-red));
+        }
+
+        .icon-box img, .icon-box svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor; /* 允许通过 color 属性控制 SVG 颜色 */
+            object-fit: contain;
+        }
+
+        .title {
+            color: #bbb;
+            font-size: 14px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            transition: color 0.2s ease;
+        }
+
+        .card-container:hover .title {
+            color: #eee;
+        }
+
+        .subtitle {
+            color: var(--text-gold);
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0.9;
         }
     </style>
-        <div class="panel">
 
-        </div>
-    <slot></slot>
+    <div class="card-container">
+        <div class="icon-box" id="icon-slot"></div>
+        <div class="title" id="title-text"></div>
+        <div class="subtitle" id="subtitle-text"></div>
+    </div>
 </template>

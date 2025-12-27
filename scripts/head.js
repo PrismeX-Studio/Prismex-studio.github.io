@@ -19,7 +19,7 @@ $(function () {
 
 
 //Load basic styles
-const styleFiles = ["root", "attribute", "theme", "elements","deco"];
+const styleFiles = ["root", "attribute", "theme", "elements", "deco"];
 function loadStyle(url) {
     var link = document.createElement('link');
     link.type = 'text/css';
@@ -38,16 +38,16 @@ const ALL_COMMON_CSS_PATHS = styleFiles.map(file => `../styles/${file}.css`);
 
 //set title
 function addFavicon() {
-  const link = document.createElement('link');
-  link.rel = 'shortcut icon';
-  link.href = '../images/PrismeX-Studio-Icon-Small.png';
-  const head = document.head || document.getElementsByTagName('head')[0];
-  if (head) {
-    head.appendChild(link);
-    console.log("Favicon link added to the head.");
-  } else {
-    console.error("Could not find the <head> element to add the favicon.");
-  }
+    const link = document.createElement('link');
+    link.rel = 'shortcut icon';
+    link.href = '../images/PrismeX-Studio-Icon-Small.png';
+    const head = document.head || document.getElementsByTagName('head')[0];
+    if (head) {
+        head.appendChild(link);
+        console.log("Favicon link added to the head.");
+    } else {
+        console.error("Could not find the <head> element to add the favicon.");
+    }
 }
 // 在 DOM 加载完成后调用此函数
 document.addEventListener('DOMContentLoaded', addFavicon);
@@ -62,11 +62,11 @@ class BaseComponent extends HTMLElement {
     constructor() {
         super(); // 必须调用父类的构造函数
         this.attachShadow({ mode: 'open' }); // 创建 Shadow DOM
-        
+
         this._loadCommonCss();
 
         this._stampTemplate(); // 附加模板内容
-        
+
         // 调用子类特有的逻辑（如果子类覆盖了此方法）
         this.initializeLogic();
     }
@@ -78,13 +78,13 @@ class BaseComponent extends HTMLElement {
     static setTemplate(templateElement) {
         this.template = templateElement;
     }
-    
+
     /**
      * 【公用代码】将存储的模板内容克隆一份并放入当前组件实例的 Shadow DOM 中。
      */
     _stampTemplate() {
         const componentClass = this.constructor; // 获取当前实例的类
-        
+
         if (componentClass.template) {
             // 克隆模板内容并追加到 Shadow Root
             const content = componentClass.template.content.cloneNode(true);
@@ -109,7 +109,7 @@ class BaseComponent extends HTMLElement {
                 const link = document.createElement('link');
                 link.setAttribute('rel', 'stylesheet');
                 link.setAttribute('href', cssPath);
-                
+
                 this.shadowRoot.appendChild(link);
             });
         }
@@ -130,18 +130,18 @@ class BaseComponent extends HTMLElement {
 // =================================================================
 
 class MyCardComponent extends BaseComponent {
-    
+
     // 构造函数继承自 BaseComponent，它会自动调用 initializeLogic()
-    
+
     initializeLogic() {
         // 这是 MyCardComponent 特有的处理代码
         const shadow = this.shadowRoot;
 
         // A. 【读取参数】从 HTML 标签中读取属性值
         const title = this.getAttribute('title');
-        const initialValueStr = this.getAttribute('data-initial-value') || '0'; 
+        const initialValueStr = this.getAttribute('data-initial-value') || '0';
         const multiplierStr = this.getAttribute('data-multiplier') || '1';
-        
+
         const initialValue = parseFloat(initialValueStr);
         const multiplier = parseFloat(multiplierStr);
 
@@ -149,7 +149,7 @@ class MyCardComponent extends BaseComponent {
         const calculatedResult = (initialValue * multiplier) + 10;
 
         // C. 【结果填充】将结果填入 Shadow DOM 内部的元素中
-        
+
         // (C.1) 填充标题
         if (title) {
             const titleElement = shadow.querySelector('.card-title');
@@ -169,10 +169,10 @@ class MyCardComponent extends BaseComponent {
 
 //AppPlaceholderComponent
 class AppPlaceholderComponent extends BaseComponent {
-    
+
     initializeLogic() {
         const shadow = this.shadowRoot;
-        
+
         //根据状态属性修改样式
         const status = this.getAttribute('status') || 'loading';
 
@@ -193,7 +193,7 @@ class AppPlaceholderComponent extends BaseComponent {
 class TitleblockComponent extends BaseComponent {
     initializeLogic() {
         const shadow = this.shadowRoot;
-        
+
         // 从 HTML 标签中读取属性值
         const titleText = this.getAttribute('text');
         const subtitleText = this.getAttribute('sub-title');
@@ -212,9 +212,9 @@ class TitleblockComponent extends BaseComponent {
                 console.error(`TitleblockComponent: 标签属性 tags 解析失败`, e);
             }
         }
-        
+
         //填充主/副标题和图标
-        
+
         //填充标题
         const h1 = shadow.querySelector('h1');
         if (h1 && titleText) {
@@ -226,7 +226,7 @@ class TitleblockComponent extends BaseComponent {
         if (h2 && subtitleText) {
             h2.textContent = subtitleText;
         }
-        
+
         // 填充图标
         const iconElement = shadow.querySelector('.icon-title');
         if (iconElement) {
@@ -237,12 +237,12 @@ class TitleblockComponent extends BaseComponent {
         const tagsContainer = shadow.querySelector('.t-tags-container');
         if (tagsContainer) {
             // 清空模板中可能存在的占位内容
-            tagsContainer.innerHTML = ''; 
-            
+            tagsContainer.innerHTML = '';
+
             if (Array.isArray(tags) && tags.length > 0) {
                 tags.forEach(tag => {
                     const tagElement = document.createElement('p');
-                    tagElement.textContent = tag; 
+                    tagElement.textContent = tag;
                     tagsContainer.appendChild(tagElement);
                 });
             }
@@ -253,10 +253,10 @@ class TitleblockComponent extends BaseComponent {
 
 //StopSupportInfoComponent
 class StopSupportInfoComponent extends BaseComponent {
-    
+
     initializeLogic() {
         const shadow = this.shadowRoot;
-        
+
         const lastUpdateDate = this.getAttribute('last-update') || '2020-1-1';
 
         // 计算天数差
@@ -264,7 +264,7 @@ class StopSupportInfoComponent extends BaseComponent {
         var lastUpdate = new Date(lastUpdateDate);
         var timeDiff = today.getTime() - lastUpdate.getTime();
         var daysDiff = Math.floor(timeDiff / (1000 * 3600 * 24));
-        
+
         // 加载HTML内容
         const contentP = shadow.querySelector('p');
         var data = contentP.textContent;
@@ -287,13 +287,37 @@ class decoSepratorBaseComponent extends BaseComponent {
 
 
 class GridPanelContentPanelComponent extends BaseComponent {
-    
+
     initializeLogic() {
+
         const shadow = this.shadowRoot;
 
+        // 1. 获取 DOM 引用
+        const iconContainer = shadow.getElementById('icon-slot');
+        const titleEl = shadow.getElementById('title-text');
+        const subtitleEl = shadow.getElementById('subtitle-text');
+
+        // 2. 从 Attribute 获取数据
         const iconSrc = this.getAttribute('icon') || "../icons/AlertRhombus.svg";
         const title = this.getAttribute('title') || "TITLE";
-        const subTitle = this.getAttribute('sub-title') || "../icons/AlertRhombus.svg";
+        const subTitle = this.getAttribute('sub-title') || "Sub Description";
+
+        // 3. 渲染数据
+        titleEl.textContent = title;
+        subtitleEl.textContent = subTitle;
+
+        // 4. 处理图标：如果是 SVG 代码则直接注入，如果是路径则创建 img
+        if (iconSrc.trim().startsWith('<svg')) {
+            iconContainer.innerHTML = iconSrc;
+        } else {
+            const img = document.createElement('img');
+            img.src = iconSrc;
+            img.alt = title;
+            // 处理加载失败的逻辑
+            img.onerror = () => { img.src = "../icons/AlertRhombus.svg"; };
+            iconContainer.appendChild(img);
+        }
+
     }
 }
 
@@ -305,12 +329,12 @@ class GridPanelContentPanelComponent extends BaseComponent {
 // 默认加载全部公共css,即ALL_COMMON_CSS_PATHS
 // 设置为空[]则不加在任何公共css
 const COMPONENT_REGISTRY = {
-    'my-card': { 
-        path: '[component]my-card.html', 
-        componentClass: MyCardComponent ,
+    'my-card': {
+        path: '[component]my-card.html',
+        componentClass: MyCardComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
-    },'title-block': { 
-        path: '[component]titleblock.html', 
+    }, 'title-block': {
+        path: '[component]titleblock.html',
         componentClass: TitleblockComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     },
@@ -353,23 +377,23 @@ const COMPONENT_REGISTRY = {
  */
 async function loadAndRegisterComponent(tagName, definition) {
     const { path, componentClass } = definition;
-    
+
     try {
         // --- 异步获取模板文件内容 ---
         const response = await fetch(path);
         if (!response.ok) throw new Error(`Failed to fetch template: ${path}`);
         const templateText = await response.text();
-        
+
         // --- 解析 HTML 文本并提取 <template> 元素 ---
         const tempContainer = document.createElement('div');
         tempContainer.innerHTML = templateText;
         const template = tempContainer.querySelector('template');
-        
+
         if (!template) {
             console.error(`Error: <template> tag not found in ${path}`);
             return;
         }
-        
+
         // --- 注册模板内容到 Class ---
         // 将模板内容传入静态方法，所有该类的实例都能共享这个模板。
         componentClass.setTemplate(template);
@@ -379,7 +403,7 @@ async function loadAndRegisterComponent(tagName, definition) {
             customElements.define(tagName, componentClass);
             console.log(`Successfully registered component: <${tagName}>`);
         }
-        
+
     } catch (error) {
         console.error(`Error processing component <${tagName}>:`, error);
     }
@@ -394,7 +418,7 @@ async function loadAllComponents() {
     });
     // 等待所有组件注册完成
     await Promise.all(registrationPromises);
-    
+
     console.log("All components registered.");
 }
 // 页面DOM加载完成后开始执行组件的加载和注册

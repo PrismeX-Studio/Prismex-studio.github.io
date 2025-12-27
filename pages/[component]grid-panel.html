@@ -1,13 +1,23 @@
-<template id="titleblock-template">
+<template id="gird-panel-container-template">
     <style>
-        .gird-panel-container{
-            display:grid;
-            gap:12px;
-            background: var(--grey-0);
+        .gird-panel-container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 40px 0 40px 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px; 
+            background: transparent;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .gird-panel-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
     <div class="gird-panel-container">
-        <div class="panel"></div>
+        <slot></slot>
     </div>
-    <slot></slot>
 </template>
