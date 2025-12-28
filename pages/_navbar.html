@@ -2,6 +2,27 @@
 
 <head>
     <style>
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            custom-text-area{
+                display:none !important;
+            }
+            span{
+                display:none !important;
+            }
+            .navbar{
+                flex-wrap: wrap;
+                height:100px !important;
+            }
+            .navbar-container{
+                height:200px !important;
+            }
+            .navbar>*{
+                font-size: 12px;
+            }
+        }
+
+
         .navbar-container {
             position: fixed;
             top: 0px;
