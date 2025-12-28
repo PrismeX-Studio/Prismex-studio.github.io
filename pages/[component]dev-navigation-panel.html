@@ -1,0 +1,125 @@
+<template id="dev-navigation-panel-template">
+    <style>
+        :host {
+            --theme-color: var(--primary-color)
+        }
+
+        h1 {
+            font-family: "Rajdhani";
+            margin: 0 0 0 0px;
+        }
+
+        .titlecon {
+            display: flex;
+            flex-wrap: nowrap;
+            align-items: flex-start;
+            flex-direction: column;
+            padding: 0 0 8px 12px;
+            width: 100%
+        }
+
+        .titlecon>span {
+            color: var(--grey-4-07);
+            text-align: left;
+            font-family: "Jetbrains Mono";
+            font-size: 12px;
+            padding: 0;
+            margin: 0 0 0 0;
+            height: 12px;
+            width: fit-content;
+        }
+
+        .title-container {
+            display: flex;
+            flex-direction: row;
+            padding: 20px 24px 20px 24px;
+            overflow: hidden;
+            background-image: repeating-linear-gradient(-45deg,
+                    color-mix(in srgb,var(--primary-color) 18%,transparent) 0 20px,
+                    color-mix(in srgb,var(--primary-color) 25%,transparent) 20px 40px);
+        }
+
+        hr{
+            box-shadow: 0 -2px 16px var(--primary-color);
+            filter:contrast(1.6);
+            height:3px;
+            --side-color: rgba(255, 57, 56, 0.4);
+            --center-color: rgba(255, 57, 56, 0.7);
+            background:linear-gradient(to right, var(--side-color) 0%, var(--center-color) 50%, var(--side-color) 100%);
+            border:none;
+        }
+
+        .square {
+            background-color: var(--theme-color);
+            width: 3px;
+            margin: 0 6px 0 0;
+            padding: 0;
+            border: 0;
+        }
+
+        .dev-navigation-panel-container {
+            width: 100%;
+            max-width: 1000px;
+            padding: 0 0 0 0;
+            border: 2px solid var(--primary-color);
+            background: color-mix(in srgb, var(--primary-color) 10%, transparent);
+            position:relative;
+        }
+        .dev-navigation-panel-container::before{
+            content:'';
+            position:absolute;
+            top:-2px;
+            left:-6px;
+            height:calc(100% + 4px);
+            width:6px;
+            background-color: var(--primary-color);
+            box-shadow: 0px 0 16px var(--primary-color);
+            z-index: 0;
+        }
+
+        .dev-navigation-panel-container::after{
+            content:'';
+            position:absolute;
+            top:-2px;
+            right:-6px;
+            height:calc(100% + 4px);
+            width:6px;
+            background-color: var(--primary-color);
+            box-shadow: 0px 0 16px var(--primary-color);
+            z-index: 0;
+        }
+
+        .container000 {
+            padding:4px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            background: transparent;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .container000 {
+                grid-template-columns: repeat(1, 1fr);
+            }
+        }
+    </style>
+    <div class="dev-navigation-panel-container">
+        <div class="title-container">
+            <div class="square"></div>
+            <div class="square"></div>
+            <div class="titlecon">
+                <h1>
+                    SYSTEM QUICK ACCESS
+                </h1>
+                <span>FOR DEBUGGING ONLY</span>
+            </div>
+            <img src="../icons/MDservices.svg" style="width: 52px;height: 52px;align-self: center;margin:0;">
+        </div>
+        <hr style="margin:0">
+        <div class="container000">
+            <slot></slot>
+        </div>
+    </div>
+</template>

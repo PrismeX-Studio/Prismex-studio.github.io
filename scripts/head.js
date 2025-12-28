@@ -307,17 +307,55 @@ class GridPanelContentPanelComponent extends BaseComponent {
         subtitleEl.textContent = subTitle;
 
         // 4. 处理图标：如果是 SVG 代码则直接注入，如果是路径则创建 img
-        if (iconSrc.trim().startsWith('<svg')) {
-            iconContainer.innerHTML = iconSrc;
-        } else {
-            const img = document.createElement('img');
-            img.src = iconSrc;
-            img.alt = title;
-            // 处理加载失败的逻辑
-            img.onerror = () => { img.src = "../icons/AlertRhombus.svg"; };
-            iconContainer.appendChild(img);
-        }
+        this._renderIcon(iconContainer, iconSrc);
+    }
 
+    _renderIcon(container, src) {
+        if (!src) return;
+
+        // 判断是否为内联 SVG 字符串
+        if (src.trim().startsWith('<svg')) {
+            // 如果是内联SVG，清除Mask背景，直接填入HTML
+            container.style.webkitMaskImage = 'none';
+            container.style.maskImage = 'none';
+            container.innerHTML = src;
+
+            // 确保内部SVG也遵循父级的颜色
+            const svgEl = container.querySelector('svg');
+            if (svgEl) svgEl.style.fill = 'currentColor';
+        } else {
+            // 如果是路径 URL，应用 Mask 遮罩
+            container.innerHTML = ''; // 清空
+            const maskValue = `url("${src}")`;
+            container.style.webkitMaskImage = maskValue;
+            container.style.maskImage = maskValue;
+        }
+    }
+}
+
+
+class HomeNavigationPanelComponent extends BaseComponent {
+    initializeLogic() {
+
+    }
+}
+
+
+class DevNavigationContentPanelComponent extends BaseComponent {
+    initializeLogic() {
+        const shadow = this.shadowRoot;
+
+        const titleEl = shadow.getElementById('title-text');
+        const subtitleEl = shadow.getElementById('subtitle-text');
+        const hrefE1 = shadow.getElementById('card-link');
+
+        const href = this.getAttribute('href') || "../icons/AlertRhombus.svg";
+        const title = this.getAttribute('title') || "TITLE";
+        const subTitle = this.getAttribute('sub-title') || "Sub Description";
+
+        titleEl.textContent = title;
+        subtitleEl.textContent = subTitle;
+        hrefE1.href = href
     }
 }
 
@@ -361,6 +399,16 @@ const COMPONENT_REGISTRY = {
     'content-panel': {
         path: '[component]g-p-content-panel.html',
         componentClass: GridPanelContentPanelComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'dev-navigation-panel': {
+        path: '[component]dev-navigation-panel.html',
+        componentClass: HomeNavigationPanelComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'dev-navigation-content-panel': {
+        path: '[component]dev-navigation-content-panel.html',
+        componentClass: DevNavigationContentPanelComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     },
 };
