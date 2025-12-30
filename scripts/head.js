@@ -352,6 +352,7 @@ class DevNavigationContentPanelComponent extends BaseComponent {
         const href = this.getAttribute('href') || "../icons/AlertRhombus.svg";
         const title = this.getAttribute('title') || "TITLE";
         const subTitle = this.getAttribute('sub-title') || "Sub Description";
+        //todo: tag-text,accent-color
 
         titleEl.textContent = title;
         subtitleEl.textContent = subTitle;

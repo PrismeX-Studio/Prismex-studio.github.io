@@ -4,26 +4,31 @@
 
             --accent-color: var(--primary-color);
             /* 红色高亮色 */
-            --bg-color: var(--background-color);
-            --border-color: var(--border-color);
+            --bg-color: color-mix(in srgb, var(--background-color), transparent 70%);
             --text-main: var(--primary-font-color);
             --text-sub: var(--grey-4);
             cursor: pointer;
         }
+
+
 
         /* 外层容器/链接 */
         .wrapper {
             text-decoration: none;
             display: flex;
             flex-direction: row;
+            flex-wrap: nowrap;
             width: 100%;
-            height: 100px;
+            min-width: 300px;
+            height: max-content;
             background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
+            border: 1.5px solid var(--border-color);
             position: relative;
             padding: 0;
+            margin: 0;
             box-sizing: border-box;
             transition: all 0.2s ease-in-out;
+            border-radius: 0;
         }
 
         /* 内容布局 */
@@ -31,7 +36,11 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            height: 100%;
+            padding: 8px 12px 8px 12px;
+            margin: 0;
+            height: auto;
+            width: 100%;
+            box-sizing: border-box;
         }
 
         .subtitle {
@@ -39,16 +48,19 @@
             font-size: 12px;
             font-family: 'Jetbrains Mono';
             letter-spacing: 2px;
-            margin-bottom: 4px;
+            margin-bottom: 0px;
             transition: color 0.2s;
+            text-align: left;
         }
 
         .title {
             color: var(--text-main);
             font-size: 18px;
             font-weight: 800;
+            font-family: 'Rajdhani';
             letter-spacing: 1px;
             text-transform: uppercase;
+            text-align: left;
         }
 
         /* 状态标签 */
@@ -58,13 +70,18 @@
             padding: 2px 8px;
             font-size: 12px;
             font-weight: bold;
+            font-family: "Jetbrais Mono";
             letter-spacing: 1px;
             transition: all 0.2s;
+            height: 16px;
+            align-self: center;
+            width: 120px;
+            margin: 0 8px 0 0;
         }
 
         /* Hover 状态 */
         .wrapper:hover {
-            border-color: var(--accent-color);
+            border: 1.5px solid var(--accent-color);
             box-shadow: 0 0 15px rgba(255, 46, 46, 0.2), inset 0 0 10px rgba(255, 46, 46, 0.1);
             background-color: #120505;
         }
@@ -75,11 +92,12 @@
 
         .wrapper:hover .status-badge {
             background-color: var(--accent-color);
-            color: #000;
+            color: var(--background-color);
+            box-shadow: 0 0 4px var(--accent-color);
         }
 
         /* 装饰发光条 (可选) */
-        .wrapper::before {
+        .wrapper0::before {
             content: '';
             position: absolute;
             left: -1px;
@@ -97,8 +115,9 @@
 
     <a class="wrapper" id="card-link">
         <div class="content">
-            <div class="subtitle" id="subtitle-text">SUB_TITLE</div>
             <div class="title" id="title-text">MAIN TITLE</div>
+            <div class="subtitle" id="subtitle-text">SUB_TITLE</div>
+
         </div>
         <div class="status-badge">AVAILABLE</div>
     </a>

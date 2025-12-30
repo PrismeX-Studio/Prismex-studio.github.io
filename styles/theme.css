@@ -39,7 +39,12 @@
 
 :root {
     transition: all 0.4s ease 0s;
-    --selection-color: #ffdad588;
+
+    
+    --test-color-1:rgb(149, 149, 149);
+
+
+    --selection-color: rgba(214, 214, 214, 0.235);
     --border-color: rgba(100, 100, 100, 0.3);
     --hover-color: color-mix(in srgb, var(--primary-color)20%, transparent);
 
@@ -57,14 +62,14 @@
     --grey-4-07:rgba(190, 190, 190, 0.7);
     
 
-    --primary-color: #ff3938;
-    --on-primary-color: #fff4f4;
-    --primary-container-color: #87000025;
+    --primary-color:rgba(255, 57, 56,1);
+    --on-primary-color: rgb(255, 244, 244);
+    --primary-container-color: rgba(135, 0, 0, 0.145);
     --on-primary-container-color: var(--on-primary-color);
-    --primary-font-color: #fff4f4;
+    --primary-font-color: rgb(255, 244, 244);
 
-    --secondary-font-color: #dacaca;
-    --secondary-color: #FF9858;
+    --secondary-font-color: rgb(218, 202, 202);
+    --secondary-color: rgba(255, 152, 88,1);
     --on-secondary-color: #442926;
     --secondary-container-color: #5d3f3b;
     --on-secondary-container-color: #ffdad5;
