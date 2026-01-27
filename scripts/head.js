@@ -360,6 +360,71 @@ class DevNavigationContentPanelComponent extends BaseComponent {
     }
 }
 
+class UnderConstructionInfoComponent extends BaseComponent {
+    initializeLogic() {
+        const shadow = this.shadowRoot;
+
+        // 获取 DOM 引用
+        const elements = {
+            title: shadow.getElementById('main-title'),
+            subtitle: shadow.getElementById('sub-title'),
+            start: shadow.getElementById('val-start'),
+            stage: shadow.getElementById('val-stage'),
+            elapsed: shadow.getElementById('val-elapsed'),
+            eta: shadow.getElementById('val-eta')
+        };
+
+        // 获取属性值 (设置默认值)
+        const config = {
+            title: this.getAttribute('title') || "UNDER CONSTRUCTION",
+            subtitle: this.getAttribute('sub-title') || "DEVELOPMENT MODE",
+            startDate: this.getAttribute('start-date') || "2023-01-01",
+            stage: this.getAttribute('stage') || "PHASE 1 (CORE)",
+            eta: this.getAttribute('eta') || "TBD",
+            accentColor: this.getAttribute('accent-color') || "#f39c12"
+        };
+
+        // 更新基础文本
+        elements.title.textContent = config.title;
+        elements.subtitle.textContent = config.subtitle;
+        elements.start.textContent = config.startDate;
+        elements.stage.textContent = config.stage;
+        elements.eta.textContent = config.eta;
+
+        // 设置主题色
+        if(this.getAttribute('accent-color')) {
+            this.style.setProperty('--theme-color', config.accentColor);
+        }
+
+        // 动态计算已开发时间逻辑
+        const updateElapsed = () => {
+            const start = new Date(config.startDate);
+            const now = new Date();
+            const diff = now - start;
+
+            if (isNaN(diff)) {
+                elements.elapsed.textContent = "INVALID DATE";
+                return;
+            }
+
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const mins = Math.floor((diff / (1000 * 60)) % 60);
+
+            elements.elapsed.textContent = `${days}D ${hours.toString().padStart(2, '0')}H ${mins.toString().padStart(2, '0')}M`;
+        };
+
+        updateElapsed();
+        // 每分钟更新一次已耗时
+        this.timer = setInterval(updateElapsed, 60000);
+    }
+
+    // 断开连接时清理定时器
+    disconnectedCallback() {
+        if(this.timer) clearInterval(this.timer);
+    }
+}
+
 
 // =================================================================
 // 组件注册表：定义所有组件的标签名、模板路径和处理它们的类
@@ -410,6 +475,11 @@ const COMPONENT_REGISTRY = {
     'dev-navigation-content-panel': {
         path: '[component]dev-navigation-content-panel.html',
         componentClass: DevNavigationContentPanelComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'under-construction-info': {
+        path: '[component]under-construction-info.html',
+        componentClass: UnderConstructionInfoComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     },
 };

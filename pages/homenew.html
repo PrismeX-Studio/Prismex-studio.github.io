@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!--import jQuery-min-->
+    <script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
+    <style>
+        :root {
+            --primary-color: rgb(202, 0, 0) !important;
+            --on-primary-color: rgb(73, 73, 73) !important;
+            --primary-container-color: rgba(220, 220, 220, 0.628) !important;
+            --on-primary-container-color: var(--on-primary-color) !important;
+            --primary-font-color: rgb(73, 73, 73) !important;
+            font-family: "Rajdhani", sans-serif !important;
+        }
+
+        body {
+            --background-color: #f3f3f3 !important;
+            --background-line-color: rgba(181, 181, 181, 0.267) !important;
+            margin: 0px;
+            background: var(--background-color);
+            background-size: 30px 30px !important;
+            background-position: center center;
+            background-image:
+                linear-gradient(to right, var(--background-line-color) 1.5px, transparent 1px),
+                linear-gradient(to bottom, var(--background-line-color) 1.5px, transparent 1px) !important;
+            min-width: 300px;
+            overflow-x: hidden;
+        }
+
+        .container0>p {
+            margin-bottom: 12px;
+            font-size: 23px;
+            line-height: 29px;
+        }
+
+        .t-tags-container {
+            justify-content: center !important;
+            display: flex;
+            align-items: center !important;
+            text-align: center;
+            flex-wrap: wrap;
+        }
+
+        .t-tags-container>p {
+            font-size: 20px !important;
+            margin: 6px 4px 6px 4px !important;
+            padding: 3px 24px 3px 24px !important;
+        }
+
+        a {
+            width: fit-content;
+            background: transparent;
+            font-weight: normal;
+            font-size: 16px;
+            transition: all 0.20s ease 0s;
+            padding: 6px 12px 6px 12px;
+            margin: 0px 0px 14px -12px;
+        }
+
+        a:hover {
+            background: var(--border-color);
+            border-radius: 6px;
+        }
+    </style>
+    <script type="text/javascript" src="..\scripts\head.js"></script>
+</head>
+
+<body>
+
+    <div class="include" file="_navbar.html">
+    </div>
+    <!--main-->
+    <div class="content">
+        <div class="container0" style="display:flex; align-items:center; text-align:center; flex-direction: column;">
+            <hr class="blank">
+            <h1 style="font-size: 55px;">UNDER CONSTRUCTION</h1>
+            <hr class="blank" style="height: 10px !important;">
+            <p>
+                This page is currently under construction. Please check back later for updates.
+            </p>
+        </div>
+    </div>
+    <div class="include" file="!!!_footer.html"></div>
+</body>
+
+</html>
