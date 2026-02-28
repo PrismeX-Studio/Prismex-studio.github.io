@@ -32,8 +32,8 @@
 }
 
 :root {
-    --container-background-color: rgb(28, 27, 27);
-    --glowing-container-background-color: rgb(27, 26, 26);
+    --container-background-color: var(--bg-color-1);
+    --glowing-container-background-color: var(--container-background-color);
 }
 
 
@@ -61,10 +61,10 @@
     --primary-color: rgb(24, 207, 155);
     --primary-font-color: rgb(40, 40, 40);
 
-    --secondary-font-color: rgb(218, 202, 202);
+    --secondary-font-color: rgb(54, 54, 54);
     --secondary-color: rgba(255, 152, 88, 1);
     --on-secondary-color: #442926;
-    --secondary-container-color: #5d3f3b;
+    --secondary-container-color: var(--bg-color-1);
     --on-secondary-container-color: #ffdad5;
     /*3rd ! don't use this*/
     --tertiary-color: #eac783;
