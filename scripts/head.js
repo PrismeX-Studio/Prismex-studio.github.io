@@ -129,6 +129,12 @@ class BaseComponent extends HTMLElement {
 // 【核心原理】继承基类，覆盖 initializeLogic() 来实现自定义的业务逻辑。
 // =================================================================
 
+class NavbarComponent extends BaseComponent {
+    initializeLogic() {
+
+    }
+}
+
 class MyCardComponent extends BaseComponent {
 
     // 构造函数继承自 BaseComponent，它会自动调用 initializeLogic()
@@ -433,7 +439,11 @@ class UnderConstructionInfoComponent extends BaseComponent {
 // 默认加载全部公共css,即ALL_COMMON_CSS_PATHS
 // 设置为空[]则不加在任何公共css
 const COMPONENT_REGISTRY = {
-    'my-card': {
+    'app-navbar': {
+        path: '[component]navbar.html',
+        componentClass: NavbarComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },'my-card': {
         path: '[component]my-card.html',
         componentClass: MyCardComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS

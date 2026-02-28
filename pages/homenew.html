@@ -27,6 +27,13 @@
             overflow-x: hidden;
         }
 
+        .content {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
         .top {
             width: 100%;
             padding: 5rem 6rem 5rem 6rem;
@@ -43,10 +50,7 @@
             width: 24rem;
             z-index: -1;
             margin: -4rem 0 -10.7rem -4rem;
-            filter: drop-shadow(-2rem 0 0 rgba(100, 100, 100, 0.4)) 
-                drop-shadow(-4rem 0 0 rgba(100, 100, 100, 0.3)) 
-                drop-shadow(-6rem 0 0 rgba(100, 100, 100, 0.2))
-                drop-shadow(23662px 0 0 var(--bg-color-2)); 
+            filter: drop-shadow(-2rem 0 0 rgba(100, 100, 100, 0.4)) drop-shadow(-4rem 0 0 rgba(100, 100, 100, 0.3)) drop-shadow(-6rem 0 0 rgba(100, 100, 100, 0.2)) drop-shadow(23662px 0 0 var(--bg-color-2));
             transform: translate(-23662px);
         }
 
@@ -69,7 +73,7 @@
 
 <body>
 
-    <div class="include" file="_navbar.html">
+    <app-navbar></app-navbar>
     </div>
     <!--main-->
     <div class="top">
@@ -85,14 +89,70 @@
         <img src="../images/PrismeX-Studio-Icon.svg">
     </div>
     <div class="content">
-        <div style="display:flex; align-items:center; text-align:center; flex-direction: column;">
-            <hr class="blank">
-            <h1 style="font-size: 55px;">INFORMATION</h1>
-            <hr class="blank" style="height: 10px !important;">
-            <p>
-                This page is currently under construction. Please check back later for updates.
-            </p>
-        </div>
+        <hr class="blank">
+        <h1 style="font-size: 55px;">INFORMATION</h1>
+        <hr class="blank" style="height: 10px !important;">
+        <p>
+            This page is currently under construction. Please check back later for updates.
+        </p>
+        <p style="font-size: 27px;">
+            我们是一群热爱
+            <custom-placeholder1
+                style="font-family: 'Jetbrains Mono';color:var(--primary-color);text-shadow: 0 0 4px var(--primary-color);">
+                Minecraft
+            </custom-placeholder1> ，同时对一些奇奇怪怪的东西相当感兴趣的人。
+        </p>
+        <p style="color:var(--grey-3);font-size: 20px;">
+            因此，你可以在这里找到各种你想得到或根本想不到的文章和小玩意！
+        </p>
+        <deco-seprator style="width:100%">INTRODUCTION</deco-seprator>
+        <grid-panel>
+            <content-panel title="Minecraft" sub-title="Mods & Texturepacks" icon='../icons/MDpolymer.svg'>
+            </content-panel>
+
+            <content-panel title="Coding" sub-title="Web & Cmd" icon='../icons/MDcode.svg'>
+            </content-panel>
+
+            <content-panel title="Windows Platform" sub-title="Local Apps" icon='../icons/MDdesktop.svg'>
+            </content-panel>
+
+            <content-panel title="Unique Design" sub-title="UI/UX Concepts" icon='../icons/MDdesign.svg'>
+            </content-panel>
+
+            <content-panel title="Rich Content" sub-title="Articles" icon='../icons/MDpadding.svg'>
+            </content-panel>
+
+            <content-panel title="Internet Searcher" sub-title="Deep Dive" icon='../icons/MDservices.svg'>
+            </content-panel>
+
+            <content-panel title="Surfing Internet" sub-title="Random Stuff" icon='../icons/MDsurfing.svg'>
+            </content-panel>
+
+            <content-panel title="Website Building" sub-title="Design & setup" icon='../icons/MDdata.svg'>
+            </content-panel>
+        </grid-panel>
+        <dev-navigation-panel>
+            <dev-navigation-content-panel title="[!] ONLINE SITE" sub-title="For debugging only!"
+                href='https://prismex-studio.github.io/'>
+            </dev-navigation-content-panel>
+            <dev-navigation-content-panel title="ELEMENTS TEST PAGE" sub-title="Debugging" href='testPage.html'>
+            </dev-navigation-content-panel>
+            <dev-navigation-content-panel title="404 REDIRECT TEST" sub-title="Homo number()"
+                href='114514191981035023423662.html'>
+            </dev-navigation-content-panel>
+            <dev-navigation-content-panel title="404 SOURCEPAGE" sub-title="V2 [new]" href='404.html'>
+            </dev-navigation-content-panel>
+            <dev-navigation-content-panel title="ETERNAL-DB THEME" sub-title="NEXT-GEN Design?" href='v2_test.html'>
+            </dev-navigation-content-panel>
+            <dev-navigation-content-panel title="[ARCHIEVED]BKR TOOLS" sub-title="Need update"
+                href='backrooms-image-tools.html'>
+            </dev-navigation-content-panel>
+            <dev-navigation-content-panel title="[DANGER]DIALOGS" sub-title="DONT click this"
+                href='unable-to-quit.html'>
+            </dev-navigation-content-panel>
+            <dev-navigation-content-panel title="UNKNOWN?" sub-title="???" href='u-have-no-penis.html'>
+            </dev-navigation-content-panel>
+        </dev-navigation-panel>
     </div>
     <div class="include" file="!!!_footer.html"></div>
 </body>

@@ -1,15 +1,15 @@
-<!DOCTYPE html>
-
-<head>
+<template id="navbar">
     <style>
-        /* ？ */
+        /* Mobile/Phone */
         @media (max-width: 768px) {
             .navbar-container {
-                height: 100%;
                 width: 64px;
             }
         }
 
+        *{
+            font-family: "Rajdhani", sans-serif;
+        }
 
         .navbar-container {
             margin: 0px;
@@ -47,11 +47,11 @@
             align-items: flex-start;
             --surface-color1: color-mix(in srgb, var(--bg-color-0) 77%, transparent);
             --surface-color2: color-mix(in srgb, var(--primary-color) 4%, var(--bg-color-0));
-            background: rgba(255,255,255,0.76);
+            background: rgba(255, 255, 255, 0.76);
             backdrop-filter: blur(11px) saturate(1.8);
             background-position-x: 0px;
 
-            --animation:all 150ms ease 0s;
+            --animation: all 150ms ease 0s;
 
             --nav-shadow: 0 4px 30px var(--border-color);
             box-shadow: var(--nav-shadow);
@@ -62,7 +62,7 @@
             display: flex;
             flex-direction: row;
             align-items: start;
-            
+
             height: 32px;
             margin: 0px 0px 16px 0px;
         }
@@ -75,7 +75,7 @@
 
         .logo-text {
             font-size: 18px;
-            height:18px;
+            height: 18px;
             opacity: 0;
             transition: var(--animation);
             text-align: start;
@@ -114,19 +114,17 @@
             white-space: nowrap;
             opacity: 0;
             font-family: "Jetbrains Mono", monospace;
-            color:var(--grey-1) !important;
+            color: var(--grey-1) !important;
         }
 
         .nav-link>img {
             width: 24px;
             height: 24px;
             margin: 0px 8px 0px 0px;
-            
+
         }
     </style>
-</head>
 
-<body>
     <div class="navbar-container">
         <div class="navbar">
             <div class="nav-title">
@@ -150,6 +148,8 @@
                     <a href="v2_test.html">Testpage2</a>
                 </div>
             </div>
-        </div>
 
-</body>
+            
+        </div>
+    </div>
+</template>
