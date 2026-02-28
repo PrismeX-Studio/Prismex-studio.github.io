@@ -39,41 +39,34 @@
 
 :root {
     transition: all 0.4s ease 0s;
-
-    
-    --test-color-1:rgb(149, 149, 149);
-
-
-    --selection-color: rgba(214, 214, 214, 0.235);
-    --border-color: rgba(100, 100, 100, 0.3);
-    --hover-color: color-mix(in srgb, var(--primary-color)20%, transparent);
+    --bg-color-0: rgb(255, 255, 255);
+    --bg-color-1: rgb(242, 242, 242);
+    --bg-color-2: rgb(229, 229, 229);
+    --bg-color-3: rgb(204, 204, 204);
 
 
-    --grey-0:rgba(40, 40, 40, 1);
-    --grey-1:rgba(90, 90, 90, 1);
-    --grey-2:rgba(127, 127, 127, 1);
-    --grey-3:rgba(148, 148, 148, 1);
-    --grey-4:rgba(190, 190, 190, 1);
+    --grey-0: rgba(40, 40, 40, 1);
+    --grey-1: rgba(90, 90, 90, 1);
+    --grey-2: rgba(127, 127, 127, 1);
+    --grey-3: rgba(148, 148, 148, 1);
+    --grey-4: rgba(190, 190, 190, 1);
     /*transparency == 0.7*/
-    --grey-0-07:rgba(40, 40, 40, 0.7);
-    --grey-1-07:rgba(90, 90, 90, 0.7);
-    --grey-2-07:rgba(127, 127, 127, 0.7);
-    --grey-3-07:rgba(148, 148, 148, 0.7);
-    --grey-4-07:rgba(190, 190, 190, 0.7);
-    
+    --grey-0-07: rgba(40, 40, 40, 0.7);
+    --grey-1-07: rgba(90, 90, 90, 0.7);
+    --grey-2-07: rgba(127, 127, 127, 0.7);
+    --grey-3-07: rgba(148, 148, 148, 0.7);
+    --grey-4-07: rgba(190, 190, 190, 0.7);
 
-    --primary-color:rgba(255, 57, 56,1);
-    --on-primary-color: rgb(255, 244, 244);
-    --primary-container-color: rgba(135, 0, 0, 0.145);
-    --on-primary-container-color: var(--on-primary-color);
-    --primary-font-color: rgb(255, 244, 244);
+
+    --primary-color: rgb(24, 207, 155);
+    --primary-font-color: rgb(40, 40, 40);
 
     --secondary-font-color: rgb(218, 202, 202);
-    --secondary-color: rgba(255, 152, 88,1);
+    --secondary-color: rgba(255, 152, 88, 1);
     --on-secondary-color: #442926;
     --secondary-container-color: #5d3f3b;
     --on-secondary-container-color: #ffdad5;
-    /*3rd*/
+    /*3rd ! don't use this*/
     --tertiary-color: #eac783;
     --on-tertiary-color: #3e2e04;
     --tertiary-container-color: #574419;
@@ -89,9 +82,12 @@
     --warn-container-color: #932700;
     --on-warn-container-color: #ffd2ab;
     /*others*/
-    --background-color: rgb(24,20,20);
-    --surface0-color: #2a2120;
-    --surface1-color: #312624;
-    --t-tag-container-color: #382b29;
+    --selection-color: color-mix(in srgb, var(--primary-color)20%, transparent);
+    --border-color: var(--bg-color-3);
+    --hover-color: color-mix(in srgb, var(--primary-color)20%, transparent);
+    --background-color: var(--bg-color-0);
+    --surface0-color: #dedede;
+    --surface1-color: #d2d2d2;
+    --t-tag-container-color: #9c9c9c;
     --t-tag-primary-color: var(--primary-color);
 }

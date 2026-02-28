@@ -2,195 +2,126 @@
 
 <head>
     <style>
-        /* 移动端适配 */
+        /* ？ */
         @media (max-width: 768px) {
-            custom-text-area{
-                display:none !important;
-            }
-            span{
-                display:none !important;
-            }
-            .navbar{
-                flex-wrap: wrap;
-                height:100px !important;
-            }
-            .navbar-container{
-                height:200px !important;
-            }
-            .navbar>*{
-                font-size: 12px;
+            .navbar-container {
+                height: 100%;
+                width: 64px;
             }
         }
 
 
         .navbar-container {
+            margin: 0px;
+            padding: 0px;
             position: fixed;
             top: 0px;
+            left: 0px;
             z-index: 1;
-            height: 50px;
-            width: 100%;
-
+            height: 100%;
+            width: 48px;
+            transition: all 300ms ease 0s;
         }
 
-        .navbar-bottom-deco {
-            width: 100%;
-            height: 1.8px;
-            --side-color: rgba(255, 57, 56, 0.2);
-            --center-color: rgba(189, 0, 0, 0.7);
-            box-shadow: 0 0 10px var(--primary-color);
-            background: linear-gradient(to right, var(--side-color) 0%, var(--center-color) 50%, var(--side-color) 100%);
+        .navbar-container>* {
+            transition: all 300ms ease 0s;
+        }
+
+        .navbar-container:hover {
+            width: 196px;
+
+            .logo-text,
+            .logo-text-2,
+            .nav-link>a {
+                opacity: 1 !important;
+            }
         }
 
         .navbar {
-            height: 50px;
+            box-sizing: border-box;
+            height: 100%;
             width: 100%;
-            padding: 8px 40px 8px 16px;
+            padding: 16px 8px 8px 8px;
             display: flex;
-            flex-direction: row;
-            align-items: center;
-            --surface-color1: color-mix(in srgb, var(--surface0-color) 77%, transparent);
-            --surface-color2: color-mix(in srgb, var(--primary-color) 24%, black);
-            background: linear-gradient(var(--surface-color1), 78%, var(--surface-color2));
+            flex-direction: column;
+            align-items: flex-start;
+            --surface-color1: color-mix(in srgb, var(--bg-color-0) 77%, transparent);
+            --surface-color2: color-mix(in srgb, var(--primary-color) 4%, var(--bg-color-0));
+            background: rgba(255,255,255,0.76);
             backdrop-filter: blur(11px) saturate(1.8);
             background-position-x: 0px;
 
-            --nav-shadow: 0 4px 30px rgba(255, 57, 56, 0.1);
+            --animation:all 150ms ease 0s;
+
+            --nav-shadow: 0 4px 30px var(--border-color);
             box-shadow: var(--nav-shadow);
 
         }
 
-        .navbar>* {
-            margin: 0px 40px 0px 0px;
-            min-width: fit-content;
+        .nav-title {
+            display: flex;
+            flex-direction: row;
+            align-items: start;
+            
+            height: 32px;
+            margin: 0px 0px 16px 0px;
         }
 
-        .nav-a {
-            font-weight: normal;
-            font-family: "Jetbrains Mono";
-            background: transparent;
-            border: transparent solid 1px;
-            border-radius: 0px;
-            padding: 6px 12px 6px 12px;
-            margin: auto 8px auto 8px;
-            transition: all 0.2s ease 0s;
-            position: relative;
+        .nav-title>img {
+            width: 32px;
+            height: 32px;
+            margin: 0px;
         }
 
-        .nav-a:hover {
-            transition: all 0.20s ease 0s;
-            color: color-mix(in srgb, var(--primary-color)95%, var(--surface0-color));
-            border: var(--primary-color) solid 1px;
-            border-radius: 0px;
-            background: var(--hover-color);
-            padding: 6px 12px 6px 12px;
+        .logo-text {
+            font-size: 18px;
+            height:18px;
+            opacity: 0;
+            transition: var(--animation);
+            text-align: start;
+            margin: 0px;
+            white-space: nowrap;
+            line-height: 1em;
         }
 
-        .navbar>img {
-            height: 40px;
-            width: 40px;
-            margin: 0;
-            margin-right: 10px;
-            transform: scale(1);
-            border-radius: 8px;
+        .logo-text-2 {
+            font-family: 'Jetbrains Mono';
+            font-size: 8px;
+            opacity: 0;
+            transition: var(--animation);
+            text-align: start;
+            margin: 0px;
+            white-space: nowrap;
+            line-height: 1em;
         }
 
-        .navbar>custom-text-area {
+        .links-container {
             display: flex;
             flex-direction: column;
-            align-items: left;
-            margin: 0;
-            border-right: var(--grey-2-07) solid 1.6px;
-            margin-right: 16px;
+            gap: 16px;
+            padding: 0px 0px 0px 4px;
+        }
+
+        .nav-link {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            transition: var(--animation);
+        }
+
+        .nav-link>a {
+            transition: var(--animation);
+            white-space: nowrap;
+            opacity: 0;
+            font-family: "Jetbrains Mono", monospace;
+            color:var(--grey-1) !important;
+        }
+
+        .nav-link>img {
+            width: 24px;
+            height: 24px;
+            margin: 0px 8px 0px 0px;
             
-        }
-
-        .navbar>custom-text-area>custom-text {
-            margin: 0px;
-            padding: 0px;
-            line-height: 24px;
-            font-size: 24px;
-            font-weight: bold;
-            margin-left: 0px;
-            margin-right: 24px;
-            padding-right: 0px;
-            font-family: "Rajdhani";
-            font-weight: 600;
-            color: var(--primary-color);
-            border-right: var(--center-color) solid 2px;
-        }
-
-        custom-text-area>p {
-            height: 10px;
-            font-family: "Jetbrains Mono";
-            color: var(--grey-4-07);
-            margin: 0;
-            padding: 0;
-            line-height: 9px;
-            font-size: 9px;
-            overflow: unset;
-            text-align: left;
-        }
-
-        .navbar>hr {
-            width: 100%;
-            border-color: transparent;
-        }
-
-        .navbar>span {
-            color: var(--grey-2-07);
-            text-align: center;
-            font-family: "Jetbrains Mono";
-            margin: 0;
-        }
-
-        .warn {
-            --corner-theme-color: var(--warn-color);
-        }
-
-        @keyframes LSD {
-            0% {
-                color: red
-            }
-
-            25% {
-                color: limegreen;
-            }
-
-            50% {
-                color: plum
-            }
-
-            75% {
-                color: coral
-            }
-
-            100% {
-                color: red
-            }
-        }
-
-        .a-important {
-            font-family: "Jetbrains Mono";
-            color: var(--warn-color);
-            text-shadow: 0px 0px 3px var(--warn-color);
-            border: 1px solid transparent;
-            border-radius: 0;
-            background: color-mix(in srgb, var(--warn-color) 20%, transparent);
-            position: relative;
-            padding: 6px 12px 6px 12px;
-            margin: auto 8px auto 8px;
-        }
-
-        .a-important:hover{
-            color: var(--warn-color);
-            text-shadow: 0px 0px 3px var(--warn-color);
-            border: 1px solid var(--warn-color);
-            border-radius: 0;
-            background: color-mix(in srgb, var(--warn-color) 20%, transparent);
-            position: relative;
-            box-shadow:0px 1px 8px var(--warn-color);
-            padding: 6px 12px 6px 12px;
-            margin: auto 8px auto 8px;
         }
     </style>
 </head>
@@ -198,47 +129,27 @@
 <body>
     <div class="navbar-container">
         <div class="navbar">
-            <img src="..\images\PrismeX-Studio-Icon-Medium.png">
-            <custom-text-area>
-                <custom-text>
-                    PRISMEX STUDIO
-                </custom-text>
-                <p>
-                    THE OFFICIAL WEBSITE
-                </p>
-            </custom-text-area>
-            <a href="..\index.html" class="nav-a">
-                MAIN
-            </a>
-            <span>/</span>
-            <a href="B-1.html" class="nav-a">
-                文档列表
-            </a>
-            <span>/</span>
-            <a href="JOKE.LSD.html" style="animation: LSD 2s linear infinite" class="nav-a">
-                我靠好™炫酷的页面
-            </a>
-            <hr>
-            <a href="v2_test.html" class="a-important">
-                <div class="deco-corner warn tr"></div>
-                <div class="deco-corner warn tl"></div>
-                <div class="deco-corner warn bl"></div>
-                <div class="deco-corner warn br"></div>
-                TEST_NODE
-            </a>
-            <a href="https://github.com/PrismeX-Studio/Prismex-studio.github.io"
-                style="text-align: right;margin-right: 40px;"
-                class="nav-a">
-                <div class="deco-corner tr"></div>
-                <div class="deco-corner tl"></div>
-                <div class="deco-corner bl"></div>
-                <div class="deco-corner br"></div>
-                ◈ GITHUB REPO
-            </a>
+            <div class="nav-title">
+                <img src="..\images\PrismeX-Studio-Icon.svg">
+                <div style="height: 100%;padding: 2px 0 0 8px;">
+                    <h2 class="logo-text">PRISMEX STUDIO</h2>
+                    <p class="logo-text-2">THE OFFICIAL WEBSITE</p>
+                </div>
+            </div>
+            <div class="links-container">
+                <div class="nav-link">
+                    <img src="..\icons\MDdata.svg">
+                    <a href="..\index.html">Home</a>
+                </div>
+                <div class="nav-link">
+                    <img src="..\icons\MDcode.svg">
+                    <a href="testPage.html">Testpage1</a>
+                </div>
+                <div class="nav-link">
+                    <img src="..\icons\MDpadding.svg">
+                    <a href="v2_test.html">Testpage2</a>
+                </div>
+            </div>
         </div>
-        <div class="navbar-bottom-deco">
-
-        </div>
-    </div>
 
 </body>
