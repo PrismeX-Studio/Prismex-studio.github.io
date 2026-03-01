@@ -4,19 +4,16 @@ var wbnmestr = "PrismeX Studio";
 var pgtitle = pgnme.concat(" - ", wbnmestr);
 document.title = pgtitle;
 
+//add mobile support
+var meta = document.createElement('meta');
+meta.name = "viewport";
+meta.content = "width=device-width, initial-scale=1.0";
+document.getElementsByTagName('head')[0].appendChild(meta);
 
-
-//include support
-$(function () {
-    $(".include[file]").each(function () {
-        var $element = $(this);
-        $element.load($element.attr("file"), function () {
-            $element.replaceWith($element.children());
-        });
-    });
-});
-
-
+//set min-width
+var style = document.createElement('style');
+style.textContent = `html { min-width: 480px; }`;
+document.head.appendChild(style);
 
 //Load basic styles
 const styleFiles = ["root", "attribute", "theme", "elements", "deco"];
@@ -130,6 +127,12 @@ class BaseComponent extends HTMLElement {
 // =================================================================
 
 class NavbarComponent extends BaseComponent {
+    initializeLogic() {
+
+    }
+}
+
+class FooterComponent extends BaseComponent {
     initializeLogic() {
 
     }
@@ -442,6 +445,10 @@ const COMPONENT_REGISTRY = {
     'app-navbar': {
         path: '[component]navbar.html',
         componentClass: NavbarComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },'app-footer': {
+        path: '[component]footer.html',
+        componentClass: FooterComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     },'my-card': {
         path: '[component]my-card.html',

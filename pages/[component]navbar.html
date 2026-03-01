@@ -1,12 +1,5 @@
-<template id="navbar">
+<template id="app-navbar">
     <style>
-        /* Mobile/Phone */
-        @media (max-width: 768px) {
-            .navbar-container {
-                width: 64px;
-            }
-        }
-
         *{
             font-family: "Rajdhani", sans-serif;
         }
@@ -123,6 +116,14 @@
             margin: 0px 8px 0px 0px;
 
         }
+
+        /* Mobile/Phone */
+        @media (max-width: 768px) {
+            .navbar-container {
+                height:100dvh
+            }
+        }
+
     </style>
 
     <div class="navbar-container">
@@ -149,7 +150,7 @@
                 </div>
             </div>
 
-            
+
         </div>
     </div>
 </template>

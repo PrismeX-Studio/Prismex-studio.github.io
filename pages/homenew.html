@@ -28,6 +28,9 @@
         }
 
         .content {
+            width:80%;
+            margin: 0 10% 0 10%;
+            padding: 0px;
             display: flex;
             align-items: center;
             text-align: center;
@@ -44,6 +47,7 @@
             flex-direction: row;
             position: relative;
             overflow: hidden;
+            box-sizing: border-box;
         }
 
         .top>img {
@@ -67,14 +71,19 @@
         .title-container>.title {
             font-size: 4.7rem;
         }
+
+        @media (max-width: 768px) {
+            .content{
+                width: 100%;
+                margin:0 
+            }
+        }
     </style>
     <script type="text/javascript" src="..\scripts\head.js"></script>
 </head>
 
 <body>
-
     <app-navbar></app-navbar>
-    </div>
     <!--main-->
     <div class="top">
         <div class="title-container">
@@ -95,6 +104,7 @@
         <p>
             This page is currently under construction. Please check back later for updates.
         </p>
+        <hr class="blank">
         <p style="font-size: 27px;">
             我们是一群热爱
             <custom-placeholder1
@@ -154,7 +164,7 @@
             </dev-navigation-content-panel>
         </dev-navigation-panel>
     </div>
-    <div class="include" file="!!!_footer.html"></div>
+    <app-footer></app-footer>
 </body>
 
 </html>
