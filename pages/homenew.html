@@ -13,20 +13,6 @@
             font-family: "Rajdhani", sans-serif !important;
         }
 
-        body {
-            --background-color: var(--bg-color-0) !important;
-            --background-line-color: var(--bg-color-1) !important;
-            margin: 0px;
-            background: var(--background-color);
-            background-size: 40px 40px !important;
-            background-position: center center;
-            background-image:
-                linear-gradient(to right, var(--background-line-color) 1.5px, transparent 1px),
-                linear-gradient(to bottom, var(--background-line-color) 1.5px, transparent 1px) !important;
-            min-width: 300px;
-            overflow-x: hidden;
-        }
-
         .content {
             width:80%;
             margin: 0 10% 0 10%;
@@ -82,7 +68,7 @@
     <script type="text/javascript" src="..\scripts\head.js"></script>
 </head>
 
-<body>
+<app-container><body>
     <app-navbar></app-navbar>
     <!--main-->
     <div class="top">
@@ -165,6 +151,6 @@
         </dev-navigation-panel>
     </div>
     <app-footer></app-footer>
-</body>
+</body></app-container>
 
 </html>
