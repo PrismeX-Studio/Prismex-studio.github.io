@@ -1,6 +1,6 @@
 <template id="app-navbar">
     <style>
-        *{
+        * {
             font-family: "Rajdhani", sans-serif;
         }
 
@@ -20,14 +20,16 @@
             transition: all 300ms ease 0s;
         }
 
-        .navbar-container:hover {
+        .navbar:hover {
             width: 196px;
 
             .logo-text,
             .logo-text-2,
             .nav-link>a {
                 opacity: 1 !important;
+                transform: translateX(0px);
             }
+
         }
 
         .navbar {
@@ -75,6 +77,7 @@
             margin: 0px;
             white-space: nowrap;
             line-height: 1em;
+            transform: translateX(-50px);
         }
 
         .logo-text-2 {
@@ -86,6 +89,7 @@
             margin: 0px;
             white-space: nowrap;
             line-height: 1em;
+            transform: translateX(-50px);
         }
 
         .links-container {
@@ -108,6 +112,7 @@
             opacity: 0;
             font-family: "Jetbrains Mono", monospace;
             color: var(--grey-1) !important;
+            transform: translateX(-50px);
         }
 
         .nav-link>img {
@@ -120,10 +125,9 @@
         /* Mobile/Phone */
         @media (max-width: 768px) {
             .navbar-container {
-                height:100dvh
+                height: 100dvh
             }
         }
-
     </style>
 
     <div class="navbar-container">

@@ -15,7 +15,7 @@
 
 
         .content {
-            width:80%;
+            width: 80%;
             margin: 0 10% 0 10%;
             padding: 0px;
             display: flex;
@@ -38,6 +38,9 @@
         }
 
         .top>img {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
             width: 24rem;
             z-index: -1;
             margin: -4rem 0 -10.7rem -4rem;
@@ -45,117 +48,173 @@
             transform: translate(-23662px);
         }
 
-        .title{
+        .top-title {
             font-weight: bold;
         }
 
-        .title-container {
-            border-left: 0.6rem solid var(--theme-color);
-            padding-left: 2rem;
+        .top-title-container {
+            border-left: 0rem solid transparent;
+            padding-left: 2.5rem;
             height: min-content;
+            position: relative;
         }
 
-        .title-container>* {
+        .top-title-container-deco-1 {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 0.6rem;
+            height: 100%;
+            background-color: var(--theme-color);
+            box-shadow: 0 0 12px var(--theme-color);
+        }
+
+        .top-title-container>* {
             font-family: "Rajdhani";
         }
 
-        .title-container>.title {
+        .top-title {
             font-size: 4.7rem;
         }
 
+        .top-deco-block-1 {
+            position: absolute;
+            z-index: -1;
+            width: calc(100% - 2*96px);
+            height: 96px;
+            margin: 0 0 0 0;
+            --sub-theme-color: var(--grey-4-07);
+            background-image: repeating-linear-gradient(-45deg,
+                    color-mix(in srgb, var(--sub-theme-color) 3%, transparent) 0 8px,
+                    color-mix(in srgb, var(--sub-theme-color) 25%, transparent) 8px 16px);
+        }
+
+        .top-deco-x-cross-1 {
+            position: absolute;
+            z-index: -1;
+            top: 2rem;
+            right: 2rem;
+            opacity: 0.4;
+        }
+
+
+        /*home*/
+
         @media (max-width: 768px) {
-            .content{
+            .content {
                 width: 100%;
-                margin:0 
+                margin: 0
             }
         }
     </style>
     <script type="text/javascript" src="..\scripts\head.js"></script>
 </head>
 
-<app-container><body>
-    <app-navbar></app-navbar>
-    <!--main-->
-    <div class="top">
-        <div class="title-container">
-            <h1 class="title">
-                PRISMEX STUDIO
-            </h1>
-            <h2 class="sub-title">
-                //UNDER CONSTRUCTION
-            </h2>
+<app-container>
+
+    <body>
+        <app-navbar></app-navbar>
+        <!--main-->
+        <div class="top">
+
+            <div class="top-title-container">
+                <h1 class="top-title">
+                    <text style="color:color-mix(in srgb, var(--secondary-color) 100%, transparent)">[</text>
+                    PRISMEX-STUDIO
+                    <text style="color:color-mix(in srgb, var(--secondary-color) 100%, transparent)">]</text>
+                </h1>
+                <h2 class="top-sub-title">
+                    //UNDER CONSTRUCTION
+                </h2>
+                <div class="top-title-container-deco-1"></div>
+
+            </div>
+            <div class="top-deco-block-1"></div>
+            <svg class="top-deco-x-cross-1" width="64px" height="64px" viewBox="0 0 100 100"
+                xmlns="http://www.w3.org/2000/svg">
+                <g stroke="black" stroke-width="4" fill="none" stroke-linecap="square">
+                    <path d="M20,20 L40,40" />
+
+                    <path d="M60,60 L80,80" />
+
+                    <path d="M80,20 L60,40" />
+
+                    <path d="M40,60 L20,80" />
+                </g>
+            </svg>
+            <img src="../images/PrismeX-Studio-Icon.svg">
         </div>
-        <hr class="blank">
-        <img src="../images/PrismeX-Studio-Icon.svg">
-    </div>
-    <div class="content">
-        <hr class="blank">
-        <h1 style="font-size: 55px;">INFORMATION</h1>
-        <hr class="blank" style="height: 10px !important;">
-        <p>
-            This page is currently under construction. Please check back later for updates.
-        </p>
-        <hr class="blank">
-        <p style="font-size: 27px;">
-            我们是一群热爱
-            <custom-placeholder1
-                style="font-family: 'Jetbrains Mono';color:var(--primary-color);text-shadow: 0 0 4px var(--primary-color);">
-                Minecraft
-            </custom-placeholder1> ，同时对一些奇奇怪怪的东西相当感兴趣的人。
-        </p>
-        <p style="color:var(--grey-3);font-size: 20px;">
-            因此，你可以在这里找到各种你想得到或根本想不到的文章和小玩意！
-        </p>
-        <deco-seprator style="width:100%">INTRODUCTION</deco-seprator>
-        <grid-panel>
-            <content-panel title="Minecraft" sub-title="Mods & Texturepacks" icon='../icons/MDpolymer.svg'>
-            </content-panel>
+        <div class="content">
+            <hr class="blank">
 
-            <content-panel title="Coding" sub-title="Web & Cmd" icon='../icons/MDcode.svg'>
-            </content-panel>
+            <hr class="blank">
+            <h1 style="font-size: 55px;">INFORMATION</h1>
+            <hr class="blank" style="height: 10px !important;">
+            <p>
+                This page is currently under construction. Please check back later for updates.
+            </p>
+            <hr class="blank">
+            <p style="font-size: 27px;">
+                我们是一群热爱
+                <custom-placeholder1
+                    style="font-family: 'Jetbrains Mono';color:var(--primary-color);text-shadow: 0 0 4px var(--primary-color);">
+                    Minecraft
+                </custom-placeholder1> ，同时对一些奇奇怪怪的东西相当感兴趣的人。
+            </p>
+            <p style="color:var(--grey-3);font-size: 20px;">
+                因此，你可以在这里找到各种你想得到或根本想不到的文章和小玩意！
+            </p>
+            <deco-seprator style="width:100%">INTRODUCTION</deco-seprator>
+            <grid-panel>
+                <content-panel title="Minecraft" sub-title="Mods & Texturepacks" icon='../icons/MDpolymer.svg'>
+                </content-panel>
 
-            <content-panel title="Windows Platform" sub-title="Local Apps" icon='../icons/MDdesktop.svg'>
-            </content-panel>
+                <content-panel title="Coding" sub-title="Web & Cmd" icon='../icons/MDcode.svg'>
+                </content-panel>
 
-            <content-panel title="Unique Design" sub-title="UI/UX Concepts" icon='../icons/MDdesign.svg'>
-            </content-panel>
+                <content-panel title="Windows Platform" sub-title="Local Apps" icon='../icons/MDdesktop.svg'>
+                </content-panel>
 
-            <content-panel title="Rich Content" sub-title="Articles" icon='../icons/MDpadding.svg'>
-            </content-panel>
+                <content-panel title="Unique Design" sub-title="UI/UX Concepts" icon='../icons/MDdesign.svg'>
+                </content-panel>
 
-            <content-panel title="Internet Searcher" sub-title="Deep Dive" icon='../icons/MDservices.svg'>
-            </content-panel>
+                <content-panel title="Rich Content" sub-title="Articles" icon='../icons/MDpadding.svg'>
+                </content-panel>
 
-            <content-panel title="Surfing Internet" sub-title="Random Stuff" icon='../icons/MDsurfing.svg'>
-            </content-panel>
+                <content-panel title="Internet Searcher" sub-title="Deep Dive" icon='../icons/MDservices.svg'>
+                </content-panel>
 
-            <content-panel title="Website Building" sub-title="Design & setup" icon='../icons/MDdata.svg'>
-            </content-panel>
-        </grid-panel>
-        <dev-navigation-panel>
-            <dev-navigation-content-panel title="[!] ONLINE SITE" sub-title="For debugging only!"
-                href='https://prismex-studio.github.io/'>
-            </dev-navigation-content-panel>
-            <dev-navigation-content-panel title="ELEMENTS TEST PAGE" sub-title="Debugging" href='testPage.html'>
-            </dev-navigation-content-panel>
-            <dev-navigation-content-panel title="404 REDIRECT TEST" sub-title="Homo number()"
-                href='114514191981035023423662.html'>
-            </dev-navigation-content-panel>
-            <dev-navigation-content-panel title="404 SOURCEPAGE" sub-title="V2 [new]" href='404.html'>
-            </dev-navigation-content-panel>
-            <dev-navigation-content-panel title="ETERNAL-DB THEME" sub-title="NEXT-GEN Design?" href='v2_test.html'>
-            </dev-navigation-content-panel>
-            <dev-navigation-content-panel title="[ARCHIEVED]BKR TOOLS" sub-title="Need update"
-                href='backrooms-image-tools.html'>
-            </dev-navigation-content-panel>
-            <dev-navigation-content-panel title="[DANGER]DIALOGS" sub-title="DONT click this"
-                href='unable-to-quit.html'>
-            </dev-navigation-content-panel>
-            <dev-navigation-content-panel title="UNKNOWN?" sub-title="???" href='u-have-no-penis.html'>
-            </dev-navigation-content-panel>
-        </dev-navigation-panel>
-    </div>
-    <app-footer></app-footer>
-</body></app-container>
+                <content-panel title="Surfing Internet" sub-title="Random Stuff" icon='../icons/MDsurfing.svg'>
+                </content-panel>
+
+                <content-panel title="Website Building" sub-title="Design & setup" icon='../icons/MDdata.svg'>
+                </content-panel>
+            </grid-panel>
+            <dev-navigation-panel>
+                <dev-navigation-content-panel title="[!] ONLINE SITE" sub-title="For debugging only!"
+                    href='https://prismex-studio.github.io/'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="ELEMENTS TEST PAGE" sub-title="Debugging" href='testPage.html'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="404 REDIRECT TEST" sub-title="Homo number()"
+                    href='114514191981035023423662.html'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="404 SOURCEPAGE" sub-title="V2 [new]" href='404.html'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="ETERNAL-DB THEME" sub-title="NEXT-GEN Design?" href='v2_test.html'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="[ARCHIEVED]BKR TOOLS" sub-title="Need update"
+                    href='backrooms-image-tools.html'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="[DANGER]DIALOGS" sub-title="DONT click this"
+                    href='unable-to-quit.html'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="UNKNOWN?" sub-title="???" href='u-have-no-penis.html'>
+                </dev-navigation-content-panel>
+            </dev-navigation-panel>
+        </div>
+        <app-footer></app-footer>
+    </body>
+</app-container>
 
 </html>
