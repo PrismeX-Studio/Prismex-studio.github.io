@@ -27,6 +27,7 @@
             .logo-text-2,
             .nav-link>a {
                 opacity: 1 !important;
+                visibility: visible !important;
                 transform: translateX(0px);
             }
 
@@ -68,28 +69,32 @@
             margin: 0px;
         }
 
+        .logo-text,
+        .logo-text-2,
+        .nav-link>a {
+            opacity: 0;
+            visibility:hidden;
+            transform: translateX(-50px);
+        }
+
         .logo-text {
             font-size: 18px;
             height: 18px;
-            opacity: 0;
             transition: var(--animation);
             text-align: start;
             margin: 0px;
             white-space: nowrap;
             line-height: 1em;
-            transform: translateX(-50px);
         }
 
         .logo-text-2 {
             font-family: 'Jetbrains Mono';
             font-size: 8px;
-            opacity: 0;
             transition: var(--animation);
             text-align: start;
             margin: 0px;
             white-space: nowrap;
             line-height: 1em;
-            transform: translateX(-50px);
         }
 
         .links-container {
@@ -109,10 +114,8 @@
         .nav-link>a {
             transition: var(--animation);
             white-space: nowrap;
-            opacity: 0;
             font-family: "Jetbrains Mono", monospace;
             color: var(--grey-1) !important;
-            transform: translateX(-50px);
         }
 
         .nav-link>img {

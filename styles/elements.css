@@ -3,6 +3,7 @@ html {
     width: 100%;
     position: fixed;
     overflow: hidden;
+    min-width: 525px;
 }
 
 body {
@@ -20,6 +21,7 @@ body {
     position: fixed;
     overflow: hidden;
     overflow-y: scroll;
+    min-width: 525px;
 }
 
 app-container {

@@ -4,15 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="">
     <title>Home</title>
     <!--import jQuery-min-->
     <script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
     <style>
-        :root {
-            font-family: "Rajdhani", sans-serif !important;
-        }
-
 
         .content {
             width: 80%;
@@ -97,6 +93,14 @@
             opacity: 0.4;
         }
 
+        .top-deco-x-cross-2 {
+            position: absolute;
+            z-index: -1;
+            top: 6rem;
+            right: 2rem;
+            opacity: 0.4;
+        }
+
 
         /*home*/
 
@@ -142,30 +146,45 @@
                     <path d="M40,60 L20,80" />
                 </g>
             </svg>
+            <svg class="top-deco-x-cross-2" width="64px" height="64px" viewBox="0 0 100 100"
+                xmlns="http://www.w3.org/2000/svg">
+                <g stroke="black" stroke-width="4" fill="none" stroke-linecap="square">
+                    <path d="M20,20 L40,40" />
+
+                    <path d="M60,60 L80,80" />
+
+                    <path d="M80,20 L60,40" />
+
+                    <path d="M40,60 L20,80" />
+                </g>
+            </svg>
             <img src="../images/PrismeX-Studio-Icon.svg">
         </div>
         <div class="content">
             <hr class="blank">
-
-            <hr class="blank">
-            <h1 style="font-size: 55px;">INFORMATION</h1>
-            <hr class="blank" style="height: 10px !important;">
-            <p>
-                This page is currently under construction. Please check back later for updates.
-            </p>
-            <hr class="blank">
             <p style="font-size: 27px;">
-                我们是一群热爱
-                <custom-placeholder1
+                一个很普通的站点...
+            </p>
+            <p
                     style="font-family: 'Jetbrains Mono';color:var(--primary-color);text-shadow: 0 0 4px var(--primary-color);">
-                    Minecraft
-                </custom-placeholder1> ，同时对一些奇奇怪怪的东西相当感兴趣的人。
+                    这里大概得放点什么，但是我也不知道该放什么，那就什么都别放了。
+                </p> 
+            <p style="font-size: 27px;">
+                ...这里除了乱七八糟的古老文档和demo以外啥也没有，真的！
             </p>
             <p style="color:var(--grey-3);font-size: 20px;">
-                因此，你可以在这里找到各种你想得到或根本想不到的文章和小玩意！
+                热烈祝贺该站点及其前身站点没有任何文章上线的第2个年头！
             </p>
             <deco-seprator style="width:100%">INTRODUCTION</deco-seprator>
-            <grid-panel>
+            <p>
+                这里本来有2个面板，但它们已经因为过时了起码好几年的设计而被删掉了。
+                这个段落出现在这里只是为了占位，顺便测试下这该死的CSS文本居中到底有用没用
+                <text style="color:var(--grey-4);text-decoration-line: line-through;">
+                    不是我换行呢
+                </text>
+            </p>
+            <hr class="blank">
+            <grid-panel style="display: none;">
                 <content-panel title="Minecraft" sub-title="Mods & Texturepacks" icon='../icons/MDpolymer.svg'>
                 </content-panel>
 
@@ -190,7 +209,7 @@
                 <content-panel title="Website Building" sub-title="Design & setup" icon='../icons/MDdata.svg'>
                 </content-panel>
             </grid-panel>
-            <dev-navigation-panel>
+            <dev-navigation-panel style="display: none;">
                 <dev-navigation-content-panel title="[!] ONLINE SITE" sub-title="For debugging only!"
                     href='https://prismex-studio.github.io/'>
                 </dev-navigation-content-panel>
