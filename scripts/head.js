@@ -194,6 +194,20 @@ class AppPlaceholderComponent extends BaseComponent {
     }
 }
 
+class TopPanelComponent extends BaseComponent {
+    initializeLogic() {
+        const shadow = this.shadowRoot;
+        const title = this.getAttribute('title') || 'UNABLE TO GET TITLE!!!';
+        const subTitle = this.getAttribute('sub-title') || 'UNABLE TO GET SUB-TITLE!!!';
+
+        const titleEl = shadow.querySelector('.top-title>placeholder');
+        const subTitleEl = shadow.querySelector('.top-sub-title');
+
+        titleEl.textContent = title;
+        subTitleEl.textContent = subTitle;
+    }
+}
+
 
 /**
  * TitleblockComponent 类
@@ -449,6 +463,10 @@ const COMPONENT_REGISTRY = {
     },'app-footer': {
         path: '[component]footer.html',
         componentClass: FooterComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },'top-panel': {
+        path: '[component]top-panel.html',
+        componentClass: TopPanelComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     },'my-card': {
         path: '[component]my-card.html',

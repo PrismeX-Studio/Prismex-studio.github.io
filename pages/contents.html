@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="">
+    <title>Home</title>
+    <!--import jQuery-min-->
+    <script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
+    <style>
+        .content {
+            width: 80%;
+            margin: 0 10% 0 10%;
+            padding: 0px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            flex-direction: column;
+        }
+
+        /*home*/
+
+        @media (max-width: 768px) {
+            .content {
+                width: 100%;
+                margin: 0
+            }
+        }
+    </style>
+    <script type="text/javascript" src="..\scripts\head.js"></script>
+</head>
+
+
+<body>
+    <app-container>
+        <app-navbar></app-navbar>
+        <!--main-->
+        <top-panel 
+            title="PRISMEX STUDIO"
+            sub-title="//STATUS::UNDER_CONSTRUCTION"
+        ></top-panel>
+        <div class="content">
+            <hr class="blank">
+            <p style="font-size: 27px;">
+                一个很普通的站点...
+            </p>
+            
+        </div>
+        <app-footer></app-footer>
+    </app-container>
+</body>
+
+</html>
