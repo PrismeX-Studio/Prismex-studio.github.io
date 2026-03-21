@@ -14,18 +14,17 @@ body {
     position: fixed;
     overflow: hidden;
     overflow-y: scroll;
-    min-width: 525px;
 }
 
-body::before{
+body::before {
     position: fixed;
-    top:0px;
-    left:0px;
+    top: 0px;
+    left: 0px;
     width: 100%;
     height: 100%;
     background-image: radial-gradient(rgba(70, 70, 70, 0.1) 1.3px, transparent 1px);
     background-size: 7px 7px;
-    mask-image:linear-gradient(transparent, black);
+    mask-image: linear-gradient(transparent, black);
 }
 
 app-container {
@@ -44,9 +43,9 @@ app-container {
 }
 
 hr {
-    margin-top: 30px;
-    margin-bottom: 30px;
-    border: var(--border-color) solid 1.5px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    border: var(--border-color) solid 0.1rem;
 }
 
 img {
@@ -113,8 +112,77 @@ h3 {
     color: var(--primary-font-color);
 }
 
-.blank {
+input {
+    border: 0.1rem solid var(--grey-4-07);
+    background-color: var(--bg-color-0);
+}
+
+input,
+input:focus {
+    font-size: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    transition: all 200ms ease 0s;
+    overflow: hidden;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background-image: repeating-linear-gradient(45deg,
+            color-mix(in srgb, var(--grey-4-07) 3%, transparent) 0 0.2rem,
+            color-mix(in srgb, var(--grey-4-07) 25%, transparent) 0.2rem 0.4rem);
+        mask-image: linear-gradient(transparent, black);
+}
+
+select,
+select:focus {
+    font-size: 1rem;
+    transition: all 200ms ease 0s;
+    border: 0.1rem solid var(--grey-4-07);
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+}
+
+select {
+    border: 0.1rem solid var(--grey-4-07);
+    background-color: var(--bg-color-1);
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    background: linear-gradient(var(--bg-color-1) 70%, color-mix(in srgb, var(--primary-color) 30%, white));
+}
+
+button{
+    font-size: 1rem;
+    transition: all 100ms ease 0s;
+    border: 0.1rem solid var(--grey-4-07);
+    border-radius: 0.2rem;
+    padding: 0.3rem;
+    background-color: var(--bg-color-1);
+    margin: 0;
+}
+
+button:hover{
+    background-color: var(--bg-color-2);
+    border-color: var(--primary-color);
+}
+
+button:active{
+    background-color: color-mix(in srgb, var(--primary-color) 20%, var(--bg-color-2));
+    border-color: var(--primary-color);
+}
+
+hr.blank {
     border: 0px;
+}
+
+hr.vertical{
+    border: 0.1rem solid var(--border-color);
+    width: 0px;
+    height: 100%;
 }
 
 .content {
@@ -231,4 +299,18 @@ h3 {
 
 .glowing-container-inner>p {
     font-size: 22px;
+}
+
+.content {
+    width: 80%;
+    margin: 0 10% 0 10%;
+    padding: 0px;
+}
+
+
+@media (max-width: 768px) {
+    .content {
+        width: calc(100% - 48px - 16px);
+        margin: 0px 16px 0px 48px !important;
+    }
 }
