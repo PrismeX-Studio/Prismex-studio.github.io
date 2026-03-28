@@ -23,7 +23,7 @@
         #search-result-container {
             flex: 1;
             border-radius: 0.4rem;
-            overflow: auto;
+
             min-height: 20rem;
         }
 
@@ -93,10 +93,28 @@
         }
 
         #search-result {
-            gap: 0.4rem;
+            margin-top: 0.6rem;
+            gap: 1rem;
             display: flex;
             flex-direction: column;
             padding: 0.4rem 0 0 0;
+            overflow: visible;
+        }
+
+        #search-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 10rem;
+            border-radius: 0.4rem;
+            background: var(--bg-color-1);
+            border: 0.1rem solid var(--bg-color-3);
+            padding: 2rem 0.4rem;
+        }
+
+        #search-placeholder>.error-cross {
+            stroke: var(--grey-1);
+            margin-bottom: 1rem;
         }
 
         @media (max-width: 1000px) {
@@ -152,26 +170,23 @@
                     </div>
                     <div id="search-result">
                         <!--使用示例-->
-                        <search-result-card title="注意：以下为AI生成内容" sub-title="全是ky还一点用没有" type="？" tags='["tag1","tag2"]'
-                            author="作者A" time="2024-06-01"></search-result-card>
-                        <search-result-card title="关于 Level █ 内非线性拓扑结构的熵增报告" sub-title="在排除观察者效应后，该区域表现出明显的现实锚点剥离机制"
-                            type="模因档案" tags='["非欧几何", "熵增波动"]' author="站点 19 研究员 alpha"
-                            time="2042-13-13"></search-result-card>
-                        <search-result-card title="异构实体在序贯协议中的认知应答一致性评估" sub-title="基于既往接触史与模因污染水平在时空维度上的交叉验证"
-                            type="异常共识" tags='["认知对冲", "污染等级"]' author="后室应急小组" time="2025-07-32"></search-result-card>
-                        <search-result-card title="层级 穩態失衡诱发的代偿性现实偏差分析" sub-title="通过对基准线水平的动态捕捉还原区域崩溃的潜在逻辑链条"
-                            type="层级初探" tags='["现实重塑", "坍塌机制"]' author="特约研究员 [数据删除]"
-                            time="2024-08-15"></search-result-card>
-                        <search-result-card title="针对不可观测实体特征的认知降噪与模拟提取" sub-title="论复杂反模因对象在认知模型中的拟合优度与实际收容意义"
-                            type="收容方法论" tags='["反模因", "拟合偏差"]' author="数据安全中心" time="2026-01-05"></search-result-card>
-                        <search-result-card title="多中心横断面调研：关于异常主诉模糊性的分层干预" sub-title="分析个体认知差异对标准化收容路径产生的非结构化扰动"
-                            type="异常报告" tags='["分层干预", "认知受损"]' author="Dr. [REDACTED]"
-                            time="1999-12-20"></search-result-card>
-                        <search-result-card title="潜在现实扭曲因子的隐匿性特征及其对预后的干扰路径" sub-title="在全周期收容管理框架下重新审视极低概率事件的认知权重"
-                            type="O5 指令" tags='["风险评估", "权重置换"]' author="O5 Council"
-                            time="2026-02-14"></search-result-card>
-                        <search-result-card title="？？？" sub-title="？？？" type="教程" tags='["tag1","tag2"]'
-                            author="作者A" time="2024-06-01"></search-result-card>
+                        <div id="search-placeholder">
+                            <svg class="error-cross" width="60px" height="60px" viewBox="0 0 100 100"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <g stroke="black" stroke-width="6" fill="none" stroke-linecap="square">
+                                    <path d="M20,20 L30,30" />
+
+                                    <path d="M70,70 L80,80" />
+
+                                    <path d="M80,20 L70,30" />
+
+                                    <path d="M30,70 L20,80" />
+                                </g>
+                            </svg>
+                            <h2>当前没有进行过搜索</h2>
+                            <span style="color: var(--grey-1);">请键入搜索内容并执行搜索以显示对应结果</span>
+                        </div>
+
                         <!--搜索结果会以卡片的形式显示在这里，卡片包含标题、副标题、类型、标签、作者和发布时间等信息-->
                     </div>
                 </div>
@@ -189,10 +204,6 @@
                 </div>
             </div>
             <hr class="blank">
-            <p style="font-size: 14px;">
-                注意：正在开发中，不代表最终设计，敬请期待。
-            </p>
-            <hr class="blank">
         </div>
         <script>
             //前端搜索实现
@@ -205,14 +216,16 @@
                     type: "article",
                     tags: ["taga", "tagb"],
                     time: "2024-06-01",
-                    author: "author1"
+                    author: "author1",
+                    href: "homenew.html"
                 }, 'article2': {
                     title: "title2",
                     subTitle: "subtitle2",
                     type: "article",
                     tags: ["tagc", "tagd"],
                     time: "2024-06-02",
-                    author: "author2"
+                    author: "author2",
+                    href: "B-1.html"
                 }
                 //...更多文章数据
             };

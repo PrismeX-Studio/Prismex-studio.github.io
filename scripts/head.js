@@ -423,12 +423,37 @@ class SearchResultCardComponent extends BaseComponent {
 
         const titleEl = shadow.querySelector('.title');
         const subTitleEl = shadow.querySelector('.sub-title');
+        const authorEl = shadow.querySelector('.author');
+        const timeEl = shadow.querySelector('.time');
+        const tagsContainer = shadow.querySelector('.search-tags-container');
 
         const title = this.getAttribute('title') || "TITLE";
         const subTitle = this.getAttribute('sub-title') || "Sub Description";
+        const author = this.getAttribute('author') || "Author";
+        const time = this.getAttribute('time') || "Time";
+        const tagsAttr = this.getAttribute('tags');
+        let tags = [];
+        if (tagsAttr) {
+            try {
+                tags = JSON.parse(tagsAttr);
+            } catch (e) {
+                console.error("Invalid tags format:", tagsAttr);
+            }
+        }
+
 
         subTitleEl.textContent = subTitle;
         titleEl.textContent = title;
+        authorEl.textContent = author;
+        timeEl.textContent = time;
+        //add tags(each one as a <span>)
+        tags.forEach(tag => {
+            const tagEl = document.createElement('span');
+            tagEl.className = 'search-tag';
+            tagEl.textContent = tag;
+            tagsContainer.appendChild(tagEl);
+        });
+
     }
 }
 
