@@ -129,10 +129,7 @@ input:focus {
 input:focus {
     outline: none;
     border-color: var(--primary-color);
-    background-image: repeating-linear-gradient(45deg,
-            color-mix(in srgb, var(--grey-4-07) 3%, transparent) 0 0.2rem,
-            color-mix(in srgb, var(--grey-4-07) 25%, transparent) 0.2rem 0.4rem);
-        mask-image: linear-gradient(transparent, black);
+    background: var(--bg-color-1);
 }
 
 select,
@@ -152,7 +149,7 @@ select {
 select:focus {
     outline: none;
     border-color: var(--primary-color);
-    background: linear-gradient(var(--bg-color-1) 70%, color-mix(in srgb, var(--primary-color) 30%, white));
+    background: var(--bg-color-2)
 }
 
 button{
@@ -166,13 +163,15 @@ button{
 }
 
 button:hover{
-    background-color: var(--bg-color-2);
+
     border-color: var(--primary-color);
+
 }
 
 button:active{
-    background-color: color-mix(in srgb, var(--primary-color) 20%, var(--bg-color-2));
+    background-color: var(--primary-color);
     border-color: var(--primary-color);
+    color:var(--bg-color-0);
 }
 
 hr.blank {
