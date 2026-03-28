@@ -127,7 +127,7 @@
 
         .bottom-search {
             border-radius: 0.4rem;
-            
+            border:0.1rem solid transparent;
             box-sizing: border-box;
             padding: 0.4rem 0.4rem 0.4rem 0;
             margin: 0;
@@ -142,7 +142,8 @@
             .bottom-search {
                 width:100%;
                 padding: 0.4rem;
-                background-color: color-mix(in srgb, var(--bg-color-1) 90%, transparent);
+                background-color: color-mix(in srgb, var(--bg-color-2) 40%, transparent);
+                border:0.1rem solid color-mix(in srgb, var(--border-color) 30%, transparent);
             }
             .bottom-search>a {
                 visibility: visible;
@@ -184,6 +185,12 @@
             border: 0.1rem solid var(--border-color);
             overflow: hidden;
             z-index: 999;
+            transition: 0.2s ease;
+        }
+
+        .back-to-top-container:hover{
+            border-color:var(--primary-color) !important;
+
         }
 
         .back-to-top-container>div {

@@ -352,6 +352,7 @@ class DevNavigationContentPanelComponent extends BaseComponent {
 }
 
 class UnderConstructionInfoComponent extends BaseComponent {
+    //弃用，保留以备未来可能的使用
     initializeLogic() {
         const shadow = this.shadowRoot;
 
@@ -419,8 +420,14 @@ class UnderConstructionInfoComponent extends BaseComponent {
 class SearchResultCardComponent extends BaseComponent {
     initializeLogic() {
         const shadow = this.shadowRoot;
+
         const titleEl = shadow.querySelector('.title');
+        const subTitleEl = shadow.querySelector('.sub-title');
+
         const title = this.getAttribute('title') || "TITLE";
+        const subTitle = this.getAttribute('sub-title') || "Sub Description";
+
+        subTitleEl.textContent = subTitle;
         titleEl.textContent = title;
     }
 }

@@ -1,11 +1,115 @@
 <template id="search-result-card-template">
     <style>
-        
+        @keyframes zoomInUp {
+            0% {
+                filter: blur(8px);
+                opacity: 0;
+                transform: scale(0.95) translateY(1.25rem);
+            }
+
+            70% {
+                filter: none;
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .card-container {
+            border-radius: 0.4rem;
+            padding: 0;
+            margin: 0;
+            border: 0.1rem solid var(--bg-color-3);
+            background-color: var(--bg-color-1);
+            transition: all 200ms ease 0s;
+            display: flex;
+            flex-direction: row;
+            gap: 0.8rem;
+            overflow: hidden;
+            align-items: center;
+            animation: zoomInUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+        }
+
+        .card-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+
+        }
+
+        .card-container:hover {
+            border-color: var(--primary-color);
+            background-color: color-mix(in srgb, var(--primary-color) 4%, var(--bg-color-1))
+        }
+
+        .left-type-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 4rem;
+            height:auto;
+            background-color: var(--bg-color-2);
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: bold;
+            align-self: stretch;
+        }
+
+        .left-type-container>svg {
+            flex:0;
+            width: 2.4rem;
+            min-width: 2.4rem;
+            height: 2.4rem;
+            color: var(--grey-1);
+        }
+
+        .right-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-container {
+            display: flex;
+            flex-direction: row;
+        }
+
+        .title {
+            font-size: 1.3rem;
+            color: var(--primary-font-color);
+            margin: 0;
+        }
+
+        .sub-title {
+            font-size: 0.9rem;
+            color: var(--grey-1);
+        }
     </style>
     <div class="card-container">
-        <h3 class="title"></h3> 
-        <div class="card-content">
-            <slot></slot> 
+        <div class="left-type-container">
+            <svg id="type-unknown" xmlns="http://www.w3.org/2000/svg" width="2.4rem" height="2.4rem"
+                viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="m12 7.57l4.42 4.42L12 16.41l-4.42-4.42zm0 11.62l-7.2-7.2l7.2-7.2l6 6V7.16l-4.58-4.58c-.78-.78-2.05-.78-2.83 0l-8.01 8c-.78.78-.78 2.05 0 2.83l8.01 8c.78.78 2.05.78 2.83 0L18 16.82v-3.63zm8 .81h2v2h-2zm2-10h-2v8h2z" />
+            </svg>
         </div>
+        <div class="right-container">
+            <div class="inner-container">
+                <div class="title-container">
+                    <h3 class="title"></h3>
+                    <span class="sub-title"></span>
+                </div>
+                <div class="info-container">
+                    <span class="author">error</span>
+                </div>
+            </div>
+            <div class="search-tags-container">
+                <span class="tag">tag1</span>
+                <span class="tag">tag2</span>
+            </div>
+        </div>
+
     </div>
 </template>
