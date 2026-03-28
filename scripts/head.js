@@ -128,7 +128,13 @@ class BaseComponent extends HTMLElement {
 
 class NavbarComponent extends BaseComponent {
     initializeLogic() {
+        const shadow = this.shadowRoot;
 
+        shadow.querySelector(".back-to-top-container").addEventListener("click", function (event) {
+            //event.preventDefault(); // Prevent the default anchor behavior
+            console.log("scrolled to top.");
+            document.querySelector("body").scrollTo({ top: 0, behavior: "smooth" });
+        });
     }
 }
 
@@ -137,44 +143,6 @@ class FooterComponent extends BaseComponent {
 
     }
 }
-
-class MyCardComponent extends BaseComponent {
-
-    // 构造函数继承自 BaseComponent，它会自动调用 initializeLogic()
-
-    initializeLogic() {
-        // 这是 MyCardComponent 特有的处理代码
-        const shadow = this.shadowRoot;
-
-        // A. 【读取参数】从 HTML 标签中读取属性值
-        const title = this.getAttribute('title');
-        const initialValueStr = this.getAttribute('data-initial-value') || '0';
-        const multiplierStr = this.getAttribute('data-multiplier') || '1';
-
-        const initialValue = parseFloat(initialValueStr);
-        const multiplier = parseFloat(multiplierStr);
-
-        // B. 【逻辑计算】
-        const calculatedResult = (initialValue * multiplier) + 10;
-
-        // C. 【结果填充】将结果填入 Shadow DOM 内部的元素中
-
-        // (C.1) 填充标题
-        if (title) {
-            const titleElement = shadow.querySelector('.card-title');
-            if (titleElement) {
-                titleElement.textContent = title;
-            }
-        }
-
-        // (C.2) 填充计算结果
-        const resultOutputSpan = shadow.getElementById('result-output');
-        if (resultOutputSpan) {
-            resultOutputSpan.textContent = calculatedResult.toFixed(2);
-        }
-    }
-}
-
 
 //AppPlaceholderComponent
 class AppPlaceholderComponent extends BaseComponent {
@@ -415,7 +383,7 @@ class UnderConstructionInfoComponent extends BaseComponent {
         elements.eta.textContent = config.eta;
 
         // 设置主题色
-        if(this.getAttribute('accent-color')) {
+        if (this.getAttribute('accent-color')) {
             this.style.setProperty('--theme-color', config.accentColor);
         }
 
@@ -444,7 +412,16 @@ class UnderConstructionInfoComponent extends BaseComponent {
 
     // 断开连接时清理定时器
     disconnectedCallback() {
-        if(this.timer) clearInterval(this.timer);
+        if (this.timer) clearInterval(this.timer);
+    }
+}
+
+class SearchResultCardComponent extends BaseComponent {
+    initializeLogic() {
+        const shadow = this.shadowRoot;
+        const titleEl = shadow.querySelector('.title');
+        const title = this.getAttribute('title') || "TITLE";
+        titleEl.textContent = title;
     }
 }
 
@@ -460,26 +437,17 @@ const COMPONENT_REGISTRY = {
         path: '[component]navbar.html',
         componentClass: NavbarComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
-    },'app-footer': {
+    }, 'app-footer': {
         path: '[component]footer.html',
         componentClass: FooterComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
-    },'top-panel': {
+    }, 'top-panel': {
         path: '[component]top-panel.html',
         componentClass: TopPanelComponent,
-        commonCssPaths: ALL_COMMON_CSS_PATHS
-    },'my-card': {
-        path: '[component]my-card.html',
-        componentClass: MyCardComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     }, 'title-block': {
         path: '[component]titleblock.html',
         componentClass: TitleblockComponent,
-        commonCssPaths: ALL_COMMON_CSS_PATHS
-    },
-    'app-placeholder': {
-        path: '[component]placeholder.html',
-        componentClass: AppPlaceholderComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     },
     'deco-seprator': {
@@ -487,11 +455,19 @@ const COMPONENT_REGISTRY = {
         componentClass: decoSepratorBaseComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     },
+    //wait for update
     'stop-supporting-info': {
         path: '[component]stop-supporting-info.html',
         componentClass: StopSupportInfoComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     },
+    //search(contents.html)
+    'search-result-card': {
+        path: '[component]search-result-card.html',
+        componentClass: SearchResultCardComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    //old homepage components
     'grid-panel': {
         path: '[component]grid-panel.html',
         componentClass: GridPanelBaseComponent,
@@ -511,12 +487,7 @@ const COMPONENT_REGISTRY = {
         path: '[component]dev-navigation-content-panel.html',
         componentClass: DevNavigationContentPanelComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
-    },
-    'under-construction-info': {
-        path: '[component]under-construction-info.html',
-        componentClass: UnderConstructionInfoComponent,
-        commonCssPaths: ALL_COMMON_CSS_PATHS
-    },
+    }
 };
 
 

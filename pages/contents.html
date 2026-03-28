@@ -120,6 +120,68 @@
     <app-container>
         <app-navbar></app-navbar>
         <!--main-->
+        <top-panel title="全部文档/搜索" sub-title="//STATUS::UNDER_CONSTRUCTION"></top-panel>
+        <div class="content">
+            <hr class="blank">
+            <div id="search-container">
+                <div id="search-result-container">
+                    <div id="search-result-topbar">
+                        <div class="topbar-sub-container">
+                            <span class="topbar-sub-container-title">&nbsp排序方式 / SORTORD </span>
+                            <div class="topbar-sub-container-content">
+                                <button id="sort-by-type">类型</button>
+                                <button id="sort-by-time">时间</button>
+                                <button id="sort-by-relevance">相关度</button>
+                                <button id="sort-by-author">作者</button>
+                                <hr class="vertical"
+                                    style="margin:1rem 0.4rem 1rem 0.4rem;height:1rem;border-width: 1.4px;">
+                                <button id="sort-ascending-change">切换升降序</button>
+                            </div>
+                        </div>
+
+                        <hr class="blank">
+
+                        <div class="topbar-sub-container"
+                            style="padding-right:0.6rem;margin-right:0.6rem;border-right:0.1rem solid var(--grey-4)">
+                            <span class="topbar-sub-container-title">结果数 / RESULTS </span>
+                            <div class="topbar-sub-container-content">
+                                <h3 id="search-results-count">0</h3>
+                            </div>
+                        </div>
+                        <div class="topbar-sub-container">
+                            <span class="topbar-sub-container-title">搜索用时 / TIME SPENT </span>
+                            <div class="topbar-sub-container-content">
+                                <h3 id="search-results-time">0ms</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="search-result">
+                        <!--使用示例-->
+                        <search-result-card title="示例文章1" sub-title="这是一个示例文章的副标题" type="教程" tags='["tag1","tag2"]'
+                            author="作者A" time="2024-06-01"></search-result-card>
+                        <!--搜索结果会以卡片的形式显示在这里，卡片包含标题、副标题、类型、标签、作者和发布时间等信息-->
+                    </div>
+                </div>
+
+                <div id="search-right">
+                    <h2>搜索</h2>
+                    <input type="text" id="search-input" placeholder="请输入搜索内容...">
+                    <!--支持支持正则表达式，当内容为空（即用户不输入时显示为所有内容）-->
+                    <!--下拉框选择是否启用，默认不启用正则表达式-->
+                    <select id="regex-select">
+                        <option value="false">不启用正则表达式</option>
+                        <option value="true">启用正则表达式</option>
+                    </select>
+                    <button id="search-button">执行搜索</button>
+                </div>
+
+            </div>
+            <hr class="blank">
+            <p style="font-size: 14px;">
+                注意：正在开发中，不代表最终设计，敬请期待。
+            </p>
+            <hr class="blank">
+        </div>
         <script>
             //前端搜索实现
             let startTime = -1;
@@ -184,72 +246,12 @@
                 //更新结果数
                 $('#search-results-count').text(results.length);
                 //更新搜索用时
-                $('#search-results-time').text(`${performance.now() - startTime}ms`); //替换为实际的搜索用时
+                const endTime = performance.now();
+                const finaltime = (endTime - startTime).toFixed(1);
+                $('#search-results-time').text(`${finaltime}ms`); //替换为实际的搜索用时
 
             });
         </script>
-        <top-panel title="全部文档/搜索" sub-title="//STATUS::UNDER_CONSTRUCTION"></top-panel>
-        <div class="content">
-            <hr class="blank">
-            <div id="search-container">
-                <div id="search-result-container">
-                    <div id="search-result-topbar">
-                        <div class="topbar-sub-container">
-                            <span class="topbar-sub-container-title">&nbsp排序方式 / SORTORD </span>
-                            <div class="topbar-sub-container-content">
-                                <button id="sort-by-type">类型</button>
-                                <button id="sort-by-time">时间</button>
-                                <button id="sort-by-relevance">相关度</button>
-                                <button id="sort-by-author">作者</button>
-                                <hr class="vertical"
-                                    style="margin:1rem 0.4rem 1rem 0.4rem;height:1rem;border-width: 1.4px;">
-                                <button id="sort-ascending-change">切换升降序</button>
-                            </div>
-                        </div>
-
-                        <hr class="blank">
-
-                        <div class="topbar-sub-container"
-                            style="padding-right:0.6rem;margin-right:0.6rem;border-right:0.1rem solid var(--grey-4)">
-                            <span class="topbar-sub-container-title">结果数 / RESULTS </span>
-                            <div class="topbar-sub-container-content">
-                                <h3 id="search-results-count">0</h3>
-                            </div>
-                        </div>
-                        <div class="topbar-sub-container">
-                            <span class="topbar-sub-container-title">搜索用时 / TIME SPENT </span>
-                            <div class="topbar-sub-container-content">
-                                <h3 id="search-results-time">0ms</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="search-result">
-                        <!--使用示例-->
-                        <search-result-card title="示例文章1" sub-title="这是一个示例文章的副标题" type="教程" tags='["tag1","tag2"]'
-                            author="作者A" time="2024-06-01"></search-result-card>
-                        <!--搜索结果会以卡片的形式显示在这里，卡片包含标题、副标题、类型、标签、作者和发布时间等信息-->
-                    </div>
-                </div>
-
-                <div id="search-right">
-                    <h2>搜索</h2>
-                    <input type="text" id="search-input" placeholder="请输入搜索内容...">
-                    <!--支持支持正则表达式，当内容为空（即用户不输入时显示为所有内容）-->
-                    <!--下拉框选择是否启用，默认不启用正则表达式-->
-                    <select id="regex-select">
-                        <option value="false">不启用正则表达式</option>
-                        <option value="true">启用正则表达式</option>
-                    </select>
-                    <button id="search-button">执行搜索</button>
-                </div>
-
-            </div>
-            <hr class="blank">
-            <p style="font-size: 14px;">
-                注意：正在开发中，不代表最终设计，敬请期待。
-            </p>
-            <hr class="blank">
-        </div>
         <app-footer></app-footer>
     </app-container>
 </body>

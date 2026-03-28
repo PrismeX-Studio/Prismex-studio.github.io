@@ -12,7 +12,7 @@
             left: 0px;
             z-index: 1;
             height: 100%;
-            width: 48px;
+            width: 3.4rem;
             transition: all 300ms ease 0s;
         }
 
@@ -21,7 +21,7 @@
         }
 
         .navbar:hover {
-            width: 196px;
+            width: 14rem;
 
             .logo-text,
             .logo-text-2,
@@ -37,7 +37,7 @@
             box-sizing: border-box;
             height: 100%;
             width: 100%;
-            padding: 16px 8px 8px 8px;
+            padding: 0.8rem;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -51,7 +51,7 @@
 
             --nav-shadow: 0 4px 30px var(--border-color);
             box-shadow: var(--nav-shadow);
-
+            overflow: hidden;
         }
 
         .nav-title {
@@ -64,8 +64,8 @@
         }
 
         .nav-title>img {
-            width: 32px;
-            height: 32px;
+            width: 1.8rem;
+            height: 1.8rem;
             margin: 0px;
         }
 
@@ -73,7 +73,7 @@
         .logo-text-2,
         .nav-link>a {
             opacity: 0;
-            visibility:hidden;
+            visibility: hidden;
             transform: translateX(-50px);
         }
 
@@ -100,8 +100,8 @@
         .links-container {
             display: flex;
             flex-direction: column;
-            gap: 16px;
-            padding: 0px 0px 0px 4px;
+            gap: 0.6rem;
+            padding: 0;
         }
 
         .nav-link {
@@ -117,17 +117,141 @@
             color: var(--grey-1) !important;
         }
 
-        .nav-link>img {
-            width: 24px;
-            height: 24px;
-            margin: 0px 8px 0px 0px;
+        .nav-link>img,.nav-link>svg {
+            width: 1.8rem;
+            height: 1.8rem;
+            margin: 0 1rem 0 0;
+        }
 
+
+
+        .bottom-search {
+            border-radius: 0.4rem;
+            
+            box-sizing: border-box;
+            padding: 0.4rem 0.4rem 0.4rem 0;
+            margin: 0;
+            height: 2.6rem;
+        }
+
+        .bottom-search>svg {
+            color: var(--grey-1);
+        }
+
+        .navbar:hover { 
+            .bottom-search {
+                width:100%;
+                padding: 0.4rem;
+                background-color: color-mix(in srgb, var(--bg-color-1) 90%, transparent);
+            }
+            .bottom-search>a {
+                visibility: visible;
+                opacity: 1;
+                transform: translateX(0px);
+            }
+        }
+
+        .bottom-search>a {
+            visibility: hidden;
+            flex:1;
+            padding: 0;
+            margin: 0;
+            color: var(--grey-1);
+            font-family: "Jetbrains Mono";
+            text-align: center;
+            font-size: 1rem !important;
+        }
+
+        .bottom-search>a:hover {
+            background: transparent;
+        }
+
+
+
+        .back-to-top-container {
+            position: fixed;
+            bottom: 1.2rem;
+            right: 1.2rem;
+            width: 3.2rem;
+            height: 3.2rem;
+            border-radius: 0.4rem;
+            background-color: color-mix(in srgb, var(--bg-color-0) 50%, transparent);
+            backdrop-filter: blur(11px) saturate(1.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0.8rem var(--border-color);
+            border: 0.1rem solid var(--border-color);
+            overflow: hidden;
+            z-index: 999;
+        }
+
+        .back-to-top-container>div {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            padding: 0;
+            color: var(--grey-3);
+            border-radius: 0 !important;
+            /*a animation that the background"block"scroll from bottom to top and change the color*/
+            transition: 0.2s ease;
+
+        }
+
+        .back-to-top-container>div>svg {
+            width: 1.9rem;
+            height: 1.9rem;
+        }
+
+        .back-to-top-container>div:hover {
+            background: var(--primary-color);
+            color: var(--bg-color-0);
+
+            .back-to-top-container {
+                border-color: var(--primary-color) !important;
+            }
         }
 
         /* Mobile/Phone */
         @media (max-width: 768px) {
             .navbar-container {
                 height: 100dvh
+            }
+
+            .navbar {
+                border-right: 0.1rem solid var(--border-color);
+                width: 1rem;
+                padding-left: 0;
+            }
+
+            .navbar::after {
+                content: "";
+                position: absolute;
+                /*vertical center*/
+                top: 46%;
+                right: 0.4rem;
+                width: 0rem;
+                height: 8%;
+                border-right: 0.1rem solid var(--border-color);
+                transition: var(--animation);
+            }
+
+            .navbar:hover {
+                padding-left: 0.8rem;
+                padding: right 0.8rem;
+                ;
+            }
+
+            .navbar>* {
+                opacity: 0;
+                transition: var(--animation);
+            }
+
+            .navbar:hover>* {
+                opacity: 1;
             }
         }
     </style>
@@ -155,8 +279,23 @@
                     <a href="B-1.html">旧文章合集</a>
                 </div>
             </div>
-
-
+            <div style="height:100%;"></div>
+            <div class="bottom-search nav-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24">
+                    <path fill="currentColor"
+                        d="M15.5 14h-.79l-.28-.27A6.47 6.47 0 0 0 16 9.5A6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14" />
+                </svg>
+                <a href="contents.html" target="_blank">搜索</a>
+            </div>
+        </div>
+    </div>
+    <!--Back to top block-->
+    <div class="back-to-top-container">
+        <div id="to-top-link">
+            <!--svg arrow up-->
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path fill="currentColor" d="m4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8z" />
+            </svg>
         </div>
     </div>
 </template>
