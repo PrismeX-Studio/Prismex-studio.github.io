@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ENDREALIZE // 技术日志</title>
+    <title>AI垃圾？</title>
+    <script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="..\scripts\head.js"></script>
     <style>
         :root {
             --bg-color: #ffffff;
@@ -26,7 +28,6 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             overflow-x: hidden;
-            display: flex;
             min-height: 100vh;
             /* 等高线背景装饰 */
             background-image: radial-gradient(circle at 2px 2px, #f0f0f0 1px, transparent 0);
@@ -277,21 +278,9 @@
     </style>
 </head>
 <body>
-
-    <aside class="sidebar">
-        <div class="logo-box">PRISMEX
-            <br>STUDIO</div>
-        <div class="nav-icons">
-            <div class="icon-btn active">◈</div>
-            <div class="icon-btn">▣</div>
-            <div class="icon-btn">◧</div>
-            <div class="icon-btn">◐</div>
-            <div class="icon-btn">⚙</div>
-        </div>
-        <div class="icon-btn" style="margin-top: auto;">⏻</div>
-    </aside>
-
-    <main>
+    <app-navbar></app-navbar>
+    <app-container>
+    <div class="content">
         <div class="top-decor">
             COORD: 35.102 / 112.984 <br>
             SYS_VER: 0.1.4_RELEASE
@@ -301,7 +290,7 @@
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
                 <path d="M12 2L12 22M2 12L22 12" />
             </svg>
-            <div class="strip-text">Latest Intel</div>
+            <div class="strip-text">Latest Article</div>
         </div>
 
         <div class="content-wrapper">
@@ -315,7 +304,7 @@
                 <div class="image-container">
                     <div class="corner-decor top-left"></div>
                     <div class="corner-decor bottom-right"></div>
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1000&q=80" alt="Industrial" class="main-img">
+                    <img src="../images/PrismeX-Studio-Icon-Original.png" alt="Industrial" class="main-img">
                 </div>
             </div>
 
@@ -323,7 +312,8 @@
                 <h3>标题</h3>
                 <p>文本文本文本文本文本文本文本文本文本文本文本文本文本，文本文本文本文本文本文本文本文本文本文本；文本文本文本文本，文本文本文本文本文本。文本文本文本文本文本文本！</p>
                 
-                <a href="#" class="btn-more">阅读详细文档 MORE INFO</a>
+                <a href="#" class="btn-more">阅读详细文档</a>
+                <hr class="blank">
             </div>
         </div>
 
@@ -352,7 +342,8 @@
                 </svg>
             </div>
         </div>
-    </main>
-
+    </div>
+    </app-container>
+    <app-footer></app-footer>
 </body>
 </html>
