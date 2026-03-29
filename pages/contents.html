@@ -51,6 +51,7 @@
             padding: 0.6rem;
             border: 0.1rem solid var(--bg-color-3);
             border-radius: 0.4rem;
+            overflow: hidden;
         }
 
         #search-result-topbar>hr {
@@ -60,6 +61,7 @@
 
         .topbar-sub-container {
             gap: 0;
+            width:max-content;
         }
 
         .topbar-sub-container-title {
@@ -117,11 +119,33 @@
             margin-bottom: 1rem;
         }
 
+        .topbar-sub-container-box {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            width:max-content;
+            /*force the elements stay in one line*/
+            flex:0;
+            gap: 0;
+        }
+
         @media (max-width: 1000px) {
             #search-container {
                 width: 100%;
                 margin: 0;
                 flex-direction: column-reverse;
+            }
+        }
+
+        @media (max-width: 580px) {
+            #search-result-topbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.4rem;
+            }
+            .topbar-sub-container-box {
+                padding:0 0 0 0.3rem;
+                width: 100%;
             }
         }
     </style>
@@ -151,22 +175,23 @@
                                 <button id="sort-ascending-change">切换升降序</button>
                             </div>
                         </div>
-
-                        <hr class="blank">
-
-                        <div class="topbar-sub-container"
-                            style="padding-right:0.6rem;margin-right:0.6rem;border-right:0.1rem solid var(--grey-4)">
-                            <span class="topbar-sub-container-title">结果数 / RESULTS </span>
-                            <div class="topbar-sub-container-content">
-                                <h3 id="search-results-count">0</h3>
+                        <hr class="blank" style="width: unset;flex:1;">
+                        <div class="topbar-sub-container-box">
+                            <div class="topbar-sub-container"
+                                style="padding-right:0.6rem;margin-right:0.6rem;border-right:0.1rem solid var(--grey-4)">
+                                <span class="topbar-sub-container-title">结果数 / RESULTS </span>
+                                <div class="topbar-sub-container-content">
+                                    <h3 id="search-results-count">0</h3>
+                                </div>
+                            </div>
+                            <div class="topbar-sub-container">
+                                <span class="topbar-sub-container-title">搜索用时 / TIME SPENT </span>
+                                <div class="topbar-sub-container-content">
+                                    <h3 id="search-results-time">0ms</h3>
+                                </div>
                             </div>
                         </div>
-                        <div class="topbar-sub-container">
-                            <span class="topbar-sub-container-title">搜索用时 / TIME SPENT </span>
-                            <div class="topbar-sub-container-content">
-                                <h3 id="search-results-time">0ms</h3>
-                            </div>
-                        </div>
+
                     </div>
                     <div id="search-result">
                         <!--使用示例-->
@@ -204,6 +229,7 @@
                 </div>
             </div>
             <hr class="blank">
+            
         </div>
         <script>
             //前端搜索实现
@@ -309,7 +335,7 @@
                 $('#search-result').empty();
                 results.forEach(article => {
                     $('#search-result').append(`
-                        <search-result-card title="${article.title}" sub-title="${article.subTitle}" type="${article.type}" tags='${JSON.stringify(article.tags)}' author="${article.author}" time="${article.time}"></search-result-card>
+                        <search-result-card href="${article.href}" title="${article.title}" sub-title="${article.subTitle}" type="${article.type}" tags='${JSON.stringify(article.tags)}' author="${article.author}" time="${article.time}"></search-result-card>
                     `);
                 });
 

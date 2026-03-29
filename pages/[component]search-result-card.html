@@ -18,31 +18,72 @@
         }
 
         .card-container {
+            position: relative;
             border-radius: 0.4rem;
             padding: 0;
             margin: 0;
             border: 0.1rem solid var(--bg-color-3);
             background-color: var(--bg-color-1);
-            transition: all 200ms ease 0s;
             display: flex;
             flex-direction: row;
             gap: 0;
             overflow: hidden;
             align-items: center;
             animation: zoomInUp 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+            transition: all 150ms ease 0s;
         }
 
         .card-container::after {
-            content: "";
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 150ms ease 0s;
+            background: linear-gradient(transparent 10%, color-mix(in srgb, var(--primary-color) 20%, transparent)) !important;
+        }
 
+        .card-container:hover::after {
+            opacity: 1;
+            transition: all 150ms ease 0s;
+
+        }
+
+        .skipto-icon{
+            opacity:0;
+            position: absolute;
+            top: calc(50% - 1.2rem);
+            left: 0.8rem;
+            width: 2.4rem;
+            height: 2.4rem;
+            background: transparent;
+            transition: all 150ms ease 0s;
+            color:var(--grey-1);
+            translate: 0 -1rem;
+        }
+
+        
+        .card-container:hover .skipto-icon{
+                opacity: 1 !important;
+                color:var(--bg-color-0);
+                translate: 0 0;
+        }
+
+        .card-container:hover .type-unknown{
+                color:transparent;
+                translate: 0 1rem;
+        }
+
+        .card-container:hover .left-type-container {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
         }
 
         .card-container:hover {
             border-color: var(--primary-color);
-            background-color: color-mix(in srgb, var(--primary-color) 4%, var(--bg-color-1))
+            background-color: color-mix(in srgb, var(--primary-color) 4%, var(--bg-color-1));
         }
 
         .left-type-container {
@@ -50,7 +91,7 @@
             align-items: center;
             justify-content: center;
             width: 4rem;
-            height:auto;
+            height: auto;
             background-color: var(--bg-color-2);
             border-right: 0.1rem solid var(--bg-color-3);
             color: var(--white);
@@ -60,17 +101,18 @@
         }
 
         .left-type-container>svg {
-            flex:0;
-            width: 2.4rem !important;
+            flex: 0;
+            width: 2.4rem;
             min-width: 2.4rem;
             height: 2.4rem;
             color: var(--grey-1);
+            transition: all 150ms ease 0s;
         }
 
         .right-container {
             display: flex;
             flex-direction: column;
-            flex:1;
+            flex: 1;
         }
 
         .inner-container {
@@ -83,7 +125,7 @@
             flex-direction: column;
             gap: 0.2rem;
             padding: 0.2rem 0.4rem;
-            flex:1;
+            flex: 1;
         }
 
         .title {
@@ -108,6 +150,8 @@
             text-align: right;
             font-size: 0.9rem;
             color: var(--grey-1);
+            transition: all 150ms ease 0s;
+            
         }
 
         .search-tags-container {
@@ -117,11 +161,11 @@
             display: flex;
             flex-direction: row;
             gap: 0.8rem;
-            margin:0;
+            margin: 0;
             padding: 0.2rem 0.4rem;
         }
 
-        .search-tags-container>span{
+        .search-tags-container>span {
             background: transparent;
             color: var(--grey-1);
             padding: 0;
@@ -132,11 +176,10 @@
     </style>
     <div class="card-container">
         <div class="left-type-container">
-            <svg id="type-unknown" xmlns="http://www.w3.org/2000/svg" width="2.4rem" height="2.4rem"
-                viewBox="0 0 24 24">
-                <path fill="currentColor"
-                    d="m12 7.57l4.42 4.42L12 16.41l-4.42-4.42zm0 11.62l-7.2-7.2l7.2-7.2l6 6V7.16l-4.58-4.58c-.78-.78-2.05-.78-2.83 0l-8.01 8c-.78.78-.78 2.05 0 2.83l8.01 8c.78.78 2.05.78 2.83 0L18 16.82v-3.63zm8 .81h2v2h-2zm2-10h-2v8h2z" />
+            <svg class="type-unknown" xmlns="http://www.w3.org/2000/svg" width="2.4rem" height="2.4rem" viewBox="0 0 24 24">
+                <path fill="currentColor" d="m12 7.57l4.42 4.42L12 16.41l-4.42-4.42zm0 11.62l-7.2-7.2l7.2-7.2l6 6V7.16l-4.58-4.58c-.78-.78-2.05-.78-2.83 0l-8.01 8c-.78.78-.78 2.05 0 2.83l8.01 8c.78.78 2.05.78 2.83 0L18 16.82v-3.63zm8 .81h2v2h-2zm2-10h-2v8h2z"></path>
             </svg>
+            <svg class="skipto-icon" xmlns="http://www.w3.org/2000/svg" width="2.4rem" height="2.4rem" viewBox="0 0 24 24"><path fill="currentColor" d="M6 6v2h8.59L5 17.59L6.41 19L16 9.41V18h2V6z"></path></svg>
         </div>
         <div class="right-container">
             <div class="inner-container">
@@ -150,9 +193,7 @@
                 </div>
             </div>
             <div class="search-tags-container">
-                <!--tags slot-->
             </div>
         </div>
-
     </div>
 </template>

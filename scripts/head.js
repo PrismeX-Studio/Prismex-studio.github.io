@@ -421,39 +421,56 @@ class SearchResultCardComponent extends BaseComponent {
     initializeLogic() {
         const shadow = this.shadowRoot;
 
-        const titleEl = shadow.querySelector('.title');
-        const subTitleEl = shadow.querySelector('.sub-title');
-        const authorEl = shadow.querySelector('.author');
-        const timeEl = shadow.querySelector('.time');
-        const tagsContainer = shadow.querySelector('.search-tags-container');
+        const elements = {
+            title: shadow.querySelector('.title'),
+            subTitle: shadow.querySelector('.sub-title'),
+            author: shadow.querySelector('.author'),
+            time: shadow.querySelector('.time'),
+            tagsContainer: shadow.querySelector('.search-tags-container'),
+            cardContainer: shadow.querySelector('.card-container')
+        };
 
-        const title = this.getAttribute('title') || "TITLE";
-        const subTitle = this.getAttribute('sub-title') || "Sub Description";
-        const author = this.getAttribute('author') || "Author";
-        const time = this.getAttribute('time') || "Time";
-        const tagsAttr = this.getAttribute('tags');
+        const data = {
+            title: this.getAttribute('title') || "Untitled",
+            subTitle: this.getAttribute('sub-title') || "",
+            author: this.getAttribute('author') || "Unknown",
+            time: this.getAttribute('time') || "Recently",
+            href: this.getAttribute('href') || "#",
+            tagsRaw: this.getAttribute('tags')
+        };
+
         let tags = [];
-        if (tagsAttr) {
+        if (data.tagsRaw) {
             try {
-                tags = JSON.parse(tagsAttr);
+                const formattedJson = data.tagsRaw.replace(/'/g, '"');
+                tags = JSON.parse(formattedJson);
             } catch (e) {
-                console.error("Invalid tags format:", tagsAttr);
+                console.warn("SearchResultCard: Tags parsing failed.", e);
             }
         }
 
+        if (elements.title) elements.title.textContent = data.title;
+        if (elements.subTitle) elements.subTitle.textContent = data.subTitle;
+        if (elements.author) elements.author.textContent = data.author;
+        if (elements.time) elements.time.textContent = data.time;
 
-        subTitleEl.textContent = subTitle;
-        titleEl.textContent = title;
-        authorEl.textContent = author;
-        timeEl.textContent = time;
-        //add tags(each one as a <span>)
-        tags.forEach(tag => {
-            const tagEl = document.createElement('span');
-            tagEl.className = 'search-tag';
-            tagEl.textContent = tag;
-            tagsContainer.appendChild(tagEl);
-        });
+        //动态渲染标签
+        if (elements.tagsContainer && Array.isArray(tags)) {
+            elements.tagsContainer.innerHTML = ''; // 清空可能存在的占位符
+            tags.forEach(tag => {
+                const tagEl = document.createElement('span');
+                tagEl.className = 'search-tag';
+                tagEl.textContent = tag;
+                elements.tagsContainer.appendChild(tagEl);
+            });
+        }
 
+        if (elements.cardContainer) {
+            elements.cardContainer.style.cursor = 'pointer';
+            elements.cardContainer.onclick = () => {
+                window.location.href = data.href;
+            };
+        }
     }
 }
 
@@ -536,33 +553,41 @@ async function loadAndRegisterComponent(tagName, definition) {
     const { path, componentClass } = definition;
 
     try {
-        // --- 异步获取模板文件内容 ---
         const response = await fetch(path);
-        if (!response.ok) throw new Error(`Failed to fetch template: ${path}`);
+        if (!response.ok) throw new Error(`Failed to fetch: ${path}`);
         const templateText = await response.text();
 
-        // --- 解析 HTML 文本并提取 <template> 元素 ---
-        const tempContainer = document.createElement('div');
-        tempContainer.innerHTML = templateText;
-        const template = tempContainer.querySelector('template');
+        //删除debug时live server可能添加的错误脚本
+        
+
+        // --- 使用更健壮的 DOMParser ---
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(templateText, 'text/html');
+        const scripts = doc.querySelectorAll('script');
+        scripts.forEach(script => script.remove());
+        const template = doc.querySelector('template');
 
         if (!template) {
-            console.error(`Error: <template> tag not found in ${path}`);
+            console.error(`[${tagName}] 错误: 未能在文件中找到 <template> 标签`);
             return;
         }
 
-        // --- 注册模板内容到 Class ---
-        // 将模板内容传入静态方法，所有该类的实例都能共享这个模板。
+        // --- 诊断：检查模板内容是否完整 ---
+        const contentChildren = template.content.querySelectorAll('*').length;
+        console.log(`[${tagName}] 模板解析完成，内部元素数量:`, contentChildren);
+        
+        if (contentChildren < 5) { // 如果元素太少，说明被截断了
+            console.warn(`[${tagName}] 警告: 模板内容可能被截断，请检查文件编码或非法字符。`);
+        }
+
         componentClass.setTemplate(template);
 
-        // --- 注册 Custom Element ---
         if (!customElements.get(tagName)) {
             customElements.define(tagName, componentClass);
-            console.log(`Successfully registered component: <${tagName}>`);
         }
 
     } catch (error) {
-        console.error(`Error processing component <${tagName}>:`, error);
+        console.error(`[${tagName}] 注册失败:`, error);
     }
 }
 
