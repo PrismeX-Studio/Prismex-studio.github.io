@@ -61,7 +61,7 @@
 
         .topbar-sub-container {
             gap: 0;
-            width:max-content;
+            width: max-content;
         }
 
         .topbar-sub-container-title {
@@ -123,9 +123,9 @@
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
-            width:max-content;
+            width: max-content;
             /*force the elements stay in one line*/
-            flex:0;
+            flex: 0;
             gap: 0;
         }
 
@@ -143,8 +143,9 @@
                 align-items: flex-start;
                 gap: 0.4rem;
             }
+
             .topbar-sub-container-box {
-                padding:0 0 0 0.3rem;
+                padding: 0 0 0 0.3rem;
                 width: 100%;
             }
         }
@@ -229,7 +230,7 @@
                 </div>
             </div>
             <hr class="blank">
-            
+
         </div>
         <script>
             //前端搜索实现
@@ -298,19 +299,33 @@
                     time: "2024-06-01",
                     author: "PrismeX团队",
                     href: "C-7.html"
-                },'9e0b1d2c': {
+                }, '9e0b1d2c': {
                     title: "再论优绩主义",
                     subTitle: "以阿尔都塞理论为工具批判当代优绩主义",
                     type: "article",
-                    tags: ["文章", "转载", "[临时]新版样式测试","曹邓一"],
+                    tags: ["文章", "转载", "[临时]新版样式测试", "曹邓一"],
                     time: "2026-01-10",
                     author: "四川大学化学学院 杨梓清",
                     href: "[article]meritocracy-2.html"
                 }
             };
-            //当用户点击搜索按钮时，执行搜索逻辑
+            
+            function renderSearchResult(query) {
+                $('#search-input').val(query);
+                $('#search-button').click();
+            }
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const keyword = urlParams.get('q');
+            if (keyword) {
+                console.log("Got the keyword from the URL:", keyword);
+                renderSearchResult(keyword);
+            } else {
+                console.log("No keyword found in the URL.");
+            }
+
+            //点击搜索按钮时执行搜索
             $('#search-button').click(function () {
-                console.log("1")
                 //获取逻辑执行开始时间
                 startTime = performance.now();
                 const query = $('#search-input').val().trim();

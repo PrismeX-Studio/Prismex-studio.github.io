@@ -45,7 +45,7 @@ app-container {
 hr {
     margin-top: 2rem;
     margin-bottom: 2rem;
-    border: var(--border-color) solid 0.1rem;
+    border: var(--border-color) solid 0.08rem;
 }
 
 img {
@@ -152,7 +152,7 @@ select:focus {
     background: var(--bg-color-2)
 }
 
-button{
+button {
     font-size: 1rem;
     transition: all 100ms ease 0s;
     border: 0.1rem solid var(--grey-4-07);
@@ -162,23 +162,23 @@ button{
     margin: 0;
 }
 
-button:hover{
+button:hover {
 
     border-color: var(--primary-color);
 
 }
 
-button:active{
+button:active {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
-    color:var(--bg-color-0);
+    color: var(--bg-color-0);
 }
 
 hr.blank {
     border: 0px;
 }
 
-hr.vertical{
+hr.vertical {
     border: 0.1rem solid var(--border-color);
     width: 0px;
     height: 100%;
@@ -186,48 +186,70 @@ hr.vertical{
 
 .content {
     padding-top: 70px;
+    width: 80%;
+    margin: 0 10% 0 10%;
+    padding: 0px;
 }
 
-.container0 {
-    margin: 0px;
-    margin-bottom: 32px;
-    margin-left: 8%;
-    margin-right: 8%;
-    background-color: transparent;
-    border-radius: var(--container-border-radius);
+text-code {
+    font-family: "Jetbrains Mono","consolas", sans-serif, monospace;
+    background-color: var(--bg-color-1);
+    padding: 0rem 0.2rem 0rem 0.2rem;
+    border-radius: 0.2rem;
+    border: 0.1rem solid var(--border-color);
+    /*color: color-mix(in srgb,var(--primary-color) 50% , var(--secondary-color));*/
+    color:var(--primary-font-color)
 }
 
-.container1 {
-    margin: 0px 0px 30px 0px;
-    background-color: var(--primary-container-color);
-    padding: 28px;
-    border-radius: var(--container-border-radius);
-
+text-keycap{
+    font-family: "Jetbrains Mono","consolas", sans-serif, monospace;
+    background-color: var(--bg-color-1);
+    padding: 0rem 0.2rem 0.1rem 0.2rem;
+    border-radius: 0.2rem;
+    border: none;
+    box-shadow:0 -0.1rem 0 0 var(--border-color) inset;
+    color: var(--primary-font-color);
 }
 
-.container1>* {
-    color: var(--on-primary-container-color)
+text-keycap::before {
+    content: "[";
 }
 
-.container1>p {
-    margin-bottom: 0px;
+text-keycap::after {
+    content: "]";
 }
 
-.container2 {
-    margin: 0px 0px 30px 0px;
-    background-color: var(--tertiary-container-color);
-    padding: 28px;
-    border-radius: var(--container-border-radius);
-
+text-highlight.primary{
+    color: var(--primary-color);
 }
 
-.container-2>* {
-    color: var(--on-tertiary-container-color)
+text-highlight.secondary{
+    color: var(--secondary-color);
 }
 
-.container2>p {
-    margin-bottom: 0px;
+text-whisper {
+    color: var(--grey-2-07);
 }
+
+text-italic {
+    font-style: italic;
+}
+
+text-bold {
+    font-weight: bold;
+}
+
+text-underline {
+    text-decoration: underline;
+}
+
+text-strikethrough {
+    text-decoration: line-through;
+}
+
+
+
+/*  ↓等待迁移↓  */
 
 .container,
 .glowing-container {
@@ -298,12 +320,6 @@ hr.vertical{
 
 .glowing-container-inner>p {
     font-size: 22px;
-}
-
-.content {
-    width: 80%;
-    margin: 0 10% 0 10%;
-    padding: 0px;
 }
 
 

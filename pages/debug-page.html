@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>调试页面</title>
+    <script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="..\scripts\head.js"></script>
+</head>
+
+<body>
+    <app-container>
+        <app-navbar></app-navbar>
+        <top-panel title="调试页面" sub-title="//ACCESS::PROHIBITED"></top-panel>
+        <div class="content">
+            <hr class="blank">
+            <p>
+                这是一个测试段落，这句话是第一句话；这句话之前有个类为<text-code>blank</text-code>的分割线标记。<br>这句话前方有一个换行标记，后方还有一个nbsp换行标记。&nbsp如果这句话在第三行，那么说明换行标记和nbsp换行标记都生效了。<br>最后，这句话是最后一句话。
+            </p>
+            <p>
+                这是第二个段落，用来测试文本样式标签。<br><text-code>text-code 这是代码标签</text-code>这是后面的文本。<br>
+                <text-code>好长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长长的文本</text-code>这是在测试换行样式。说真的，我不觉得有人会写这么长还不换行。<br>
+                <text-highlight class="primary">text-highlight,class="primary" 这是高亮标签</text-highlight>文本应该被高亮为主要颜色。<br>
+                <text-highlight class="secondary">text-highlight,class="secondary" 这也是高亮标签</text-highlight>同上，只不过是次要颜色。<br>
+                <text-underline>text-underline 这是个下划线标签</text-underline>这段文本显然是重点<br>
+                <text-bold>text-bold 这是粗体标签</text-bold>很容易（存疑）注意到这些字超乎寻常的“粗”<br>
+                <text-italic>text-italic 这是斜体标签</text-italic>这段文本应该是斜的。<br>
+                <text-strikethrough>text-strikethrough 这是删除线标签</text-strikethrough>这段文本应该有条穿过它的线。<br>
+                <text-whisper>text-whisper 这是个啥子标签</text-whisper>这段文本应该有点不易被察觉。<br>
+                <text-keycap>text-keycap 这是按键标签</text-keycap>差点忘了还有你这小东西。<br>
+                希望这些标签都正常工作。
+            </p>
+            <p>
+                第三段了。<br>
+                很容易想到，标签可以被嵌套使用。<br>
+                <text-highlight class="primary">这段<text-underline><text-italic>高亮</text-italic>了的</text-underline><text-bold>文本</text-bold></text-highlight>真<text-highlight class="secondary">好看</text-highlight>，不是吗。<br>
+                还有一些标签是不能嵌套的，比如<text-code>code</text-code>标签。<br>
+                <text-code>这是<text-code>不合法的</text-code>文本</text-code>这段文本不合法，因为<text-code>code</text-code>标签不能自我嵌套。这只会让渲染变得一团糟。<br>
+                以及，同设置某一相同CSS属性的标签显然不能混用与完全相同的某一段文本。<br>
+                <text-highlight class="primary"><text-highlight class="secondary"></text-highlight><text-whisper>这显然不是只有三个标签同时用才能达成的效果</text-whisper></text-highlight>显然CSS没有自动混色之类的神奇设置。<br>
+                最后，千万别忘了闭合标签。
+            </p>
+            <hr>
+            <p>
+                ↑ ↑ ↑ 老套的分割线，不建议使用。↑ ↑ ↑
+            </p>
+            <deco-seprator>这个可好看多了</deco-seprator>
+            <deco-seprator>没错！</deco-seprator>
+            <p>
+                当然事实上把两个这种“现代的”分割线模块放在一起也是不被推荐的。
+            </p>
+            <p>
+                下面是一些html基本元素。
+            </p>
+            <h1>这是一级标题</h1>
+            <h2>这是二级标题</h2>
+            <h3>这是三级标题</h3>
+            <h4>这是四级标题</h4>
+            <h5>这是五级标题</h5>
+            <h6>这是六级标题</h6>
+            <p>
+                <text-whisper><text-strikethrough>我去我都不知道居然有第六级标题欸</text-strikethrough></text-whisper>
+            </p>
+            <p>
+                <a href="https://transky.mtf.wiki">这是一个链接</a>，点击它会打开一个新页面。<br>
+
+            </p>
+            <deco-seprator>下面是一些自定义组件</deco-seprator>
+            <grid-panel>
+                <content-panel title="Minecraft" sub-title="Mods & Texturepacks" icon='../icons/MDpolymer.svg'>
+                </content-panel>
+
+                <content-panel title="Coding" sub-title="Web & Cmd" icon='../icons/MDcode.svg'>
+                </content-panel>
+
+                <content-panel title="Windows Platform" sub-title="Local Apps" icon='../icons/MDdesktop.svg'>
+                </content-panel>
+
+                <content-panel title="Unique Design" sub-title="UI/UX Concepts" icon='../icons/MDdesign.svg'>
+                </content-panel>
+
+                <content-panel title="Rich Content" sub-title="Articles" icon='../icons/MDpadding.svg'>
+                </content-panel>
+
+                <content-panel title="Internet Searcher" sub-title="Deep Dive" icon='../icons/MDservices.svg'>
+                </content-panel>
+
+                <content-panel title="Surfing Internet" sub-title="Random Stuff" icon='../icons/MDsurfing.svg'>
+                </content-panel>
+
+                <content-panel title="Website Building" sub-title="Design & setup" icon='../icons/MDdata.svg'>
+                </content-panel>
+            </grid-panel>
+            <dev-navigation-panel>
+                <dev-navigation-content-panel title="[!] ONLINE SITE" sub-title="For debugging only!"
+                    href='https://prismex-studio.github.io/'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="ELEMENTS TEST PAGE" sub-title="Debugging" href='testPage.html'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="404 REDIRECT TEST" sub-title="Homo number()"
+                    href='114514191981035023423662.html'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="404 SOURCEPAGE" sub-title="V2 [new]" href='404.html'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="ETERNAL-DB THEME" sub-title="NEXT-GEN Design?" href='v2_test.html'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="[ARCHIEVED]BKR TOOLS" sub-title="Need update"
+                    href='backrooms-image-tools.html'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="[DANGER]DIALOGS" sub-title="DONT click this"
+                    href='unable-to-quit.html'>
+                </dev-navigation-content-panel>
+                <dev-navigation-content-panel title="UNKNOWN?" sub-title="???" href='u-have-no-penis.html'>
+                </dev-navigation-content-panel>
+            </dev-navigation-panel>
+            <p></p>
+            <search-result-card></search-result-card>
+            <hr class="blank">
+        </div>
+        <app-footer></app-footer>
+    </app-container>
+</body>
+
+</html>
