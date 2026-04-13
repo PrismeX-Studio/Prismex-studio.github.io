@@ -474,6 +474,58 @@ class SearchResultCardComponent extends BaseComponent {
     }
 }
 
+class InfoBoxComponent extends BaseComponent {
+    initializeLogic() {
+        const shadow = this.shadowRoot;
+        const type = this.getAttribute('type') || 'warn';
+        const title = this.getAttribute('title') || 'WARNING: INVALID TYPE';
+
+        const container = shadow.querySelector('.prismex-info-box');
+        const titleEl = shadow.querySelector('.info-title');
+        if (container) container.classList.add(type);
+        if (titleEl) titleEl.textContent = title;
+    }
+}
+
+class ImageBoxComponent extends BaseComponent {
+    initializeLogic() {
+        const shadow = this.shadowRoot;
+        const src = this.getAttribute('src') || '../icons/AlertRhombus.svg';
+        const title = this.getAttribute('title') || '未命名 / UNNAMED';
+        const mxwidth = this.getAttribute('maxWidth');
+        const float = this.getAttribute('float') || "none";
+
+        const imageEl = shadow.querySelector('.image-box-img');
+        const titleEl = shadow.querySelector('.image-text');
+        const container = shadow.querySelector('.image-box');
+
+        if (imageEl) {
+            imageEl.src = src;
+            imageEl.onerror = () => {
+                imageEl.style.display = 'none';
+                shadow.querySelector('.image-error').style.display = 'block';
+                shadow.querySelector('.image-error-text').style.display = 'block';
+            };
+        }
+
+        if (float == "left" || float == "Left") {
+            container.style.float = "left";
+            container.style.marginRight = "1.4rem"; // 浮动时添加右边距
+        }else if (float == "right" || float == "Right") {
+            container.style.float = "right";
+            container.style.marginLeft = "1.4rem"; // 浮动时添加左边距
+        }
+
+        if (titleEl) {
+            titleEl.textContent = title;
+        }
+
+        if (container && mxwidth) {
+            container.style.maxWidth = mxwidth;
+        }
+    }
+}
+
 
 // =================================================================
 // 组件注册表：定义所有组件的标签名、模板路径和处理它们的类
@@ -536,6 +588,16 @@ const COMPONENT_REGISTRY = {
         path: '[component]dev-navigation-content-panel.html',
         componentClass: DevNavigationContentPanelComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'info-box': {
+        path: '[component]info-box.html',
+        componentClass: InfoBoxComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'image-box': {
+        path: '[component]image-box.html',
+        componentClass: ImageBoxComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
     }
 };
 
@@ -558,7 +620,7 @@ async function loadAndRegisterComponent(tagName, definition) {
         const templateText = await response.text();
 
         //删除debug时live server可能添加的错误脚本
-        
+
 
         // --- 使用更健壮的 DOMParser ---
         const parser = new DOMParser();
@@ -575,7 +637,7 @@ async function loadAndRegisterComponent(tagName, definition) {
         // --- 诊断：检查模板内容是否完整 ---
         const contentChildren = template.content.querySelectorAll('*').length;
         console.log(`[${tagName}] 模板解析完成，内部元素数量:`, contentChildren);
-        
+
         if (contentChildren < 5) { // 如果元素太少，说明被截断了
             console.warn(`[${tagName}] 警告: 模板内容可能被截断，请检查文件编码或非法字符。`);
         }

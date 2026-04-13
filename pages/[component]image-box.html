@@ -1,0 +1,78 @@
+<template id="info-box-template">
+    <style>
+        .image-box {
+            width: 100%;
+            border: 0.1rem solid var(--bg-color-2);
+            background-color: var(--bg-color-1);
+            box-sizing: border-box;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.4rem;
+            margin-bottom: 1.4rem;
+            display: block;
+        }
+
+        .image-container {
+            width: auto;
+            height: auto;
+            box-sizing: border-box;
+            background-color: var(--bg-color-0);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .image-box-img {
+            width: auto;
+            height: auto;
+            flex: 1;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        .content-container {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            border-top: 0.1rem solid var(--bg-color-2);
+            padding: 0.4rem;
+        }
+
+        .image-text {
+            text-align: center;
+            width: 100%;
+        }
+
+        .image-error {
+            display: none;
+            width: 100%;
+            height: 4rem;
+            margin: 3rem 1.4rem 1.4rem 1.4rem;
+            color: var(--grey-2);
+        }
+
+        .image-error-text {
+            display: none;
+            text-align: center;
+            width: 100%;
+            color: var(--grey-2);
+            font-size: 0.9rem;
+            margin-bottom: 3rem;
+        }
+    </style>
+    <div class="image-box">
+        <div class="image-container">
+            <img class="image-box-img" src="../icons/AlertRhombus.svg">
+            <svg class="image-error" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+                <path fill="currentColor"
+                    d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2m0 16H5v-4.58l.99.99l4-4l4 4l4-3.99L19 12.43zm0-9.41l-1.01-1.01l-4 4.01l-4-4l-4 4l-.99-1V5h14z" />
+            </svg>
+            <span class="image-error-text">源文件损坏 / SOURCE FILE CORRUPTED</span>
+        </div>
+        <div class="content-container">
+            <span class="image-text">NO INTRODUCTION!</span>
+            <slot></slot>
+        </div>
+    </div>
+</template>

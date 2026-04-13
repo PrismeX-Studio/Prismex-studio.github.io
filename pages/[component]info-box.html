@@ -1,0 +1,157 @@
+<template id="info-box-template">
+    <style>
+        /* 根变量，以便于颜色管理 */
+        * {
+            --tip-color: hsl(168, 76%, 42%);
+            --info-color: hsl(186, 88%, 44%);
+            --warning-color: hsl(37, 94%, 55%);
+            --error-color: hsl(6, 76%, 42%);
+
+            --font: "Jetbrains Mono", sans-serif, monospace;
+        }
+
+        /*teal color are controled by the js in the head.js*/
+        /*e.g. <info-box type="tip">...</>  -->  var(--teal) == var(--tip-color)*/
+        .prismex-info-box.tip {
+            --teal: var(--tip-color);
+
+            .icon.tip {
+                display: block;
+            }
+        }
+
+        .prismex-info-box.info {
+            --teal: var(--info-color);
+
+            .icon.info {
+                display: block;
+            }
+        }
+
+        .prismex-info-box.warn {
+            --teal: var(--warning-color);
+
+            .icon.warn {
+                display: block;
+            }
+        }
+
+        .prismex-info-box.error {
+            --teal: var(--error-color);
+
+            .icon.error {
+                display: block;
+            }
+        }
+
+        .prismex-info-box {
+            border: 0.1rem solid color-mix(in srgb, var(--teal) 10%, var(--bg-color-1));
+            border-radius: 0.4rem;
+            padding: 2rem 2rem 2rem 2rem;
+            width: 100%;
+            background-color: var(--bg-color-0);
+            position: relative;
+            /*box-shadow: inset 0 0 15px color-mix(in srgb, var(--teal) 10%, transparent);*/
+            box-sizing: border-box;
+            margin: 0 0 1.4rem 0;
+        }
+
+        .prismex-info-box::before,
+        .prismex-info-box::after {
+            content: '';
+            position: absolute;
+            top: 1.5rem;
+            height: calc(100% - 3rem);
+            width: 5px;
+            background-color: var(--teal);
+            box-shadow: 0 0 8px var(--teal);
+        }
+
+        .prismex-info-box::before {
+            left: 0;
+        }
+
+        .prismex-info-box::after {
+            right: 0;
+        }
+
+        .info-title-row {
+            width: 100%;
+            margin-bottom: 25px;
+            display: inline-block;
+            text-wrap: nowrap;
+            color: var(--teal);
+        }
+
+        .info-title-row .info-title {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--teal);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .info-content>p,
+        .info-content>span {
+            font-size: 1rem;
+        }
+
+        .deco-1 {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            --sub-theme-color: var(--grey-4);
+            background-image: repeating-linear-gradient(-45deg,
+                    color-mix(in srgb, var(--sub-theme-color) 10%, transparent) 0 0.4rem,
+                    color-mix(in srgb, var(--sub-theme-color) 20%, transparent) 0.4rem 0.8rem);
+            background-size: cover;
+            background-position: center;
+            pointer-events: none;
+            border-radius: 0.4rem;
+            mask-image: linear-gradient(-45deg, black 0%, transparent 50%, transparent 100%);
+            mask-position: center;
+        }
+
+        .icon {
+            position: absolute;
+            bottom: 0rem;
+            right: 5%;
+            width: auto;
+            height: 70%;
+            color: var(--teal);
+            opacity: 0.12;
+            display: none;
+        }
+    </style>
+
+    <div class="prismex-info-box">
+
+        <div class="info-title-row">
+            <span class="info-title">注意：重要提示2</span>
+        </div>
+        <div class="info-content">
+            <slot></slot>
+        </div>
+        <div class="deco-1"></div>
+        <svg class="icon info" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M11 7h2v2h-2zm0 4h2v6h-2zm1-9C6.48 2 2 6.48 2 12s4.48 10 10 10s10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8s8 3.59 8 8s-3.59 8-8 8" />
+        </svg>
+        <svg class="icon tip" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M7 20h4c0 1.1-.9 2-2 2s-2-.9-2-2m-2-1h8v-2H5zm11.5-9.5c0 3.82-2.66 5.86-3.77 6.5H5.27c-1.11-.64-3.77-2.68-3.77-6.5C1.5 5.36 4.86 2 9 2s7.5 3.36 7.5 7.5m-2 0C14.5 6.47 12.03 4 9 4S3.5 6.47 3.5 9.5c0 2.47 1.49 3.89 2.35 4.5h6.3c.86-.61 2.35-2.03 2.35-4.5m6.87-2.13L20 8l1.37.63L22 10l.63-1.37L24 8l-1.37-.63L22 6zM19 6l.94-2.06L22 3l-2.06-.94L19 0l-.94 2.06L16 3l2.06.94z" />
+        </svg>
+        <svg class="icon warn" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 5.99L19.53 19H4.47zM12 2L1 21h22zm1 14h-2v2h2zm0-6h-2v4h2z" />
+        </svg>
+        <svg class="icon error" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">
+            <path fill="currentColor"
+                d="M15.73 3H8.27L3 8.27v7.46L8.27 21h7.46L21 15.73V8.27zM19 14.9L14.9 19H9.1L5 14.9V9.1L9.1 5h5.8L19 9.1z" />
+            <circle cx="12" cy="16" r="1" fill="currentColor" />
+            <path fill="currentColor" d="M11 7h2v7h-2z" />
+        </svg>
+
+    </div>
+</template>
