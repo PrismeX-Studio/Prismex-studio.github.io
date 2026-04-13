@@ -494,10 +494,51 @@ class ImageBoxComponent extends BaseComponent {
         const title = this.getAttribute('title') || '未命名 / UNNAMED';
         const mxwidth = this.getAttribute('maxWidth');
         const float = this.getAttribute('float') || "none";
+        const sizing = this.getAttribute('sizing') || "none";
 
         const imageEl = shadow.querySelector('.image-box-img');
         const titleEl = shadow.querySelector('.image-text');
         const container = shadow.querySelector('.image-box');
+
+        switch (sizing) {
+            case "fit-size":
+                //保持比例
+                Object.assign(imageEl.style, {
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover'
+                });
+                break;
+
+            case "fixed-size":
+                // 保持原始像素尺寸
+                Object.assign(imageEl.style, {
+                    width: 'auto',
+                    height: 'auto',
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    objectFit: 'contain'
+                });
+
+                break;
+
+            case "stretch":
+                /**
+                 * 强制拉伸图片以适应容器宽度
+                 * 如果容器宽度小于图片原始宽度，强制宽度撑满容器，但保持高度为原始高度
+                 * 注意：这会导致图片比例失真
+                 */
+                Object.assign(imageEl.style, {
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'fill'
+                });
+                break;
+
+            default:
+                console.warn(`未知的尺寸类型: ${sizing}`);
+                break;
+        }
 
         if (imageEl) {
             imageEl.src = src;
@@ -511,7 +552,7 @@ class ImageBoxComponent extends BaseComponent {
         if (float == "left" || float == "Left") {
             container.style.float = "left";
             container.style.marginRight = "1.4rem"; // 浮动时添加右边距
-        }else if (float == "right" || float == "Right") {
+        } else if (float == "right" || float == "Right") {
             container.style.float = "right";
             container.style.marginLeft = "1.4rem"; // 浮动时添加左边距
         }
