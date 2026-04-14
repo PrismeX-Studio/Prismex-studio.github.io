@@ -31,11 +31,6 @@
     --t-tag-primary-color: var(--primary-color);
 }
 
-:root {
-    --container-background-color: var(--bg-color-1);
-    --glowing-container-background-color: var(--container-background-color);
-}
-
 
 :root {
     transition: all 0.4s ease 0s;
@@ -90,4 +85,10 @@
     --surface1-color: #d2d2d2;
     --t-tag-container-color: #9c9c9c;
     --t-tag-primary-color: var(--primary-color);
+}
+
+
+:root {
+    --container-background-color: var(--bg-color-1);
+    --glowing-container-background-color: var(--container-background-color);
 }

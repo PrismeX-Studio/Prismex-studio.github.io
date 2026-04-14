@@ -13,7 +13,7 @@
     <script type="text/javascript" src="..\scripts\head.js"></script>
     <style>
         .reload-block {
-            background-color: var(--primary-container-color);
+            background-color: var(--primary-color);
             min-height: 73px;
             min-width: 73px;
             display: flex;
@@ -24,7 +24,7 @@
         }
 
         .reload-block:hover {
-            border: 2px solid var(--error-color);
+            border: 2px solid var(--primary-color);
         }
     </style>
 </head>
@@ -34,11 +34,10 @@
     </div>
     <!--main-->
     <div class="content">
-        <hr class="blank" style="height:1192px">
+        <hr class="blank">
         <div class="container0" id="container0">
             <div class="glowing-container error" id="glowing-error-container">
                 <div class="glowing-container-inner">
-                    <img src="..\images\error.webp">
                     <h1>ERROR!!!</h1>
                     <p></p>
                     <p>
@@ -52,8 +51,8 @@
             <div class="container"
                 style="display: flex;flex-direction: row;align-items: start;flex-wrap: nowrap;">
                 <div
-                    style="display: flex;flex-direction: column;align-items: start;border-right: 2px solid rgba(100, 100, 100, 0.7);padding-right: 16px; margin:0px 16px 0px 8px ;">
-                    <p style="margin: 0;">
+                    style="display: flex;flex-direction: column;align-items: start;border-right: 2px solid var(--border-color);padding-right: 16px; margin:0px 16px 0px 8px ;">
+                    <p style="margin: 0;color:var(--grey-1)">
                         ERROR CODE
                     </p>
                     <h1>
@@ -61,11 +60,11 @@
                     </h1>
                 </div>
                 <div style="display: flex;flex-direction: column;align-items: start;min-width: 128px;">
-                    <p style="margin: 0;">
+                    <p style="margin: 0;color:var(--grey-1)">
                         INFORMATION
                     </p>
                     <h1 style=" white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100%;">
-                        THE REQUESTED FILE CAN'T BE FOUND ON THE SERVER.
+                        THE REQUESTED RESOURCE DOESN'T EXIST.
                     </h1>
                 </div>
                 <hr class="blank" style="min-width: 16px;">
