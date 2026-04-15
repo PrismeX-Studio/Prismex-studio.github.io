@@ -506,20 +506,8 @@ class ImageBoxComponent extends BaseComponent {
                 Object.assign(imageEl.style, {
                     width: '100%',
                     height: '100%',
-                    objectFit: 'cover'
-                });
-                break;
-
-            case "fixed-size":
-                // 保持原始像素尺寸
-                Object.assign(imageEl.style, {
-                    width: 'auto',
-                    height: 'auto',
-                    maxWidth: '100%',
-                    maxHeight: '100%',
                     objectFit: 'contain'
                 });
-
                 break;
 
             case "stretch":
@@ -564,6 +552,19 @@ class ImageBoxComponent extends BaseComponent {
         if (container && mxwidth) {
             container.style.maxWidth = mxwidth;
         }
+    }
+}
+
+class DecoTitleComponent extends BaseComponent {
+    initializeLogic() {
+        const shadow = this.shadowRoot;
+        const title = this.getAttribute('title') || '未定义 / UNDEFINED';
+         const subtitle = this.getAttribute('sub-title') || '未定义 / UNDEFINED';
+
+        const titleEl = shadow.querySelector('.title-block');
+        const subtitleEl = shadow.querySelector('.upper-title-block');
+        if (titleEl) titleEl.textContent = title;
+        if (subtitleEl) subtitleEl.textContent = subtitle;
     }
 }
 
@@ -638,6 +639,11 @@ const COMPONENT_REGISTRY = {
     'image-box': {
         path: '[component]image-box.html',
         componentClass: ImageBoxComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'deco-title': {
+        path: '[component]deco-title.html',
+        componentClass: DecoTitleComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     }
 };

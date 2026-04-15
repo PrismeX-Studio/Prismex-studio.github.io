@@ -50,13 +50,13 @@ hr {
 
 img {
     margin: 0px;
-    margin-bottom: 20px;
+    margin-bottom: 1.4rem;
     width: 100%;
     border-radius: var(--container-border-radius);
 }
 
 p {
-    font-size: 1.2rem;
+    font-size: 1。1rem;
     line-height: 29px;
     margin: 0px 0px 1.4rem 0px;
     word-wrap: break-word;
@@ -66,7 +66,7 @@ p {
 }
 
 a {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding: 2px 4px 2px 4px;
     margin: 0px;
     word-wrap: break-word;
@@ -90,24 +90,24 @@ a:hover {
 
 h1 {
     margin: 0px;
-    font-size: 36px;
+    margin-bottom: 1.4rem;
+    font-size: 2.8rem;
     font-weight: bold;
     color: var(--primary-font-color);
 }
 
 h2 {
     margin: 0px;
-    margin-bottom: 15px;
-    font-size: 26px;
+    margin-bottom: 1.4rem;
+    font-size: 1.8rem;
     font-weight: bold;
     color: var(--primary-font-color);
 }
 
 h3 {
     margin: 0px;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    font-size: 20px;
+    margin-bottom: 1.4rem;
+    font-size: 1.3rem;
     font-weight: bold;
     color: var(--primary-font-color);
 }
