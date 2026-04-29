@@ -22,7 +22,7 @@
         background-color: transparent;
     }
 
-    /*css terminal effect*/
+    /* --- 基础动画：CRT 闪烁与扫描线 --- */
     @keyframes flicker {
         0% {
             opacity: 0.15;
@@ -109,7 +109,6 @@
         }
     }
 
-    /*扫描线滚动动画模拟刷新率差*/
     @keyframes scanline-scroll {
         0% {
             transform: translateY(0);
@@ -120,7 +119,39 @@
         }
     }
 
-    /*应用滤镜*/
+    @keyframes fade-in {
+        0% {
+            transform: translateY(100px);
+            opacity: 0;
+            filter: blur(0);
+        }
+
+        100% {
+            transform: translateY(0px);
+            opacity: 1;
+            filter: blur(0);
+        }
+    }
+
+    /* --- 全局样式与滤镜 --- */
+    :root {
+        --custom-bg-color-0: rgb(28, 28, 28);
+        --custom-primary-color: rgb(24, 196, 208);
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        --background-line-color: color-mix(in srgb, var(--grey-1) 3%, transparent) !important;
+        background-color: var(--custom-bg-color-0);
+        background-size: 4rem 4rem !important;
+        background-position: center center !important;
+        background-image:
+            linear-gradient(to right, var(--background-line-color) 0.1rem, transparent 1px),
+            linear-gradient(to bottom, var(--background-line-color) 0.1rem, transparent 1px) !important;
+    }
+
     .crt-overlay {
         position: fixed;
         top: 0;
@@ -129,17 +160,11 @@
         height: 100vh;
         z-index: 10;
         pointer-events: none;
-        /*基础扫描线纹理*/
-        background: linear-gradient(rgba(18, 16, 16, 0) 50%,
-                rgba(0, 0, 0, 0.15) 50%),
-            linear-gradient(90deg,
-                rgba(55, 0, 0, 0.05),
-                rgba(0, 55, 0, 0.03),
-                rgba(0, 0, 55, 0.05));
+        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%),
+            linear-gradient(90deg, rgba(55, 0, 0, 0.05), rgba(0, 55, 0, 0.03), rgba(0, 0, 55, 0.05));
         background-size: 100% 3px, 100% 100%;
     }
 
-    /*随机闪烁与滚动线层*/
     .crt-overlay::after {
         content: "";
         position: absolute;
@@ -148,11 +173,9 @@
         right: 0;
         bottom: 0;
         background: rgba(18, 16, 16, 0.05);
-        /* 同时挂载闪烁和滚动动画 */
         animation: flicker 0.12s infinite alternate;
     }
 
-    /*额外：模拟那一根缓慢落下的扫描干扰线*/
     .crt-overlay::before {
         content: "";
         position: absolute;
@@ -165,26 +188,7 @@
         animation: scanline-scroll 8s linear infinite;
     }
 
-    /*end*/
-
-
-
-    body {
-        overflow: hidden;
-        --background-line-color: color-mix(in srgb, var(--grey-1) 3%, transparent) !important;
-        background-color: var(--custom-bg-color-0);
-        background-size: 4rem 4rem !important;
-        background-position: center center !important;
-        background-image:
-            linear-gradient(to right, var(--background-line-color) 0.1rem, transparent 1px),
-            linear-gradient(to bottom, var(--background-line-color) 0.1rem, transparent 1px) !important;
-    }
-
-    :root {
-        --custom-bg-color-0: rgb(28, 28, 28);
-        --custom-primary-color: rgb(72, 233, 248);
-    }
-
+    /* --- 布局容器 --- */
     .locked-content {
         height: 100dvh;
         width: 100%;
@@ -194,22 +198,6 @@
         align-items: center;
         background-image: radial-gradient(circle at 3px 3px, color-mix(in srgb, var(--grey-1) 30%, transparent) 1px, transparent 0);
         background-size: 40px 40px;
-    }
-
-    .deco-x-cross-1 {
-        width: 4rem;
-        height: 4rem;
-
-
-    }
-
-    .deco-x-cross-2 {
-        width: 4.2rem;
-        height: 4.2rem;
-        position: absolute;
-        top: -0.1rem;
-        filter: blur(4px) brightness(1.8);
-        left: -0.1rem;
     }
 
     .title-container {
@@ -223,7 +211,7 @@
         background-image: repeating-linear-gradient(-45deg,
                 color-mix(in srgb, var(--sub-theme-color) 2%, transparent) 0 8px,
                 color-mix(in srgb, var(--sub-theme-color) 6%, transparent) 8px 16px);
-        padding: 1rem 0 1rem 0;
+        padding: 1rem 0;
         mask-image: linear-gradient(90deg, transparent 0%, black 30%, black 60%, transparent 100%);
     }
 
@@ -242,62 +230,73 @@
         position: relative;
         width: 4rem;
         color: var(--custom-primary-color);
-        font-family: sans-serif;
-        text-shadow: 1rem 1rem 1rem var(--custom-primary-color);
+    }
+
+    .deco-x-cross-1 {
+        width: 4rem;
+        height: 4rem;
+    }
+
+    .deco-x-cross-2 {
+        width: 4.2rem;
+        height: 4.2rem;
+        position: absolute;
+        top: -0.1rem;
+        left: -0.1rem;
+        filter: blur(4px) brightness(1.8);
     }
 
     .center-container {
         height: 100%;
         flex: 1;
-        margin: 1rem 0 1rem 0;
+        margin: 1rem 0;
         display: flex;
         justify-content: center;
         align-items: center;
+        width: 100%;
     }
 
+    /* --- 时钟核心部分（使用 em 单位以便等比例缩放） --- */
     .clock-container {
-        flex: 1;
         display: flex;
         flex-direction: row;
-        margin: 0;
         background-color: transparent;
-        border: 0.3rem solid var(--custom-primary-color);
+        border: 0.3em solid var(--custom-primary-color);
         box-shadow: 0 0 8px var(--custom-primary-color);
-        border-radius: 0.1rem;
-        height: 13.8rem;
+        border-radius: 0.1em;
+        height: 13.8em;
         width: auto;
+        font-size: 1rem;
+        /* 默认基准 */
     }
 
     .clock-left-container,
     .clock-right-container {
         height: 100%;
-        background-color: transparent;
-        width: 12rem;
+        width: 12em;
         overflow: hidden;
         box-sizing: border-box;
     }
 
     .clock-left-container {
-        border-right: 0.3rem solid var(--custom-primary-color);
+        border-right: 0.3em solid var(--custom-primary-color);
     }
 
     .clock-right-container {
-        border-left: 0.3rem solid var(--custom-primary-color);
+        border-left: 0.3em solid var(--custom-primary-color);
     }
 
     .clock-top {
-        height: 1.8rem;
+        height: 1.8em;
         text-align: center;
-        background: transparent;
         box-sizing: border-box;
     }
 
     .clock-bottom {
         text-align: center;
-        height: 12rem;
+        height: 12em;
         background: var(--custom-primary-color);
         display: flex;
-        flex-direction: row;
         align-items: center;
         box-sizing: border-box;
     }
@@ -305,49 +304,33 @@
     #year-month,
     #info1 {
         color: var(--custom-primary-color);
-        line-height: 1.8rem;
+        line-height: 1.8em;
         text-shadow: 0 0 4px var(--custom-primary-color);
+        font-size: 1em;
     }
 
     #date,
     #chinese-week-date {
         color: var(--custom-bg-color-0);
-        font-size: 8rem;
-        line-height: 12rem;
+        font-size: 8em;
+        line-height: 1.5em;
+        /* 调整行高确保居中 */
         width: 100%;
         font-family: "Jetbrains Mono";
-        text-shadow: 0 0 4px var(--custom-primary-color) initial;
-    }
-
-    .clock-center-container {
-        width: 20rem;
     }
 
     .central-clock {
-        margin: 0.5rem 2rem 0 2rem;
+        padding: 0 2em;
+        display: flex;
+        align-items: center;
     }
 
     .central-clock>span {
-        font-size: 9rem;
-        line-height: 13.3rem;
+        font-size: 10em;
+        line-height: 1.28em;
         text-shadow: 0 0 4px var(--custom-primary-color);
-        width: 100%;
         font-family: "Jetbrains Mono";
         color: var(--custom-primary-color);
-    }
-
-    @keyframes fade-in {
-        0% {
-            transform: translateY(100px);
-            opacity: 0;
-            filter: blur(0);
-        }
-
-        100% {
-            transform: translateY(0px);
-            opacity: 1;
-            filter: blur(0);
-        }
     }
 
     #num-hour-1,
@@ -357,6 +340,37 @@
     #num-second-1,
     #num-second-2 {
         animation: fade-in 1s ease forwards;
+    }
+
+    /* --- 响应式缩放核心逻辑 - 修正版 --- */
+    @media (max-width: 1200px) {
+        .clock-container {
+            /* 根据时钟组件（左 12em + 中间约 45em + 右 12em ≈ 70em 左右）重新计算：
+           1. 宽不超 90vw: 90 / 70 ≈ 1.28vw (取 1.2vw 留出安全余量)
+           2. 高不超 90vh: 90 / 15 ≈ 6vh
+           这样能确保在极窄的手机屏幕上（如竖屏）时钟也能完整显示。
+        */
+            font-size: min(1.2vw, 6vh);
+
+            /* 强制不收缩，确保宽度由 em 单位严格控制 */
+            flex-shrink: 0;
+        }
+
+        .center-container {
+            /* 确保父容器不会限制缩放后的宽度 */
+            width: 100%;
+            padding: 0 5%;
+            box-sizing: border-box;
+            overflow: visible;
+            /* 允许阴影等溢出显示 */
+        }
+    }
+
+    /* 针对超窄屏幕（如 320px 宽度）的最终兜底 */
+    @media (max-width: 480px) {
+        .clock-container {
+            font-size: min(1.1vw, 5.5vh);
+        }
     }
 </style>
 
