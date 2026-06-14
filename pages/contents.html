@@ -149,6 +149,9 @@
                 width: 100%;
             }
         }
+
+
+        
     </style>
     <script type="text/javascript" src="..\scripts\head.js"></script>
 </head>
@@ -235,97 +238,14 @@
         <script>
             //前端搜索实现
             let startTime = -1;
-            //假设我们有一个包含所有文章数据的数组，格式如下：
-            const ARTICLE_DATA = {
-                '7d2e4f1a': {
-                    title: "Perfect Craft 1.18.2",
-                    subTitle: "游戏整合包",
-                    type: "article",
-                    tags: ["Minecraft", "整合包", "已过时/弃用"],
-                    time: "2024-06-01",
-                    author: "PrismeX团队",
-                    href: "C-1.html"
-                },
-                'b8c0e9d2': {
-                    title: "整合包安装教程",
-                    subTitle: "使用指南",
-                    type: "article",
-                    tags: ["教程", "安装"],
-                    time: "2024-06-01",
-                    author: "PrismeX团队",
-                    href: "C-2.html"
-                },
-                '3a5b7c8d': {
-                    title: "辨别系统位数",
-                    subTitle: "系统基础知识",
-                    type: "article",
-                    tags: ["教程", "系统"],
-                    time: "2024-06-01",
-                    author: "PrismeX团队",
-                    href: "C-3.html"
-                },
-                'f1a2b3c4': {
-                    title: "Mem Reduct",
-                    subTitle: "软件推荐（旧）",
-                    type: "article",
-                    tags: ["工具", "内存优化", "等待翻新"],
-                    time: "2024-06-01",
-                    author: "PrismeX团队",
-                    href: "C-4.html"
-                },
-                'e5d6f7a8': {
-                    title: "Motrix",
-                    subTitle: "软件推荐（旧）",
-                    type: "article",
-                    tags: ["工具", "下载器", "等待翻新"],
-                    time: "2024-06-01",
-                    author: "PrismeX团队",
-                    href: "C-5.html"
-                },
-                '9b0a1c2d': {
-                    title: "Neat Download Manager",
-                    subTitle: "软件推荐（旧）",
-                    type: "article",
-                    tags: ["工具", "下载器", "等待翻新"],
-                    time: "2024-06-01",
-                    author: "PrismeX团队",
-                    href: "C-6.html"
-                },
-                '4e5f6a7b': {
-                    title: "Watt Toolkit",
-                    subTitle: "软件推荐（旧）",
-                    type: "article",
-                    tags: ["工具", "加速器", "等待翻新"],
-                    time: "2024-06-01",
-                    author: "PrismeX团队",
-                    href: "C-7.html"
-                }, '9e0b1d2c': {
-                    title: "再论优绩主义",
-                    subTitle: "以阿尔都塞理论为工具批判当代优绩主义",
-                    type: "article",
-                    tags: ["文章", "转载", "[临时]新版样式测试", "曹邓一"],
-                    time: "2026-01-10",
-                    author: "四川大学化学学院 杨梓清",
-                    href: "[article]meritocracy-2.html"
-                }, '95ef43a7': {
-                    title: "生存难度图像制作器",
-                    subTitle: "搬运的Wikidot版生存难度图像工具",
-                    type: "tool",
-                    tags: ["工具", "转载", "后室", "CC BY-SA 3.0"],
-                    time: "2026-04-07",
-                    author: "本站修改",
-                    href: "backrooms-image-tools.html"
-                }, '95ef43a8': {
-                    title: "腐坏流年：我从来没有享受过吃屎",
-                    subTitle: "搬运自SCP中分的神人文章，原文链接已失效",
-                    type: "article",
-                    tags: ["文章", "转载", "SCP", "补档", "R18G", "CC BY-SA 3.0"],
-                    time: "2025-03-29",
-                    author: "夜莺[Wikidot]",
-                    href: "shit-eater.html"
-                }
-            };
-            
+            //let ARTICLE_DATA = null;
+            //文章数据
+            fetch('../data/search-data.json')
+                .then(response => response.json())
+                .then(data => {
+                    window.ARTICLE_DATA = data;
+                });
+
             function renderSearchResult(query) {
                 $('#search-input').val(query);
                 $('#search-button').click();

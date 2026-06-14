@@ -4,6 +4,102 @@ html {
     position: fixed;
     overflow: hidden;
     min-width: 525px;
+
+    --dot: 0.5px;
+    --size1: 8px;
+    --size2: 20px;
+
+    --deco-color1: rgba(70, 70, 70, 0.12);
+    --deco-color2: rgba(70, 70, 70, 0.06);
+
+    background: linear-gradient(
+        to bottom,
+        var(--bg-color-2) 0%,
+        var(--bg-color-0) 30%,
+        var(--bg-color-0) 70%,
+        var(--bg-color-2) 100%
+    );
+}
+
+/* 点阵层 呼吸 轻视差 */
+
+html::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+
+    background-image: radial-gradient(
+        circle at calc(var(--size1) / 2) calc(var(--size1) / 2),
+        var(--deco-color1) 0 var(--dot),
+        transparent calc(var(--dot) + 1px)
+    );
+
+    background-size: var(--size1) var(--size1);
+    opacity: 0.6;
+
+    animation:
+        dotDrift 12s linear infinite,
+        dotBreathe 4s ease-in-out infinite;
+}
+
+/* 网格层 慢视差漂移 */
+html::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(to right, var(--deco-color2) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--deco-color2) 1px, transparent 1px);
+
+    background-size: var(--size2) var(--size2);
+    opacity: 0.4;
+
+    animation: gridDrift 30s linear infinite;
+}
+
+@keyframes dotDrift {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(8px, 8px, 0);
+    }
+}
+
+@keyframes gridDrift {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        transform: translate3d(-12px, -6px, 0);
+    }
+}
+
+@keyframes dotBreathe {
+    0%, 100% {
+        opacity: 0.45;
+        filter: blur(0px);
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.65;
+        filter: blur(0.2px);
+        transform: scale(1.02);
+    }
+}
+
+
+html.before-basic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    z-index: -1;
 }
 
 body {
@@ -16,30 +112,101 @@ body {
     overflow-y: scroll;
 }
 
-body::before {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    background-image: radial-gradient(rgba(70, 70, 70, 0.1) 1.3px, transparent 1px);
-    background-size: 7px 7px;
-    mask-image: linear-gradient(transparent, black);
-}
-
 app-container {
+    --bg: transparent;
+    --line: rgba(0, 0, 0, 0.05);
+
+    /* 单元格尺寸 */
+    --cell: 200px;
+
+    /* 网格线宽 */
+    --grid: 1.5px;
+
+    /* 网格斜线宽 */
+    --diagonal: 1px;
+
+    /* 挖空半径 */
+    --cut: 16px;
+
+    margin: 0;
+    min-height: 100vh;
+    background-color: var(--bg);
+
+    background-image:
+
+
+        /* 竖线 */
+        linear-gradient(90deg,
+            var(--line) 0 var(--grid),
+            transparent var(--grid)),
+
+        /* 横线 */
+        linear-gradient(var(--line) 0 var(--grid),
+            transparent var(--grid)),
+
+
+        /* 左上 */
+        radial-gradient(circle at 0 0,
+            var(--bg) 0 var(--cut),
+            transparent calc(var(--cut) + 1px)),
+
+        /* 右上 */
+        radial-gradient(circle at 100% 0,
+            var(--bg) 0 var(--cut),
+            transparent calc(var(--cut) + 1px)),
+
+        /* 左下 */
+        radial-gradient(circle at 0 100%,
+            var(--bg) 0 var(--cut),
+            transparent calc(var(--cut) + 1px)),
+
+        /* 右下 */
+        radial-gradient(circle at 100% 100%,
+            var(--bg) 0 var(--cut),
+            transparent calc(var(--cut) + 1px)),
+
+        /* ↘ */
+        linear-gradient(45deg,
+            transparent calc(50% - 0.5*var(--diagonal)),
+            var(--line) calc(50% - 0.5*var(--diagonal)),
+            var(--line) calc(50% + 0.5*var(--diagonal)),
+            transparent calc(50% + 0.5*var(--diagonal))),
+
+        /* ↗ */
+        linear-gradient(-45deg,
+            transparent calc(50% - 0.5*var(--diagonal)),
+            var(--line) calc(50% - 0.5*var(--diagonal)),
+            var(--line) calc(50% + 0.5*var(--diagonal)),
+            transparent calc(50% + 0.5*var(--diagonal)));
+
+    background-size:
+        var(--cell) var(--cell),
+        var(--cell) var(--cell),
+        var(--cell) var(--cell),
+        var(--cell) var(--cell),
+
+        var(--cell) var(--cell),
+        var(--cell) var(--cell),
+
+        var(--cell) var(--cell),
+        var(--cell) var(--cell);
+
+    background-position:
+        0 0,
+        0 0,
+        0 0,
+        0 0,
+
+        0 0,
+        0 0,
+
+        0 0,
+        0 0;
 
     width: 100%;
     box-sizing: border-box;
     display: inline-block;
-    --background-line-color: rgba(70, 70, 70, 0.05) !important;
     z-index: -65535;
-    background-color: transparent;
-    background-size: 40px 40px !important;
-    background-position: center center !important;
-    background-image:
-        linear-gradient(to right, var(--background-line-color) 1.5px, transparent 1px),
-        linear-gradient(to bottom, var(--background-line-color) 1.5px, transparent 1px) !important;
 }
 
 hr {
@@ -56,7 +223,7 @@ img {
 }
 
 p {
-    font-size: 1。1rem;
+    font-size: 1.1rem;
     line-height: 29px;
     margin: 0px 0px 1.4rem 0px;
     word-wrap: break-word;

@@ -46,7 +46,7 @@
 
         .prismex-info-box {
             border: 0.1rem solid color-mix(in srgb, var(--teal) 10%, var(--bg-color-1));
-            border-radius: 0.4rem;
+            border-radius: 0rem;
             padding: 2rem 2rem 2rem 2rem;
             width: 100%;
             background-color: var(--bg-color-0);
@@ -60,8 +60,9 @@
         .prismex-info-box::after {
             content: '';
             position: absolute;
-            top: 1.5rem;
-            height: calc(100% - 3rem);
+            --cut:-0.1rem;
+            top: var(--cut);
+            height: calc(100% - var(--cut) * 2);
             width: 5px;
             background-color: var(--teal);
             box-shadow: 0 0 8px var(--teal);
