@@ -9,85 +9,62 @@ html {
     --size1: 8px;
     --size2: 20px;
 
-    --deco-color1: rgba(70, 70, 70, 0.12);
-    --deco-color2: rgba(70, 70, 70, 0.06);
+    --deco-color1: rgba(70, 70, 70, 0.07);
+    --deco-color2: rgba(70, 70, 70, 0.024);
 
-    background: linear-gradient(
-        to bottom,
-        var(--bg-color-2) 0%,
-        var(--bg-color-0) 30%,
-        var(--bg-color-0) 70%,
-        var(--bg-color-2) 100%
-    );
+    background:
+        /* 点阵层 */
+        radial-gradient(circle at calc(var(--size1) / 2) calc(var(--size1) / 2),
+            var(--deco-color1) 0 var(--dot),
+            transparent calc(var(--dot) + 1px)),
+        /* 网格竖线 */
+        linear-gradient(to right, var(--deco-color2) 1px, transparent 1px),
+        /* 网格横线 */
+        linear-gradient(to bottom, var(--deco-color2) 1px, transparent 1px),
+        /* 主渐变 */
+        linear-gradient(to bottom,
+            var(--bg-color-2) 0%,
+            var(--bg-color-0) 25%,
+            var(--bg-color-0) 75%,
+            color-mix(in srgb, var(--bg-color-2) 100%, var(--primary-color) 5%) 100%);
+
+    background-size:
+        var(--size1) var(--size1),
+        /* 点阵 */
+        var(--size2) var(--size2),
+        /* 网格竖线 */
+        var(--size2) var(--size2),
+        /* 网格横线 */
+        auto;
+    /* 主渐变 */
+
+    /* 呼吸动画 */
+    animation: dotBreathe 4s ease-in-out infinite;
 }
-
-/* 点阵层 呼吸 轻视差 */
 
 html::before {
     content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-
-    background-image: radial-gradient(
-        circle at calc(var(--size1) / 2) calc(var(--size1) / 2),
-        var(--deco-color1) 0 var(--dot),
-        transparent calc(var(--dot) + 1px)
-    );
-
-    background-size: var(--size1) var(--size1);
-    opacity: 0.6;
-
-    animation:
-        dotDrift 12s linear infinite,
-        dotBreathe 4s ease-in-out infinite;
-}
-
-/* 网格层 慢视差漂移 */
-html::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-
-    background-image:
-        linear-gradient(to right, var(--deco-color2) 1px, transparent 1px),
-        linear-gradient(to bottom, var(--deco-color2) 1px, transparent 1px);
-
-    background-size: var(--size2) var(--size2);
-    opacity: 0.4;
-
-    animation: gridDrift 30s linear infinite;
-}
-
-@keyframes dotDrift {
-    0% {
-        transform: translate3d(0, 0, 0);
-    }
-    100% {
-        transform: translate3d(8px, 8px, 0);
-    }
-}
-
-@keyframes gridDrift {
-    0% {
-        transform: translate3d(0, 0, 0);
-    }
-    100% {
-        transform: translate3d(-12px, -6px, 0);
-    }
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg,transparent 0%, transparent 40%,rgba(255, 208, 0, 0.07) 60%,rgba(255, 38, 0, 0.06) 70%, transparent 80%);
+    mask:linear-gradient(to bottom,rgba(255, 255, 255, 0.5) 70%, transparent);
+    z-index: -1;
 }
 
 @keyframes dotBreathe {
-    0%, 100% {
-        opacity: 0.45;
+
+    0%,
+    100% {
+        opacity: 0.94;
         filter: blur(0px);
-        transform: scale(1);
     }
+
     50% {
-        opacity: 0.65;
-        filter: blur(0.2px);
-        transform: scale(1.02);
+        opacity: 1;
+        filter: blur(0.25px);
     }
 }
 

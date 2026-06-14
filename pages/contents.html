@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="">
-    <title>所有文章/代用搜索页</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>所有文章/代用搜索页 - 增强排序版</title>
     <!--import jQuery-min-->
     <script type="text/javascript" src="..\JS\jquery-3.7.1.min.js"></script>
     <style>
@@ -23,22 +23,7 @@
         #search-result-container {
             flex: 1;
             border-radius: 0.4rem;
-
             min-height: 20rem;
-        }
-
-        #search-result-container::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            background: linear-gradient(0deg, var(--primary-color) 0%, transparent 100%);
-            opacity: 0.2;
-            z-index: -1;
-            pointer-events: none;
-            mask: radial-gradient(circle at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 100%);
         }
 
         #search-result-topbar {
@@ -92,6 +77,33 @@
             font-size: 0.8rem;
             padding: 0.1rem 0.3rem 0.1rem 0.3rem;
             border: 0;
+            background: var(--bg-color-1);
+            border-radius: 0.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .topbar-sub-container-content>button:hover {
+            background: var(--bg-color-2);
+        }
+
+        .topbar-sub-container-content>button:active {
+            background: var(--bg-color-3);
+            color: var(--primary-font-color);
+        }
+
+        .topbar-sub-container-content>button.active-sort{
+            position:relative
+        }
+
+        .topbar-sub-container-content>button.active-sort::before {
+            position:absolute;
+            content: '';
+            bottom:-0.05rem;
+            left:calc(50% - 0.8rem);
+            height:0.1rem;
+            width:1.6rem;
+            background-color: var(--primary-color);
         }
 
         #search-result {
@@ -114,7 +126,7 @@
             padding: 2rem 0.4rem 2rem 0.4rem;
         }
 
-        #search-placeholder>.error-cross {
+        .error-cross {
             stroke: var(--grey-1);
             margin-bottom: 1rem;
         }
@@ -124,7 +136,6 @@
             flex-direction: row;
             flex-wrap: nowrap;
             width: max-content;
-            /*force the elements stay in one line*/
             flex: 0;
             gap: 0;
         }
@@ -137,7 +148,7 @@
             }
         }
 
-        @media (max-width: 580px) {
+        @media (max-width: 640px) {
             #search-result-topbar {
                 flex-direction: column;
                 align-items: flex-start;
@@ -149,19 +160,14 @@
                 width: 100%;
             }
         }
-
-
-        
     </style>
     <script type="text/javascript" src="..\scripts\head.js"></script>
 </head>
 
-
 <body>
     <app-container>
         <app-navbar></app-navbar>
-        <!--main-->
-        <top-panel title="全部文档/搜索" sub-title="//STATUS::UNDER_CONSTRUCTION"></top-panel>
+        <top-panel title="全部文档/搜索" sub-title="//STATUS::SORTING_ENABLED"></top-panel>
         <div class="content">
             <hr class="blank">
             <div id="search-container">
@@ -195,36 +201,27 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                     <div id="search-result">
-                        <!--使用示例-->
                         <div id="search-placeholder">
                             <svg class="error-cross" width="60px" height="60px" viewBox="0 0 100 100"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g stroke="black" stroke-width="6" fill="none" stroke-linecap="square">
                                     <path d="M20,20 L30,30" />
-
                                     <path d="M70,70 L80,80" />
-
                                     <path d="M80,20 L70,30" />
-
                                     <path d="M30,70 L20,80" />
                                 </g>
                             </svg>
                             <h2>当前未进行过搜索</h2>
                             <span style="color: var(--grey-1);">键入搜索内容并执行搜索以显示对应结果</span>
                         </div>
-
-                        <!--搜索结果会以卡片的形式显示在这里，卡片包含标题、副标题、类型、标签、作者和发布时间等信息-->
                     </div>
                 </div>
 
                 <div id="search-right">
                     <h2>搜索</h2>
                     <input type="text" id="search-input" placeholder="请输入搜索内容...">
-                    <!--支持支持正则表达式，当内容为空（即用户不输入时显示为所有内容）-->
-                    <!--下拉框选择是否启用，默认不启用正则表达式-->
                     <select id="regex-select">
                         <option value="false">不启用正则表达式</option>
                         <option value="true">启用正则表达式</option>
@@ -233,79 +230,401 @@
                 </div>
             </div>
             <hr class="blank">
-
         </div>
+
         <script>
-            //前端搜索实现
-            let startTime = -1;
-            //let ARTICLE_DATA = null;
-            //文章数据
-            fetch('../data/search-data.json')
-                .then(response => response.json())
-                .then(data => {
-                    window.ARTICLE_DATA = data;
-                });
+            (function () {
+                // ------ 全局状态 ------
+                let ARTICLE_DATA = null;                // 存储原始文章数据
+                let dataLoadingPromise = null;          // 确保数据加载完成
+                let lastSearchResults = [];              // 最近一次搜索结果(原始顺序,未排序)
+                let lastQuery = "";                      // 最近一次搜索词
+                let lastUseRegex = false;                // 最近一次正则标志
+                let lastSearchTimeMs = 0;                // 最近一次搜索耗时(毫秒)
 
-            function renderSearchResult(query) {
-                $('#search-input').val(query);
-                $('#search-button').click();
-            }
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            const keyword = urlParams.get('q');
-            if (keyword) {
-                console.log("Got the keyword from the URL:", keyword);
-                renderSearchResult(keyword);
-            } else {
-                console.log("No keyword found in the URL.");
-            }
+                // 排序状态
+                let currentSortField = "relevance";      // 默认按相关度 (搜索完成后自动按相关度排序)
+                let currentSortAscending = false;        // 相关度降序(高分优先) 所以 false = 降序, true=升序 (针对相关度降序更合理)
 
-            //点击搜索按钮时执行搜索
-            $('#search-button').click(function () {
-                //获取逻辑执行开始时间
-                startTime = performance.now();
-                const query = $('#search-input').val().trim();
-                const useRegex = $('#regex-select').val() === 'true';
-                let results = [];
+                // DOM 元素
+                const $searchInput = $('#search-input');
+                const $regexSelect = $('#regex-select');
+                const $searchBtn = $('#search-button');
+                const $resultContainer = $('#search-result');
+                const $resultsCountSpan = $('#search-results-count');
+                const $resultsTimeSpan = $('#search-results-time');
 
-                if (useRegex) {
+                // 排序按钮
+                const $sortTypeBtn = $('#sort-by-type');
+                const $sortTimeBtn = $('#sort-by-time');
+                const $sortRelevanceBtn = $('#sort-by-relevance');
+                const $sortAuthorBtn = $('#sort-by-author');
+                const $toggleOrderBtn = $('#sort-ascending-change');
+
+                // ----- 辅助函数: 移除按钮高亮，高亮当前排序字段 -----
+                function highlightActiveSortButton() {
+                    $sortTypeBtn.removeClass('active-sort');
+                    $sortTimeBtn.removeClass('active-sort');
+                    $sortRelevanceBtn.removeClass('active-sort');
+                    $sortAuthorBtn.removeClass('active-sort');
+                    if (currentSortField === 'type') $sortTypeBtn.addClass('active-sort');
+                    else if (currentSortField === 'time') $sortTimeBtn.addClass('active-sort');
+                    else if (currentSortField === 'relevance') $sortRelevanceBtn.addClass('active-sort');
+                    else if (currentSortField === 'author') $sortAuthorBtn.addClass('active-sort');
+                }
+
+                // ----- 计算文章与查询词的相关度分数 (数值越高越相关) -----
+                function computeRelevanceScore(article, query, useRegex) {
+                    if (!query || query.trim() === "") {
+                        // 无搜索词时，相关度分数均为0，但排序时fallback到时间降序 (外部处理)
+                        return 0;
+                    }
+                    let score = 0;
+                    const lowerQuery = query.toLowerCase();
+                    // 权重设计: 标题 5, 副标题 3, 标签(每个匹配+2), 作者2, 类型1
                     try {
-                        const regex = new RegExp(query, 'i');
-                        for (const key in ARTICLE_DATA) {
-                            const article = ARTICLE_DATA[key];
-                            if (regex.test(article.title) || regex.test(article.subTitle) || regex.test(article.type) || article.tags.some(tag => regex.test(tag)) || regex.test(article.author)) {
-                                results.push(article);
+                        if (useRegex) {
+                            const regex = new RegExp(query, 'i');
+                            if (regex.test(article.title)) score += 5;
+                            if (regex.test(article.subTitle)) score += 3;
+                            if (article.tags && Array.isArray(article.tags)) {
+                                for (let tag of article.tags) {
+                                    if (regex.test(tag)) score += 2;
+                                }
+                            }
+                            if (regex.test(article.author)) score += 2;
+                            if (regex.test(article.type)) score += 1;
+                        } else {
+                            // 普通字符串匹配(支持包含), 并且考虑出现次数增强相关性
+                            const titleMatches = (article.title.match(new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi')) || []).length;
+                            score += titleMatches * 5;
+                            const subMatches = (article.subTitle.match(new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi')) || []).length;
+                            score += subMatches * 3;
+                            if (article.tags && Array.isArray(article.tags)) {
+                                for (let tag of article.tags) {
+                                    const tagMatches = (tag.match(new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi')) || []).length;
+                                    score += tagMatches * 2;
+                                }
+                            }
+                            const authorMatches = (article.author.match(new RegExp(query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi')) || []).length;
+                            score += authorMatches * 2;
+                            if (article.type.toLowerCase().includes(lowerQuery)) score += 1;
+                        }
+                    } catch (e) { /* 忽略正则边缘情况，搜索阶段已保证合法 */ }
+                    return score;
+                }
+
+                // ----- 核心排序函数：根据当前排序字段和升降序标志 + 相关度依赖查询词 -----
+                function sortResults(resultsToSort, sortField, ascending, query, useRegex) {
+                    if (!resultsToSort || resultsToSort.length === 0) return [];
+                    const sorted = [...resultsToSort];
+                    const multiplier = ascending ? 1 : -1;
+
+                    if (sortField === 'relevance') {
+                        // 相关度排序: 先计算每个文章的分数，若分数相同则按照时间(newest first)作为辅助排序
+                        const scoreMap = new Map();
+                        for (let art of sorted) {
+                            let score = computeRelevanceScore(art, query, useRegex);
+                            // 无搜索词时相关度无意义，直接按时间降序 (与期望一致)
+                            if (!query || query.trim() === "") {
+                                score = 0;
+                            }
+                            scoreMap.set(art, score);
+                        }
+                        sorted.sort((a, b) => {
+                            let scoreA = scoreMap.get(a);
+                            let scoreB = scoreMap.get(b);
+                            if (scoreA !== scoreB) {
+                                return multiplier * (scoreA - scoreB);
+                            } else {
+                                // 辅助按时间降序 (最新的在前)
+                                const timeA = a.time || "0";
+                                const timeB = b.time || "0";
+                                return timeB.localeCompare(timeA);
+                            }
+                        });
+                    }
+                    else if (sortField === 'time') {
+                        sorted.sort((a, b) => {
+                            const timeA = a.time || "";
+                            const timeB = b.time || "";
+                            return multiplier * timeA.localeCompare(timeB);
+                        });
+                    }
+                    else if (sortField === 'type') {
+                        sorted.sort((a, b) => {
+                            const typeA = a.type || "";
+                            const typeB = b.type || "";
+                            return multiplier * typeA.localeCompare(typeB);
+                        });
+                    }
+                    else if (sortField === 'author') {
+                        sorted.sort((a, b) => {
+                            const authorA = a.author || "";
+                            const authorB = b.author || "";
+                            return multiplier * authorA.localeCompare(authorB);
+                        });
+                    }
+                    return sorted;
+                }
+
+                // ----- 渲染搜索结果 (根据lastSearchResults和当前排序设置实时渲染)-----
+                function renderCurrentResults() {
+                    if (!lastSearchResults || lastSearchResults.length === 0) {
+                        // 显示占位符 (但保持计数)
+                        $resultContainer.empty();
+                        $resultContainer.append(`
+                            <div id="search-placeholder">
+                                <svg class="error-cross" width="60px" height="60px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                    <g stroke="black" stroke-width="6" fill="none" stroke-linecap="square">
+                                        <path d="M20,20 L30,30" />
+                                        <path d="M70,70 L80,80" />
+                                        <path d="M80,20 L70,30" />
+                                        <path d="M30,70 L20,80" />
+                                    </g>
+                                </svg>
+                                <h2>没有找到相关内容</h2>
+                                <span style="color: var(--grey-1);">尝试修改搜索关键词或关闭正则表达式</span>
+                            </div>
+                        `);
+                        $resultsCountSpan.text("0");
+                        return;
+                    }
+
+                    // 根据当前排序字段以及升降序，对 lastSearchResults 进行排序得到新数组
+                    const sortedArticles = sortResults(lastSearchResults, currentSortField, currentSortAscending, lastQuery, lastUseRegex);
+                    $resultContainer.empty();
+                    for (let article of sortedArticles) {
+                        // 安全处理标签json序列化
+                        let tagsJson = JSON.stringify(article.tags || []);
+                        $resultContainer.append(`
+                            <search-result-card 
+                                href="${escapeHtml(article.href)}" 
+                                title="${escapeHtml(article.title)}" 
+                                sub-title="${escapeHtml(article.subTitle)}" 
+                                type="${escapeHtml(article.type)}" 
+                                tags='${tagsJson}' 
+                                author="${escapeHtml(article.author)}" 
+                                time="${escapeHtml(article.time)}">
+                            </search-result-card>
+                        `);
+                    }
+                    $resultsCountSpan.text(lastSearchResults.length);
+                    // 保持搜索耗时显示不变 (最近一次搜索的耗时)
+                    $resultsTimeSpan.text(`${lastSearchTimeMs}ms`);
+                }
+
+                // 简单防XSS辅助
+                function escapeHtml(str) {
+                    if (!str) return '';
+                    return str.replace(/[&<>]/g, function (m) {
+                        if (m === '&') return '&amp;';
+                        if (m === '<') return '&lt;';
+                        if (m === '>') return '&gt;';
+                        return m;
+                    }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function (c) {
+                        return c;
+                    });
+                }
+
+                // ----- 执行搜索 (核心逻辑)-----
+                function performSearch(query, useRegex, updateTime = true) {
+                    if (!ARTICLE_DATA) {
+                        alert("文章数据尚未加载完成，请稍后再试...");
+                        return false;
+                    }
+                    let startPerf = 0;
+                    if (updateTime) startPerf = performance.now();
+                    let results = [];
+                    try {
+                        if (useRegex) {
+                            const regex = new RegExp(query, 'i');
+                            for (const key in ARTICLE_DATA) {
+                                const article = ARTICLE_DATA[key];
+                                if (regex.test(article.title) || regex.test(article.subTitle) || regex.test(article.type) ||
+                                    (article.tags && article.tags.some(tag => regex.test(tag))) || regex.test(article.author)) {
+                                    results.push(article);
+                                }
+                            }
+                        } else {
+                            // 普通搜索: 包含匹配
+                            for (const key in ARTICLE_DATA) {
+                                const article = ARTICLE_DATA[key];
+                                if (article.title.includes(query) || article.subTitle.includes(query) || article.type.includes(query) ||
+                                    (article.tags && article.tags.some(tag => tag.includes(query))) || article.author.includes(query)) {
+                                    results.push(article);
+                                }
                             }
                         }
                     } catch (e) {
-                        alert('正则表达式无效，请检查后重试。');
-                        return;
+                        if (useRegex) alert('正则表达式无效，请检查后重试。');
+                        else console.warn(e);
+                        return false;
                     }
-                } else {
-                    for (const key in ARTICLE_DATA) {
-                        const article = ARTICLE_DATA[key];
-                        if (article.title.includes(query) || article.subTitle.includes(query) || article.type.includes(query) || article.tags.some(tag => tag.includes(query)) || article.author.includes(query)) {
-                            results.push(article);
-                        }
+
+                    // 存储搜索结果与元数据
+                    lastSearchResults = results;
+                    lastQuery = query;
+                    lastUseRegex = useRegex;
+
+                    if (updateTime) {
+                        const endPerf = performance.now();
+                        lastSearchTimeMs = (endPerf - startPerf).toFixed(1);
+                    } else {
+                        // 如果调用时不需要更新时间（如初始化），保证显示正确
+                        if (!lastSearchTimeMs) lastSearchTimeMs = "0.0";
                     }
+
+                    // 搜索完成后，默认按照相关度(降序)展示，这样更符合预期 (如果查询词为空，相关度均分则自动退化成时间降序)
+                    if (lastQuery && lastQuery.trim() !== "") {
+                        currentSortField = "relevance";
+                        currentSortAscending = false;   // 降序: 高分在前
+                    } else {
+                        // 空搜索场景，默认按时间降序 (最新文章优先)
+                        currentSortField = "time";
+                        currentSortAscending = false;
+                    }
+                    highlightActiveSortButton();
+
+                    // 渲染排序后结果
+                    renderCurrentResults();
+                    return true;
                 }
 
-                //在页面上显示搜索结果
-                $('#search-result').empty();
-                results.forEach(article => {
-                    $('#search-result').append(`
-                        <search-result-card href="${article.href}" title="${article.title}" sub-title="${article.subTitle}" type="${article.type}" tags='${JSON.stringify(article.tags)}' author="${article.author}" time="${article.time}"></search-result-card>
-                    `);
+                // ----- 搜索按钮交互 -----
+                function onSearchClick() {
+                    const query = $searchInput.val().trim();
+                    const useRegex = $regexSelect.val() === 'true';
+                    if (!ARTICLE_DATA) {
+                        alert("数据加载中，请稍后重试。");
+                        return;
+                    }
+                    performSearch(query, useRegex, true);
+                }
+
+                // ----- 排序控制逻辑 (由按钮触发)-----
+                function setSortField(field) {
+                    if (!lastSearchResults) {
+                        // 未进行过搜索: 提示或无效果
+                        if (ARTICLE_DATA) {
+                            // 如果没有搜索过，可以提供一个默认全量搜索 (展示所有文档)
+                            performSearch("", false, true);
+                        } else {
+                            alert("请先执行一次搜索再进行排序");
+                        }
+                        return;
+                    }
+                    if (currentSortField === field) {
+                        // 相同字段: 切换升降序
+                        currentSortAscending = !currentSortAscending;
+                    } else {
+                        currentSortField = field;
+                        // 不同字段时，升降序复位默认: 时间/类型/作者默认升序，相关度默认降序(高分优先)
+                        if (field === 'relevance') currentSortAscending = false;
+                        else currentSortAscending = true;
+                    }
+                    highlightActiveSortButton();
+                    renderCurrentResults();
+                }
+
+                function toggleOrder() {
+                    if (!lastSearchResults || lastSearchResults.length === 0) {
+                        if (ARTICLE_DATA) performSearch("", false, true);
+                        else alert("暂无搜索结果，无法切换排序");
+                        return;
+                    }
+                    currentSortAscending = !currentSortAscending;
+                    highlightActiveSortButton();
+                    renderCurrentResults();
+                }
+
+                // ----- 读取数据修复: 确保加载完成且处理失败场景，支持url参数搜索 -----
+                function loadArticleData() {
+                    if (dataLoadingPromise) return dataLoadingPromise;
+                    dataLoadingPromise = fetch('../data/search-data.json')
+                        .then(response => {
+                            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                            return response.json();
+                        })
+                        .then(data => {
+                            ARTICLE_DATA = data;
+                            console.log("文章数据加载完成，共计", Object.keys(ARTICLE_DATA).length, "篇文章");
+                            // 数据加载完成后，处理URL参数中的q
+                            const urlParams = new URLSearchParams(window.location.search);
+                            const keyword = urlParams.get('q');
+                            if (keyword && keyword.trim() !== "") {
+                                console.log("从URL加载搜索词:", keyword);
+                                $searchInput.val(keyword);
+                                performSearch(keyword, false, true);
+                            } else {
+                                // 没有关键词，显示占位提示即可
+                                lastSearchResults = [];
+                                renderCurrentResults();
+                            }
+                            return data;
+                        })
+                        .catch(err => {
+                            console.error("加载文章数据失败:", err);
+                            $resultContainer.empty();
+                            $resultContainer.append(`
+                                <div id="search-placeholder">
+                                    <svg class="error-cross" width="60px" height="60px" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                                        <g stroke="red" stroke-width="6" fill="none" stroke-linecap="square">
+                                            <path d="M20,20 L80,80" />
+                                            <path d="M80,20 L20,80" />
+                                        </g>
+                                    </svg>
+                                    <h2>数据加载失败</h2>
+                                    <span style="color: var(--grey-1);">请检查 search-data.json 路径或网络，刷新重试</span>
+                                </div>
+                            `);
+                            ARTICLE_DATA = {};
+                        });
+                    return dataLoadingPromise;
+                }
+
+                // ----- 绑定UI事件和初始化 -----
+                function bindEvents() {
+                    $searchBtn.on('click', onSearchClick);
+                    // 支持回车搜索
+                    $searchInput.on('keypress', function (e) {
+                        if (e.which === 13) {
+                            e.preventDefault();
+                            onSearchClick();
+                        }
+                    });
+                    $sortTypeBtn.on('click', () => setSortField('type'));
+                    $sortTimeBtn.on('click', () => setSortField('time'));
+                    $sortRelevanceBtn.on('click', () => setSortField('relevance'));
+                    $sortAuthorBtn.on('click', () => setSortField('author'));
+                    $toggleOrderBtn.on('click', toggleOrder);
+                }
+
+                // 兼容原有外部可能的 renderSearchResult 调用 (提供全局)
+                window.renderSearchResult = function (query) {
+                    if (!ARTICLE_DATA) {
+                        loadArticleData().then(() => {
+                            $searchInput.val(query);
+                            performSearch(query, false, true);
+                        });
+                    } else {
+                        $searchInput.val(query);
+                        performSearch(query, false, true);
+                    }
+                };
+
+                // 开始加载数据并初始化界面
+                loadArticleData().then(() => {
+                    bindEvents();
+                    // 如果没有任何搜索且URL无参数，可保持占位符
+                    if (!lastSearchResults || lastSearchResults.length === 0) {
+                        renderCurrentResults();
+                    }
+                }).catch(() => {
+                    // 静默失败，已经显示错误
+                    bindEvents(); // 仍旧绑定防止按钮无响应
                 });
-
-                //更新结果数
-                $('#search-results-count').text(results.length);
-                //更新搜索用时
-                const endTime = performance.now();
-                const finaltime = (endTime - startTime).toFixed(1);
-                $('#search-results-time').text(`${finaltime}ms`); //替换为实际的搜索用时
-
-            });
+            })();
         </script>
         <app-footer></app-footer>
     </app-container>

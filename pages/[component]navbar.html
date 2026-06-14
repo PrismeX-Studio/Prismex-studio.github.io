@@ -43,15 +43,21 @@
             align-items: flex-start;
             --surface-color1: color-mix(in srgb, var(--bg-color-0) 77%, transparent);
             --surface-color2: color-mix(in srgb, var(--primary-color) 4%, var(--bg-color-0));
-            background: rgba(255, 255, 255, 0.76);
+            background:rgba(245,245,245,0.76);
             backdrop-filter: blur(11px) saturate(1.8);
             background-position-x: 0px;
-
             --animation: all 150ms ease 0s;
-
             --nav-shadow: 0 4px 30px var(--border-color);
             box-shadow: var(--nav-shadow);
             overflow: hidden;
+        }
+
+        .navbar.unused:hover{
+            background: linear-gradient(
+                to left,
+                color-mix(in srgb, var(--primary-color) 15%, rgba(245,245,245,0.76)) 0%,
+                rgba(245,245,245,0.76) 100%
+            );
         }
 
         .nav-title {
