@@ -176,6 +176,231 @@ class TopPanelComponent extends BaseComponent {
     }
 }
 
+class FloatingSearchComponent extends BaseComponent {
+
+    initializeLogic() {
+
+        const shadow = this.shadowRoot;
+
+        const overlay =
+            shadow.querySelector('.overlay');
+
+        const input =
+            shadow.querySelector('.search-input');
+
+        const resultContainer =
+            shadow.querySelector('.results');
+
+        const closeBtn =
+            shadow.querySelector('.close-btn');
+
+        let articleData = {};
+        let currentIndex = 0;
+        let currentResults = [];
+
+        //----------------------------------
+        // 数据加载
+        //----------------------------------
+
+        fetch('../data/search-data.json')
+            .then(r => r.json())
+            .then(data => {
+                articleData = data;
+            });
+
+        //----------------------------------
+        // 打开
+        //----------------------------------
+
+        const openSearch = () => {
+
+            overlay.classList.add('show');
+
+            input.value = '';
+
+            input.focus();
+
+            currentResults = [];
+            resultContainer.innerHTML = '';
+        };
+
+        //----------------------------------
+        // 关闭
+        //----------------------------------
+
+        const closeSearch = () => {
+            overlay.classList.remove('show');
+        };
+
+        closeBtn.onclick = closeSearch;
+
+        //----------------------------------
+        // 全局快捷键
+        //----------------------------------
+
+        document.addEventListener('keydown', e => {
+
+            if (
+                (e.ctrlKey || e.metaKey)
+                && e.key.toLowerCase() === 'k'
+            ) {
+
+                e.preventDefault();
+
+                openSearch();
+            }
+
+            if (
+                e.key === 'Escape'
+                && overlay.classList.contains('show')
+            ) {
+                closeSearch();
+            }
+        });
+
+        //----------------------------------
+        // 搜索逻辑
+        //----------------------------------
+
+        function scoreArticle(article, keyword) {
+
+            let score = 0;
+
+            if (article.title.includes(keyword))
+                score += 20;
+
+            if (article.subTitle.includes(keyword))
+                score += 10;
+
+            if (article.author.includes(keyword))
+                score += 5;
+
+            if (
+                article.tags &&
+                article.tags.some(t => t.includes(keyword))
+            ) {
+                score += 8;
+            }
+
+            return score;
+        }
+
+        //----------------------------------
+        // 渲染
+        //----------------------------------
+
+        const renderResults = keyword => {
+
+            resultContainer.innerHTML = '';
+
+            if (!keyword.trim()) return;
+
+            currentResults = Object.values(articleData)
+                .map(article => ({
+                    article,
+                    score: scoreArticle(article, keyword)
+                }))
+                .filter(x => x.score > 0)
+                .sort((a, b) => b.score - a.score)
+                .slice(0, 100);
+
+            currentIndex = 0;
+
+            currentResults.forEach((item, index) => {
+
+                const div =
+                    document.createElement('div');
+
+                div.className = 'result-item';
+
+                if (index === 0)
+                    div.classList.add('active');
+
+                div.innerHTML = `
+                    <span class="badge">
+                        ${item.article.chapter || '#'}
+                    </span>
+
+                    <span class="title">
+                        ${item.article.title}
+                    </span>
+                `;
+
+                div.onclick = () => {
+                    location.href = item.article.href;
+                };
+
+                resultContainer.appendChild(div);
+            });
+        };
+
+        //----------------------------------
+        // 输入
+        //----------------------------------
+
+        input.addEventListener('input', () => {
+            renderResults(input.value);
+        });
+
+        //----------------------------------
+        // 键盘导航
+        //----------------------------------
+
+        input.addEventListener('keydown', e => {
+
+            const rows =
+                resultContainer.querySelectorAll('.result-item');
+
+            if (!rows.length) return;
+
+            if (e.key === 'ArrowDown') {
+
+                e.preventDefault();
+
+                rows[currentIndex]?.classList.remove('active');
+
+                currentIndex =
+                    Math.min(
+                        currentIndex + 1,
+                        rows.length - 1
+                    );
+
+                rows[currentIndex]
+                    ?.classList.add('active');
+            }
+
+            if (e.key === 'ArrowUp') {
+
+                e.preventDefault();
+
+                rows[currentIndex]?.classList.remove('active');
+
+                currentIndex =
+                    Math.max(
+                        currentIndex - 1,
+                        0
+                    );
+
+                rows[currentIndex]
+                    ?.classList.add('active');
+            }
+
+            if (e.key === 'Enter') {
+
+                e.preventDefault();
+
+                currentResults[currentIndex]
+                    ?.article?.href &&
+                    (
+                        location.href =
+                        currentResults[currentIndex]
+                            .article.href
+                    );
+            }
+        });
+    }
+}
+
 
 /**
  * TitleblockComponent 类
@@ -559,12 +784,57 @@ class DecoTitleComponent extends BaseComponent {
     initializeLogic() {
         const shadow = this.shadowRoot;
         const title = this.getAttribute('title') || '未定义 / UNDEFINED';
-         const subtitle = this.getAttribute('sub-title') || '未定义 / UNDEFINED';
+        const subtitle = this.getAttribute('sub-title') || '未定义 / UNDEFINED';
 
         const titleEl = shadow.querySelector('.title-block');
         const subtitleEl = shadow.querySelector('.upper-title-block');
         if (titleEl) titleEl.textContent = title;
         if (subtitleEl) subtitleEl.textContent = subtitle;
+    }
+}
+
+class FullscreenInfoBoxComponent extends BaseComponent {
+
+    initializeLogic() {
+        const shadow = this.shadowRoot;
+        const type = this.getAttribute('type') || 'info';
+        const title = this.getAttribute('title') || 'TITLE';
+        const subtitle = this.getAttribute('subtitle') || '';
+        const status = this.getAttribute('status') || type.toUpperCase();
+        const code =
+            this.getAttribute('code') || '';
+        const info =
+            this.getAttribute('info') || '';
+        const action =
+            this.getAttribute('action') || 'OK';
+        const root =
+            shadow.querySelector('.fullscreen-info-page');
+        const titleEl =
+            shadow.querySelector('.hero-title');
+        const subtitleEl =
+            shadow.querySelector('.hero-subtitle');
+        const statusEl =
+            shadow.querySelector('.meta-status');
+        const codeEl =
+            shadow.querySelector('.meta-code');
+        const infoEl =
+            shadow.querySelector('.meta-info');
+        const actionEl =
+            shadow.querySelector('.action-text');
+        if (root)
+            root.classList.add(type);
+        if (titleEl)
+            titleEl.textContent = title;
+        if (subtitleEl)
+            subtitleEl.textContent = subtitle;
+        if (statusEl)
+            statusEl.textContent = status;
+        if (codeEl)
+            codeEl.textContent = code;
+        if (infoEl)
+            infoEl.textContent = info;
+        if (actionEl)
+            actionEl.textContent = action;
     }
 }
 
@@ -644,6 +914,16 @@ const COMPONENT_REGISTRY = {
     'deco-title': {
         path: '[component]deco-title.html',
         componentClass: DecoTitleComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'floating-search': {
+        path: '[component]floating-search.html',
+        componentClass: FloatingSearchComponent,
+        commonCssPaths: ALL_COMMON_CSS_PATHS
+    },
+    'fullscreen-info-box': {
+        path: '[component]fullscreen-info-box.html',
+        componentClass: FullscreenInfoBoxComponent,
         commonCssPaths: ALL_COMMON_CSS_PATHS
     }
 };

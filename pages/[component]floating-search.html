@@ -1,0 +1,139 @@
+<template>
+    <style>
+        :host {
+            all: initial;
+        }
+
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,.35);
+            backdrop-filter: blur(8px);
+            z-index: 99999;
+
+            display: none;
+            justify-content: center;
+            align-items: flex-start;
+
+            padding-top: 3rem;
+        }
+
+        .overlay.show {
+            display: flex;
+        }
+
+        .panel {
+            width: min(1200px,90vw);
+            height: min(80vh,900px);
+
+            background: var(--bg-color-1);
+            border: 1px solid var(--bg-color-3);
+            border-radius: .8rem;
+
+            display: flex;
+            flex-direction: column;
+
+            overflow: hidden;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+
+            padding: 1rem;
+            border-bottom: 1px solid var(--bg-color-3);
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+
+            background: transparent;
+            color: var(--primary-font-color);
+            font-size: 1.1rem;
+        }
+
+        .action-btn {
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--primary-font-color);
+            font-size: 1rem;
+        }
+
+        .results {
+            overflow-y: auto;
+            flex: 1;
+            padding: .5rem;
+        }
+
+        .result-item {
+            display: flex;
+            align-items: center;
+
+            gap: .6rem;
+
+            padding: .8rem 1rem;
+            border-radius: .4rem;
+
+            cursor: pointer;
+            transition: .2s;
+        }
+
+        .result-item:hover,
+        .result-item.active {
+            background: var(--bg-color-2);
+        }
+
+        .badge {
+            background: var(--primary-color);
+            color: white;
+            padding: .1rem .35rem;
+            border-radius: .2rem;
+            font-size: .75rem;
+            min-width: 2rem;
+            text-align: center;
+        }
+
+        .title {
+            font-weight: 600;
+        }
+
+        .footer {
+            padding: .6rem 1rem;
+            border-top: 1px solid var(--bg-color-3);
+
+            color: var(--grey-1);
+            font-size: .85rem;
+        }
+    </style>
+
+    <div class="overlay">
+
+        <div class="panel">
+
+            <div class="search-bar">
+
+                🔍
+
+                <input
+                    class="search-input"
+                    placeholder="搜索..."
+                >
+
+                <button class="action-btn close-btn">✕</button>
+
+            </div>
+
+            <div class="results"></div>
+
+            <div class="footer">
+                ↑ ↓ 切换　↵ 打开　ESC 关闭
+            </div>
+
+        </div>
+
+    </div>
+</template>

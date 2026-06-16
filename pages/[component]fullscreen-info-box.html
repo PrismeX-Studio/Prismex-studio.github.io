@@ -1,0 +1,137 @@
+<template id="fullscreen-info-box-template">
+    <style>
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            BOX-SIZING: border-box;
+            padding: 10%;
+            background: color-mix(in srgb, var(--bg-color-0) 20%, transparent);
+            backdrop-filter: blur(20px) saturate(1.8);
+            z-index: 998;
+        }
+
+        .main {
+            width: 100%;
+            height: auto;
+            background-color: transparent;
+            border: 0 solid var(--border-color);
+            border-radius: 0.4rem;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+        }
+
+        .container-inner {
+            margin:0;
+            padding: 0;
+        }
+
+        .bottom-container {
+            display: flex;
+            flex-direction: row;
+            gap:0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .code-block {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            
+            padding-right: 16px;
+            margin: 0;
+        }
+
+        .intro-text {
+            margin: 0;
+            color: var(--grey-1);
+            font-size: 0.9rem !important; 
+            height: 1.4rem;
+            line-height: 1.4rem;
+        }
+
+        .content-text {
+            white-space: wrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100%;
+            margin: 0;
+            font-size: 2rem !important;
+            height: 2.4rem;
+            line-height: 2.4rem;
+        }
+
+        .exec-block {
+            background-color: var(--primary-color);
+            height:3.8rem;
+            width: 3.8rem;
+            display: flex;
+            align-items: center;
+            border: 2px solid transparent;
+            transition: 0.12s ease;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+
+        .exec-block:hover {
+            border: 2px solid var(--primary-color);
+        }
+
+        .exec-block>h2 {
+            text-align: center;
+            height: 3.8rem;
+            line-height: 3.8rem;
+            margin: 0;
+            width: 100%;
+            flex-shrink: 0;
+            margin: 0;
+        }
+    </style>
+    <div class="background">
+        <div class="main">
+            <div class="main-container">
+                <div class="container-inner">
+                    <h1 class="title">警告 WARNING</h1>
+                    <p></p>
+                    <p class="title-intro">
+                        您访问的页面不存在或已被删除...请务必确认您输入了正确的链接。<br />
+                        The page you visited does not exist or has been deleted... Please make sure you have entered the
+                        correct link.
+                    </p>
+                </div>
+            </div>
+            <div class="bottom-container">
+                <div class="code-block">
+                    <p class="intro-text">
+                        UNIFIED CODE
+                    </p>
+                    <h1 class="content-text code">
+                        404_NOT_FOUND
+                    </h1>
+                </div>
+                <div class="info-block">
+                    <p class="intro-text">
+                        INFORMATION
+                    </p>
+                    <h1 class="content-text">
+                        REQUESTED RESOURCE MISSING
+                    </h1>
+                </div>
+                <hr class="blank" style="min-width: 16px;">
+                <div class="exec-block" onclick="this.parentElement.parentElement.remove()">
+                    <h2>
+                        ×
+                    </h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
